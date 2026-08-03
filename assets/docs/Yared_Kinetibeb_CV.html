@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae - Yared Kinetibeb Tesfaye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #121216;
+      --gold: #dfa951;
+      --gold-dark: #b8860b;
+      --text: #f4f4f7;
+      --text-muted: #9e9ea8;
+      --border: #26231d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      padding: 40px 20px;
+    }
+    .cv-container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(223,169,81,0.1);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--gold);
+      margin-bottom: 28px;
+    }
+    .portrait {
+      width: 100px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+    }
+    .header-info h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .header-info h2 {
+      font-size: 1.05rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .contact-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .contact-line a { color: var(--gold); text-decoration: none; }
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    p, li { font-size: 0.92rem; color: #d1d5db; line-height: 1.6; }
+    ul { list-style: none; }
+    ul li { position: relative; padding-left: 18px; margin-bottom: 6px; }
+    ul li::before {
+      content: '•';
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .skill-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .skill-box h4 { font-size: 0.85rem; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; }
+    .print-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(223,169,81,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    @media print {
+      body { background: #fff; color: #000; padding: 0; }
+      .cv-container { border: none; box-shadow: none; padding: 0; max-width: 100%; background: #fff; }
+      .header-info h1, .section-title, .contact-line a, .skill-box h4 { color: #b8860b !important; }
+      p, li { color: #1a202c !important; }
+      .print-btn { display: none; }
+      .skill-box { border-color: #ddd; background: #f9f9f9; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
+
+  <div class="cv-container">
+    <div class="header">
+      <img src="../images/profile.png" alt="Yared Kinetibeb" class="portrait">
+      <div class="header-info">
+        <h1>Yared Kinetibeb Tesfaye</h1>
+        <h2>5th-Year Computer Engineering Senior | Full-Stack & Embedded Developer</h2>
+        <div class="contact-line">
+          <span><i class="fas fa-envelope"></i> kinetibebyared@gmail.com</span>
+          <span><i class="fas fa-phone"></i> 0945123586</span>
+          <span><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</span>
+          <span><i class="fab fa-github"></i> <a href="https://github.com/yaya2127" target="_blank">github.com/yaya2127</a></span>
+          <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/yared-kinetibeb-3b788b350/" target="_blank">LinkedIn</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-user-circle"></i> Profile Summary</div>
+    <p>
+      Dedicated 5th-year Computer Engineering senior student at Addis Ababa Science and Technology University (AASTU) with a strong foundation in software engineering, full-stack web development, and Arduino embedded hardware systems. Experienced in building practical web applications and microcontroller hardware-software solutions. Committed to continuous learning, multidisciplinary teamwork, and delivering reliable technical solutions.
+    </p>
+
+    <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
+    <p><strong>Bachelor of Science in Computer Engineering (5th Year Senior)</strong> | 09/2022 — 07/2027</p>
+    <p><a href="https://www.aastu.edu.et/" target="_blank" style="color:var(--gold);">Addis Ababa Science and Technology University (AASTU)</a> — Addis Ababa, Ethiopia</p>
+    <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">
+      <em>Focus Areas:</em> Software Engineering, Web Technologies (HTML5, CSS3, JS), Arduino Programming, Microcontrollers (AVR/PIC), Embedded C/C++, Database Systems, Data Structures & Algorithms.
+    </p>
+
+    <div class="section-title"><i class="fas fa-laptop-code"></i> Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <h4>Frontend Web</h4>
+        <p>HTML5, CSS3, JavaScript (ES6+), Responsive Web Design, Flexbox / Grid</p>
+      </div>
+      <div class="skill-box">
+        <h4>Backend & Languages</h4>
+        <p>Python, C / C++, Node.js, RESTful APIs, PostgreSQL</p>
+      </div>
+      <div class="skill-box">
+        <h4>Arduino & Hardware</h4>
+        <p>Arduino Programming, Microcontrollers (AVR/PIC), Circuit Design, Proteus Simulation, IoT Sensors</p>
+      </div>
+      <div class="skill-box">
+        <h4>Tools & Competencies</h4>
+        <p>Git, GitHub, VS Code, Linux Environment, Problem Solving, English Fluency</p>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-award"></i> Verified Certifications</div>
+    <ul>
+      <li><strong>Engineering Agentic Artificial Intelligence Solutions</strong> — The Udara Project & NSK AI (Issued July 13, 2026 | ID: cmriv64ws08331417au085co0 | Verified by Ifeanyi Okala)</li>
+      <li><strong>M-Academy Training: Gig-101, Business, Legal and Finance</strong> — Mesirat Program & Mastercard Foundation (Issued March 23, 2025 | Verified by Menna Tafesse)</li>
+      <li><strong>English Professional Language Certification</strong> — Sest American English Academy</li>
+    </ul>
+
+    <div class="section-title"><i class="fas fa-code-branch"></i> Selected Engineering Projects</div>
+    <ul>
+      <li><strong>AASTU Academic Management Portal:</strong> Centralized web system for student course registration and grade tracking built with JavaScript, Python, and PostgreSQL.</li>
+      <li><strong>Arduino Smart Environmental Monitor:</strong> Microcontroller-based IoT system using Arduino UNO, C++, gas/temperature sensors, and Proteus simulation.</li>
+      <li><strong>Arduino Home Automation System:</strong> Hardware relay control system engineered with embedded C firmware, optocouplers, and circuit design.</li>
+      <li><strong>Modern E-Commerce Application:</strong> Scalable web platform featuring product search, shopping cart management, and user authentication.</li>
+    </ul>
+  </div>
+
+</body>
+</html>
