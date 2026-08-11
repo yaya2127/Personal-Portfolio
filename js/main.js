@@ -4,57 +4,37 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. Sticky Navbar & Back-to-Top Button
+  // 1. Navbar Scroll Class & Active Link Highlighting
   const navbar = document.getElementById('navbar');
-  const backToTopBtn = document.getElementById('back-to-top');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 40) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
 
-    if (window.scrollY > 400) {
-      if (backToTopBtn) backToTopBtn.style.opacity = '1';
-    } else {
-      if (backToTopBtn) backToTopBtn.style.opacity = '0';
-    }
-  });
-
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // 2. Active Navigation Link Indicator on Scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -70% 0px',
-    threshold: 0
-  };
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('active');
-          }
-        });
+    // ScrollSpy Active Link Tracking
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      const sectionHeight = section.offsetHeight;
+      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
       }
     });
-  }, observerOptions);
 
-  sections.forEach(section => sectionObserver.observe(section));
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
 
-  // 3. Mobile Menu Toggle
+  // 2. Mobile Drawer Navigation Toggle
   const mobileToggle = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
 
@@ -63,23 +43,28 @@ document.addEventListener('DOMContentLoaded', () => {
       navMenu.classList.toggle('active');
       const icon = mobileToggle.querySelector('i');
       if (navMenu.classList.contains('active')) {
-        icon.className = 'fas fa-times';
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
       } else {
-        icon.className = 'fas fa-bars';
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       }
     });
 
-    // Close menu when clicking a nav link
+    // Close menu when link clicked
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         const icon = mobileToggle.querySelector('i');
-        if (icon) icon.className = 'fas fa-bars';
+        if (icon) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
       });
     });
   }
 
-  // 4. Project Filtering Logic
+  // 3. Project Filter Tabs
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
@@ -92,167 +77,178 @@ document.addEventListener('DOMContentLoaded', () => {
 
       projectCards.forEach(card => {
         const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
+        if (filter === 'all' || filter === category) {
           card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 50);
+          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
         } else {
           card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => { card.style.display = 'none'; }, 300);
         }
       });
     });
   });
 
-  // 5. Project Detail Modals
+  // 4. Modal Viewer for Detailed Project View
   const modalOverlay = document.getElementById('modal-overlay');
   const modalClose = document.getElementById('modal-close');
   const modalBody = document.getElementById('modal-body');
+  const viewDetailBtns = document.querySelectorAll('.view-details');
 
-  const projectDetailsMap = {
+  const projectDetails = {
     p1: {
-      title: 'AASTU Academic Management Portal',
-      category: 'Full-Stack Web Application',
-      tags: ['JavaScript', 'Python', 'HTML/CSS', 'PostgreSQL'],
-      description: 'A centralized web portal engineered for Addis Ababa Science and Technology University students and faculty to manage course registrations, grades, and campus notices.',
+      title: "AASTU Academic Management Portal",
+      category: "Full-Stack Web Application",
+      github: "https://github.com/yaya2127/aastu-academic-portal",
+      desc: "A centralized web portal engineered for Addis Ababa Science and Technology University students and faculty to manage course registrations, grades, and campus notices.",
       features: [
-        'Student course registration & grade tracking modules',
-        'Backend data management with PostgreSQL databases',
-        'Responsive client layout built with modern HTML5 & CSS3',
-        'Clean modular code architecture and REST API services'
-      ]
+        "Student course registration & grade tracking modules",
+        "Backend data management with PostgreSQL databases",
+        "Responsive client layout built with modern HTML5 & CSS3",
+        "Clean modular code architecture and REST API services"
+      ],
+      tech: ["JavaScript", "Python", "HTML/CSS", "PostgreSQL"]
     },
     p2: {
-      title: 'Agentic AI & Sensor Automation System',
-      category: 'Embedded Systems & AI',
-      tags: ['C++', 'Python', 'Agentic AI', 'Sensors'],
-      description: 'An intelligent hardware-software system developed to process sensor data streams and deploy agentic artificial intelligence solutions for automated monitoring.',
+      title: "Smart IoT Environmental Monitor",
+      category: "Arduino & Embedded Systems",
+      github: "https://github.com/yaya2127/smart-iot-environmental-monitor",
+      desc: "An IoT hardware-software system using microcontrollers to sense, process, and display real-time environmental metrics.",
       features: [
-        'Real-time sensor data reading and anomaly detection',
-        'Agentic AI decision workflows for automated control',
-        'Optimized firmware built using C/C++ microcontrollers',
-        'Circuit simulation and hardware validation'
-      ]
+        "Temperature, humidity, and gas sensor calibration",
+        "Proteus schematic simulation and PCB layout validation",
+        "OLED display output and buzzer alert thresholds",
+        "Bare-metal C/C++ firmware optimization"
+      ],
+      tech: ["Arduino", "Embedded C++", "Proteus", "Sensors"]
     },
     p3: {
-      title: 'Modern E-Commerce Storefront',
-      category: 'Full-Stack Web Application',
-      tags: ['JavaScript', 'HTML5/CSS3', 'REST API'],
-      description: 'A responsive online storefront featuring dynamic product catalog browsing, persistent shopping cart management, user authentication, and checkout simulation.',
+      title: "Modern E-Commerce Storefront",
+      category: "Full-Stack Web Application",
+      github: "https://github.com/yaya2127/modern-ecommerce-storefront",
+      desc: "A high-performance online shopping platform featuring real-time product search, interactive cart management, and user authentication.",
       features: [
-        'Interactive product catalog with live filtering',
-        'Shopping cart state management with LocalStorage',
-        'Modular RESTful API integration for product listings',
-        'Clean responsive dark mode UI layout'
-      ]
+        "Dynamic product catalog and category filters",
+        "Shopping cart state persistence and checkout modal",
+        "REST API integration for inventory management",
+        "Responsive glassmorphism UI design"
+      ],
+      tech: ["JavaScript", "HTML/CSS", "REST API", "LocalStorage"]
     },
     p4: {
-      title: 'Personal Developer Portfolio',
-      category: 'Web Application',
-      tags: ['HTML5', 'CSS3', 'ES6 JS', 'Canvas'],
-      description: 'A custom luxury dark-themed developer portfolio created for Yared Kinetibeb Tesfaye. Features glassmorphism UI cards, gold accent gradients, background sparkle canvas animations, and responsive breakpoints.',
+      title: "Personal Developer Portfolio",
+      category: "Web Application",
+      github: "https://github.com/yaya2127/Personal-Portfolio",
+      desc: "A luxury dark-themed developer portfolio built for Yared Kinetibeb Tesfaye with gold particle background animations and glassmorphism UI.",
       features: [
-        'Vanilla CSS implementation with zero framework overhead',
-        'Gold particle canvas background animation',
-        'SEO-optimized semantic HTML structure',
-        'Smooth scroll navigation and modal views'
-      ]
+        "HTML5 Canvas gold particle background system",
+        "Frameless portrait hero layout and responsive navigation",
+        "Filterable project showcase and verified credentials section",
+        "Printable PDF & HTML resume downloads"
+      ],
+      tech: ["HTML5", "CSS3", "ES6 JS", "Canvas API"]
     },
     p5: {
-      title: 'Microcontroller Controller System',
-      category: 'Embedded Systems',
-      tags: ['C', 'Microcontrollers', 'Circuit Design'],
-      description: 'Hardware circuit and C firmware engineered for remote appliance control, timer interrupts, and low-level microcontroller system optimization.',
+      title: "Microcontroller Home Automation",
+      category: "Arduino & Embedded Systems",
+      github: "https://github.com/yaya2127/microcontroller-home-automation",
+      desc: "A smart home control system enabling relay-based electrical appliance switching and power management via microcontrollers.",
       features: [
-        'Bare-metal C programming for microcontrollers',
-        'Relay driver circuits and sensor interfacing',
-        'Modular hardware schematic simulation'
-      ]
+        "Multi-channel relay module optocoupler isolation",
+        "Sensor-triggered automatic lighting and fan control",
+        "Low-power sleep mode firmware logic",
+        "Proteus circuit schematic and hardware verification"
+      ],
+      tech: ["Arduino", "Embedded C", "Proteus", "Relays"]
     },
     p6: {
-      title: 'Interactive Task Scheduler',
-      category: 'Web Application',
-      tags: ['JavaScript', 'LocalStorage', 'DOM API'],
-      description: 'A sleek productivity web app enabling users to manage daily programming tasks, set countdown timers, organize priorities, and view completion metrics.',
+      title: "Interactive Task Scheduler",
+      category: "Web Application",
+      github: "https://github.com/yaya2127/interactive-task-scheduler",
+      desc: "A task management application featuring priority queues, deadline notifications, drag-and-drop ordering, and progress analytics.",
       features: [
-        'Priority queue sorting & status filters',
-        'Persistent LocalStorage state saving',
-        'Micro-animations and theme customization'
-      ]
+        "Priority task tagging (High, Medium, Low)",
+        "LocalStorage state caching across browser sessions",
+        "Interactive completion progress bar",
+        "Clean, minimalist dark interface"
+      ],
+      tech: ["JavaScript", "LocalStorage", "DOM API", "CSS3"]
     }
   };
 
-  document.querySelectorAll('.view-details').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
+  viewDetailBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
       const modalKey = btn.getAttribute('data-modal');
-      const data = projectDetailsMap[modalKey];
+      const details = projectDetails[modalKey];
 
-      if (data) {
+      if (details && modalBody) {
         modalBody.innerHTML = `
-          <div class="modal-category" style="color:var(--gold-primary); font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">${data.category}</div>
-          <h2 style="font-size:1.8rem; margin-bottom:16px;">${data.title}</h2>
-          <p style="color:var(--text-muted); line-height:1.7; margin-bottom:24px;">${data.description}</p>
+          <div class="modal-category">${details.category}</div>
+          <h2 class="modal-title">${details.title}</h2>
+          <p class="modal-desc">${details.desc}</p>
 
-          <h4 style="font-size:1rem; margin-bottom:12px; color:var(--text-main);">Key Features & Capabilities:</h4>
-          <ul style="list-style:disc; margin-left:20px; color:var(--text-muted); line-height:1.8; margin-bottom:24px;">
-            ${data.features.map(f => `<li>${f}</li>`).join('')}
+          <h4 style="color:#c99b42; margin-bottom:12px;">Key Features & Capabilities:</h4>
+          <ul class="modal-features">
+            ${details.features.map(f => `<li><i class="fas fa-check-circle" style="color:#c99b42; margin-right:8px;"></i> ${f}</li>`).join('')}
           </ul>
 
-          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">
-            ${data.tags.map(t => `<span style="background:rgba(229,183,105,0.1); border:1px solid rgba(229,183,105,0.3); color:var(--gold-primary); padding:4px 12px; border-radius:4px; font-size:0.8rem; font-weight:500;">${t}</span>`).join('')}
+          <div class="modal-tech-stack" style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+            ${details.tech.map(t => `<span class="skill-pill" style="font-size:0.8rem; padding:4px 12px;">${t}</span>`).join('')}
           </div>
 
-          <div style="display:flex; gap:16px; margin-top:24px;">
-            <a href="https://github.com/yaya2127" target="_blank" rel="noopener" class="btn btn-primary" style="padding:10px 20px; font-size:0.9rem;">
+          <div class="modal-actions" style="margin-top:28px; display:flex; gap:16px;">
+            <a href="${details.github}" target="_blank" rel="noopener" class="btn btn-primary">
               <i class="fab fa-github"></i> View GitHub Repo
             </a>
-            <button class="btn btn-outline close-modal-btn" style="padding:10px 20px; font-size:0.9rem;">Close</button>
+            <button class="btn btn-outline" id="close-modal-btn">Close</button>
           </div>
         `;
 
         modalOverlay.classList.add('active');
 
-        modalBody.querySelector('.close-modal-btn')?.addEventListener('click', closeModal);
+        const innerCloseBtn = document.getElementById('close-modal-btn');
+        if (innerCloseBtn) {
+          innerCloseBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+          });
+        }
       }
     });
   });
 
-  function closeModal() {
-    modalOverlay.classList.remove('active');
-  }
+  if (modalClose && modalOverlay) {
+    modalClose.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+    });
 
-  if (modalClose) modalClose.addEventListener('click', closeModal);
-  if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeModal();
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+      }
     });
   }
 
-  // 6. Contact Form Submission Handler
+  // 5. Contact Form Handler
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
 
-  if (contactForm) {
+  if (contactForm && formStatus) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-
-      const name = document.getElementById('form-name').value;
-
       formStatus.className = 'form-status success';
-      formStatus.innerHTML = `<i class="fas fa-check-circle"></i> Thank you, <strong>${name}</strong>! Your message has been sent successfully. Yared will respond to your email shortly.`;
-      formStatus.style.display = 'block';
-
+      formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. Yared will respond shortly.';
       contactForm.reset();
-
       setTimeout(() => {
         formStatus.style.display = 'none';
-      }, 6000);
+      }, 5000);
+    });
+  }
+
+  // 6. Back to Top Button
+  const backToTop = document.getElementById('back-to-top');
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
