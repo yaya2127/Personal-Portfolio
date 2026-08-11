@@ -1134,6 +1134,11 @@
   color: #0a0a0c;
 }
 
+/* Mobile CV Item inside Nav Drawer */
+.mobile-cv-item {
+  display: none !important;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .hero-container {
@@ -1213,6 +1218,10 @@
 
   .mobile-toggle {
     display: block;
+  }
+
+  .mobile-cv-item {
+    display: inline-flex !important;
   }
 
   .btn-cv {
