@@ -21,17 +21,6 @@ styles = getSampleStyleSheet()
 
 GOLD = colors.HexColor('#b8860b')
 DARK_TEXT = colors.HexColor('#1a202c')
-MUTED_TEXT = colors.HexColor('#4a5568')
-
-title_style = ParagraphStyle(
-    'TitleStyle',
-    parent=styles['Heading1'],
-    fontName='Helvetica-Bold',
-    fontSize=20,
-    leading=24,
-    textColor=GOLD,
-    spaceAfter=4
-)
 
 section_heading = ParagraphStyle(
     'SectionHeading',
@@ -52,14 +41,14 @@ body_dark_style = ParagraphStyle(
 )
 
 # Header Table with Image & Info
-img_flowable = Image(img_path, width=70, height=88) if os.path.exists(img_path) else Paragraph('<b>YK</b>', title_style)
+img_flowable = Image(img_path, width=70, height=88) if os.path.exists(img_path) else Paragraph('<b>YK</b>', section_heading)
 
 info_text = (
     '<b><font size="16" color="#b8860b">Yared Kinetibeb Tesfaye</font></b><br/>'
     '<b><font size="9.5" color="#1a202c">5th-Year Computer Engineering Senior | Full-Stack & Embedded Developer</font></b><br/><br/>'
     '<font size="8.5" color="#4a5568">'
-    'Email: kinetibebyared@gmail.com &nbsp;|&nbsp; Phone: +251 945 123 586 &nbsp;|&nbsp; Location: Addis Ababa, Ethiopia<br/>'
-    'LinkedIn: linkedin.com/in/yared-kinetibeb-3b788b350 &nbsp;|&nbsp; GitHub: github.com/yaya2127<br/>'
+    'Email: <a href="mailto:kinetibebyared@gmail.com" color="#b8860b">kinetibebyared@gmail.com</a> &nbsp;|&nbsp; Phone: +251 945 123 586 &nbsp;|&nbsp; Location: Addis Ababa, Ethiopia<br/>'
+    'LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-3b788b350" color="#b8860b">linkedin.com/in/yared-kinetibeb-3b788b350</a> &nbsp;|&nbsp; GitHub: <a href="https://github.com/yaya2127" color="#b8860b">github.com/yaya2127</a><br/>'
     'University: Addis Ababa Science and Technology University (AASTU)'
     '</font>'
 )
@@ -123,13 +112,13 @@ story.append(Spacer(1, 6))
 # Projects
 story.append(Paragraph('<b>FEATURED ENGINEERING PROJECTS</b>', section_heading))
 proj_text = (
-    '• <b>AASTU Academic Management Portal:</b> High-throughput microservice portal built with Go (Golang 1.22), React 18, TypeScript, PostgreSQL, and Docker.<br/>'
-    '• <b>Smart IoT Environmental & Hazard Monitor:</b> Embedded system with ATmega328P C++ firmware, DHT22 & MQ-2 sensors, SVG circular gauges, and live Canvas charts.<br/>'
-    '• <b>Modern E-Commerce Storefront:</b> Developer hardware marketplace built with NestJS, TypeScript, Prisma, price range slider, and promo code engine.<br/>'
-    '• <b>Microcontroller Home Automation System:</b> Bare-metal C hardware control system with optocoupler relay isolation, ADC LDR night sensing, and PIR motion interrupts.<br/>'
-    '• <b>TaskMaster Pro Interactive Task Scheduler:</b> Electric Violet Kanban scheduler built with TypeScript, React, 4-column status mover, and LocalStorage caching.'
+    '• <a href="https://github.com/yaya2127/aastu-academic-portal" color="#b8860b"><b>AASTU Academic Management Portal:</b></a> High-throughput microservice portal built with Go (Golang 1.22), React 18, TypeScript, PostgreSQL, and Docker.<br/>'
+    '• <a href="https://github.com/yaya2127/smart-iot-environmental-monitor" color="#b8860b"><b>Smart IoT Environmental & Hazard Monitor:</b></a> Embedded system with ATmega328P C++ firmware, DHT22 & MQ-2 sensors, SVG circular gauges, and live Canvas charts.<br/>'
+    '• <a href="https://github.com/yaya2127/modern-ecommerce-storefront" color="#b8860b"><b>Modern E-Commerce Storefront:</b></a> Developer hardware marketplace built with NestJS, TypeScript, Prisma, price range slider, and promo code engine.<br/>'
+    '• <a href="https://github.com/yaya2127/microcontroller-home-automation" color="#b8860b"><b>Microcontroller Home Automation System:</b></a> Bare-metal C hardware control system with optocoupler relay isolation, ADC LDR night sensing, and PIR motion interrupts.<br/>'
+    '• <a href="https://github.com/yaya2127/interactive-task-scheduler" color="#b8860b"><b>TaskMaster Pro Interactive Task Scheduler:</b></a> Electric Violet Kanban scheduler built with TypeScript, React, 4-column status mover, and LocalStorage caching.'
 )
 story.append(Paragraph(proj_text, body_dark_style))
 
 doc.build(story)
-print('PDF CV built successfully at:', pdf_path)
+print('PDF CV built successfully with clickable hyperlinks at:', pdf_path)
