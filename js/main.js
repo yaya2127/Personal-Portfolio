@@ -98,46 +98,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectDetails = {
     p1: {
       title: "AASTU Academic Management Portal",
-      category: "Full-Stack Web Application",
+      category: "Go & React Microservice Backend",
       github: "https://github.com/yaya2127/aastu-academic-portal",
-      desc: "A centralized web portal engineered for Addis Ababa Science and Technology University students and faculty to manage course registrations, grades, and campus notices.",
+      desc: "A high-performance university student portal engineered with a Go (Golang 1.22) REST API backend, React 18 & TypeScript frontend, PostgreSQL schema, and Docker deployment.",
       features: [
-        "Student course registration & grade tracking modules",
-        "Backend data management with PostgreSQL databases",
-        "Responsive client layout built with modern HTML5 & CSS3",
-        "Clean modular code architecture and REST API services"
+        "Go (Golang 1.22) high-concurrency RESTful API endpoints",
+        "React 18 + TypeScript interactive student dashboard & GPA calculator",
+        "PostgreSQL relational database models & GORM ORM integration",
+        "Multi-stage Dockerfile & docker-compose container deployment"
       ],
-      tech: ["JavaScript", "Python", "HTML/CSS", "PostgreSQL"]
+      tech: ["Go (Golang)", "React", "TypeScript", "PostgreSQL", "Docker"]
     },
     p2: {
       title: "Smart IoT Environmental Monitor",
-      category: "Arduino & Embedded Systems",
+      category: "C++ Firmware & Industrial Telemetry",
       github: "https://github.com/yaya2127/smart-iot-environmental-monitor",
-      desc: "An IoT hardware-software system using microcontrollers to sense, process, and display real-time environmental metrics.",
+      desc: "An industrial environmental sensing system powered by ATmega328P C++ firmware, SVG circular metric gauges, and real-time Canvas telemetry stream charts.",
       features: [
-        "Temperature, humidity, and gas sensor calibration",
-        "Proteus schematic simulation and PCB layout validation",
-        "OLED display output and buzzer alert thresholds",
-        "Bare-metal C/C++ firmware optimization"
+        "High-precision DHT22 temperature & MQ-2 methane gas sampling",
+        "Real-Time SVG circular metric gauges & historical Canvas stream line graph",
+        "Interactive Methane Hazard simulation alert toggle & active buzzer",
+        "Proteus schematic circuit diagram & hardware wiring design"
       ],
-      tech: ["Arduino", "Embedded C++", "Proteus", "Sensors"]
+      tech: ["C++", "Embedded C", "FreeRTOS", "Proteus", "SVG Telemetry"]
     },
     p3: {
       title: "Modern E-Commerce Storefront",
-      category: "Full-Stack Web Application",
+      category: "NestJS & Cyberpunk Storefront",
       github: "https://github.com/yaya2127/modern-ecommerce-storefront",
-      desc: "A high-performance online shopping platform featuring real-time product search, interactive cart management, and user authentication.",
+      desc: "A developer hardware marketplace featuring live product search, price range limit sliders ($10-$150), promo code discounts (TECH10), and quick-view modals.",
       features: [
-        "Dynamic product catalog and category filters",
-        "Shopping cart state persistence and checkout modal",
-        "REST API integration for inventory management",
-        "Responsive glassmorphism UI design"
+        "Live instant search with auto-highlight filtering",
+        "Price Range slider filter and stock status toggle",
+        "Cyber Promo Code engine (TECH10 for 10% OFF discount)",
+        "Slide-out Cyber Cart Drawer with tax, subtotal, and total calculations"
       ],
-      tech: ["JavaScript", "HTML/CSS", "REST API", "LocalStorage"]
+      tech: ["NestJS", "TypeScript", "Prisma", "Cyberpunk UI"]
     },
     p4: {
       title: "Personal Developer Portfolio",
-      category: "Web Application",
+      category: "Luxury UI Application",
       github: "https://github.com/yaya2127/Personal-Portfolio",
       desc: "A luxury dark-themed developer portfolio built for Yared Kinetibeb Tesfaye with gold particle background animations and glassmorphism UI.",
       features: [
@@ -146,33 +146,33 @@ document.addEventListener('DOMContentLoaded', () => {
         "Filterable project showcase and verified credentials section",
         "Printable PDF & HTML resume downloads"
       ],
-      tech: ["HTML5", "CSS3", "ES6 JS", "Canvas API"]
+      tech: ["HTML5", "CSS3", "JavaScript", "Canvas API"]
     },
     p5: {
       title: "Microcontroller Home Automation",
-      category: "Arduino & Embedded Systems",
+      category: "Bare-Metal Embedded C System",
       github: "https://github.com/yaya2127/microcontroller-home-automation",
-      desc: "A smart home control system enabling relay-based electrical appliance switching and power management via microcontrollers.",
+      desc: "Bare-metal Embedded C hardware automation system utilizing optocoupler relay isolation, ADC LDR night lighting, and INT0 PIR motion interrupt routines.",
       features: [
-        "Multi-channel relay module optocoupler isolation",
-        "Sensor-triggered automatic lighting and fan control",
-        "Low-power sleep mode firmware logic",
-        "Proteus circuit schematic and hardware verification"
+        "4-channel PC817 optocoupler relay hardware switching (PORTB)",
+        "LDR analog-to-digital converter (ADC) ambient night light sampling",
+        "INT0 hardware external interrupt routine for PIR motion detection",
+        "Proteus 8 Professional circuit schematic validation"
       ],
-      tech: ["Arduino", "Embedded C", "Proteus", "Relays"]
+      tech: ["Bare-Metal C", "AVR-GCC", "ATmega328P", "Proteus"]
     },
     p6: {
       title: "Interactive Task Scheduler",
-      category: "Web Application",
+      category: "Electric Violet Kanban Scheduler",
       github: "https://github.com/yaya2127/interactive-task-scheduler",
-      desc: "A task management application featuring priority queues, deadline notifications, drag-and-drop ordering, and progress analytics.",
+      desc: "TaskMaster Pro productivity Kanban web application featuring 4 status columns (To Do, In Progress, Review, Completed), priority queueing, and progress meters.",
       features: [
-        "Priority task tagging (High, Medium, Low)",
-        "LocalStorage state caching across browser sessions",
-        "Interactive completion progress bar",
-        "Clean, minimalist dark interface"
+        "4-Column Kanban task board with interactive column mover",
+        "Priority tagging (High, Medium, Low) and LocalStorage state caching",
+        "Real-time completion percentage progress bar & analytics",
+        "Sleek Electric Violet visual theme with responsive grid layout"
       ],
-      tech: ["JavaScript", "LocalStorage", "DOM API", "CSS3"]
+      tech: ["TypeScript", "React", "Kanban Board", "LocalStorage"]
     }
   };
 
