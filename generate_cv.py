@@ -78,9 +78,9 @@ story.append(HRFlowable(width='100%', thickness=1.5, color=GOLD, spaceBefore=4, 
 story.append(Paragraph('<b>PROFILE SUMMARY</b>', section_heading))
 profile_p = (
     'Dedicated 5th-year Computer Engineering senior student at Addis Ababa Science and Technology University (AASTU) '
-    'with a strong technical foundation in software engineering, full-stack web development, and Arduino embedded hardware systems. '
-    'Experienced in building practical web applications and microcontroller hardware-software solutions. '
-    'Committed to continuous learning, multidisciplinary teamwork, and delivering reliable engineering solutions.'
+    'with an extensive technical toolkit across backend microservices (Go, NestJS, Node.js), frontend applications (React, TypeScript, Flutter), '
+    'relational databases (PostgreSQL, MySQL, Prisma, Firebase), and bare-metal embedded hardware (C/C++, FreeRTOS, ATmega328P, Proteus). '
+    'Proven track record of building production-grade full-stack web platforms and industrial IoT telemetry solutions.'
 )
 story.append(Paragraph(profile_p, body_dark_style))
 story.append(Spacer(1, 6))
@@ -90,19 +90,20 @@ story.append(Paragraph('<b>EDUCATION</b>', section_heading))
 edu_text = (
     '<b>Bachelor of Science in Computer Engineering (5th Year Senior)</b> &nbsp;—&nbsp; <font color="#b8860b">09/2022 – 07/2027</font><br/>'
     '<b>Addis Ababa Science and Technology University (AASTU)</b> — Addis Ababa, Ethiopia<br/>'
-    '<font color="#4a5568"><i>Relevant Focus:</i> Software Engineering, Web Technologies (HTML5, CSS3, JS), Arduino Programming, Microcontrollers (AVR/PIC), Embedded C/C++, Database Systems, Data Structures & Algorithms.</font>'
+    '<font color="#4a5568"><i>Relevant Focus:</i> Software Engineering, Microservice Backend Architecture (Go, NestJS), Frontend Development (React, TS, Flutter), Embedded Systems (C/C++, FreeRTOS, Proteus), Database Design, Data Structures & Algorithms.</font>'
 )
 story.append(Paragraph(edu_text, body_dark_style))
 story.append(Spacer(1, 6))
 
 # Technical Skills
-story.append(Paragraph('<b>TECHNICAL SKILLS</b>', section_heading))
+story.append(Paragraph('<b>TECHNICAL SKILLS & PRAGMATIC TOOLKIT</b>', section_heading))
 skills_text = (
-    '• <b>Frontend Web:</b> HTML5, CSS3, JavaScript (ES6+), Responsive Web Design, Flexbox/Grid<br/>'
-    '• <b>Backend & Languages:</b> Python, C / C++, Node.js, RESTful APIs, PostgreSQL<br/>'
-    '• <b>Arduino & Embedded Systems:</b> Arduino Programming, Microcontrollers (AVR/PIC), Circuit Design, Proteus Simulation, IoT Sensors, Embedded C/C++<br/>'
-    '• <b>Developer Tools:</b> Git, GitHub, VS Code, Linux Environment<br/>'
-    '• <b>Professional Strengths:</b> Problem Solving, Teamwork & Collaboration, Continuous Learning, English Proficiency'
+    '• <b>Programming Languages:</b> Go (Golang), Python, JavaScript, TypeScript, C / C++, Embedded C, Java, Dart, SQL, PHP<br/>'
+    '• <b>Frameworks & Web Development:</b> React, NestJS, Django, Flutter, Node.js, RESTful APIs, Microservices, HTML5/CSS3<br/>'
+    '• <b>Databases, ORM & Storage:</b> PostgreSQL, MySQL, Firebase, Prisma ORM, Redis, GORM<br/>'
+    '• <b>Arduino & Embedded Systems:</b> ATmega328P / AVR, FreeRTOS, Proteus Circuit Simulation, IoT Sensors & Telemetry, Optocoupler Relays<br/>'
+    '• <b>DevOps & Software Concepts:</b> Docker, Git, GitHub, Linux/Bash, VS Code, OOP, MVC Architecture, CRUD Systems<br/>'
+    '• <b>Professional Strengths:</b> System Architecture, Problem Solving, Teamwork & Collaboration, English Communication'
 )
 story.append(Paragraph(skills_text, body_dark_style))
 story.append(Spacer(1, 6))
@@ -122,10 +123,11 @@ story.append(Spacer(1, 6))
 # Projects
 story.append(Paragraph('<b>FEATURED ENGINEERING PROJECTS</b>', section_heading))
 proj_text = (
-    '• <b>AASTU Academic Management Portal:</b> Centralized web application for student course management, grade tracking, and campus notices built with JavaScript, Python, and PostgreSQL.<br/>'
-    '• <b>Arduino Smart Environmental Monitor:</b> Microcontroller-based IoT system using Arduino UNO, C++, gas/temperature sensors, and Proteus simulation for real-time alerts.<br/>'
-    '• <b>Arduino Home Automation System:</b> Hardware relay control system designed with embedded C firmware, optocouplers, and Proteus circuit simulation.<br/>'
-    '• <b>Modern E-Commerce Storefront:</b> Scalable web application featuring catalog search, shopping cart state management, and user authentication.'
+    '• <b>AASTU Academic Management Portal:</b> High-throughput microservice portal built with Go (Golang 1.22), React 18, TypeScript, PostgreSQL, and Docker.<br/>'
+    '• <b>Smart IoT Environmental & Hazard Monitor:</b> Embedded system with ATmega328P C++ firmware, DHT22 & MQ-2 sensors, SVG circular gauges, and live Canvas charts.<br/>'
+    '• <b>Modern E-Commerce Storefront:</b> Developer hardware marketplace built with NestJS, TypeScript, Prisma, price range slider, and promo code engine.<br/>'
+    '• <b>Microcontroller Home Automation System:</b> Bare-metal C hardware control system with optocoupler relay isolation, ADC LDR night sensing, and PIR motion interrupts.<br/>'
+    '• <b>TaskMaster Pro Interactive Task Scheduler:</b> Electric Violet Kanban scheduler built with TypeScript, React, 4-column status mover, and LocalStorage caching.'
 )
 story.append(Paragraph(proj_text, body_dark_style))
 
