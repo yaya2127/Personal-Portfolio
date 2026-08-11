@@ -5,7 +5,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image, HRFlowable
 
 pdf_path = r'c:\yared-portfolio\assets\docs\Yared_Kinetibeb_CV.pdf'
-img_path = r'c:\yared-portfolio\assets\images\profile.png'
+img_path = r'c:\yared-portfolio\assets\images\profile_cv.jpg'
 
 doc = SimpleDocTemplate(
     pdf_path,
