@@ -100,6 +100,8 @@ story.append(Spacer(1, 6))
 # Verified Certifications
 story.append(Paragraph('<b>VERIFIED CERTIFICATIONS & ACADEMIES</b>', section_heading))
 cert_text = (
+    '• <b>SkillQuest - Generative AI Literacy</b> &nbsp;|&nbsp; <i>Simplilearn SkillUP</i> (Issued August 11, 2026)<br/>'
+    '&nbsp;&nbsp;<font color="#4a5568">Verified by Krishna Kumar (CEO, Simplilearn) &nbsp;|&nbsp; Certificate No: 21601524</font><br/>'
     '• <b>Engineering Agentic Artificial Intelligence Solutions</b> &nbsp;|&nbsp; <i>The Udara Project & NSK AI</i> (Issued July 13, 2026)<br/>'
     '&nbsp;&nbsp;<font color="#4a5568">Verified by Ifeanyi Okala (Founder) &nbsp;|&nbsp; Certificate ID: cmriv64ws08331417au085co0</font><br/>'
     '• <b>M-Academy Training: Gig-101, Business, Legal and Finance</b> &nbsp;|&nbsp; <i>Mesirat & Mastercard Foundation</i> (Issued March 23, 2025)<br/>'
