@@ -114,11 +114,11 @@ story.append(Spacer(1, 6))
 # Projects
 story.append(Paragraph('<b>FEATURED ENGINEERING PROJECTS</b>', section_heading))
 proj_text = (
+    '• <a href="https://github.com/yaya2127/nexus-iot-edge-platform" color="#b8860b"><b>NexusIoT — Distributed Industrial Edge & Telemetry Platform:</b></a> Enterprise platform built with Go microservices, PostgreSQL time-series storage, Redis Pub/Sub, WebSockets, HTML5 Canvas Digital Twin, and C++/Go edge node simulator.<br/>'
     '• <a href="https://github.com/yaya2127/aastu-academic-portal" color="#b8860b"><b>AASTU Academic Management Portal:</b></a> High-throughput microservice portal built with Go (Golang 1.22), React 18, TypeScript, PostgreSQL, and Docker.<br/>'
     '• <a href="https://github.com/yaya2127/smart-iot-environmental-monitor" color="#b8860b"><b>Smart IoT Environmental & Hazard Monitor:</b></a> Embedded system with ATmega328P C++ firmware, DHT22 & MQ-2 sensors, SVG circular gauges, and live Canvas charts.<br/>'
     '• <a href="https://github.com/yaya2127/modern-ecommerce-storefront" color="#b8860b"><b>Modern E-Commerce Storefront:</b></a> Developer hardware marketplace built with NestJS, TypeScript, Prisma, price range slider, and promo code engine.<br/>'
-    '• <a href="https://github.com/yaya2127/microcontroller-home-automation" color="#b8860b"><b>Microcontroller Home Automation System:</b></a> Bare-metal C hardware control system with optocoupler relay isolation, ADC LDR night sensing, and PIR motion interrupts.<br/>'
-    '• <a href="https://github.com/yaya2127/interactive-task-scheduler" color="#b8860b"><b>TaskMaster Pro Interactive Task Scheduler:</b></a> Electric Violet Kanban scheduler built with TypeScript, React, 4-column status mover, and LocalStorage caching.'
+    '• <a href="https://github.com/yaya2127/microcontroller-home-automation" color="#b8860b"><b>Microcontroller Home Automation System:</b></a> Bare-metal C hardware control system with optocoupler relay isolation, ADC LDR night sensing, and PIR motion interrupts.'
 )
 story.append(Paragraph(proj_text, body_dark_style))
 

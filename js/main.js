@@ -96,6 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const viewDetailBtns = document.querySelectorAll('.view-details');
 
   const projectDetails = {
+    pnexus: {
+      title: "NexusIoT — Distributed Industrial IoT Edge & Telemetry Platform",
+      category: "Enterprise Distributed Systems / Cloud-IoT & Edge",
+      desc: "An enterprise-grade, distributed Industrial IoT telemetry & edge monitoring platform. Built for high-frequency time-series metric ingestion, real-time anomaly detection, WebSocket live streaming, and interactive 2D/3D hardware Digital Twin visualization.",
+      features: [
+        "Go 1.22 high-throughput telemetry ingestion microservice & gRPC pipeline",
+        "Real-time WebSocket streaming gateway pushing 1.5s metric ticks to browser dashboard",
+        "HTML5 Canvas 2D/3D hardware Digital Twin turbine visualizer with thermal aura & rotor RPM",
+        "Multi-sensor real-time oscilloscope line chart plotting vibration, temperature, and pressure",
+        "C++/Go edge node simulator with remote fault injection API (overheat, bearing spike, gas leak)",
+        "PostgreSQL 15 time-series schema & Redis hot telemetry Pub/Sub message broker",
+        "Multi-container Docker Compose orchestration & Linux deployment"
+      ],
+      tech: ["Go (Golang)", "React 18", "TypeScript", "PostgreSQL", "Redis", "WebSockets", "Canvas API", "Docker", "FreeRTOS Simulator"],
+      github: "https://github.com/yaya2127/nexus-iot-edge-platform"
+    },
     p1: {
       title: "AASTU Academic Management Portal",
       category: "Go & React Microservice Backend",
