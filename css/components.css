@@ -1012,6 +1012,20 @@
   color: #4ade80;
 }
 
+.form-status.error {
+  display: block;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.form-status.loading {
+  display: block;
+  background: rgba(201, 155, 66, 0.15);
+  border: 1px solid rgba(201, 155, 66, 0.3);
+  color: #fbbf24;
+}
+
 /* Footer */
 .footer {
   background: #060608;

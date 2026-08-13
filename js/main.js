@@ -228,19 +228,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Contact Form Handler
+  // 5. Contact Form Handler (Real Email Delivery to kinetibebyared@gmail.com)
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
 
   if (contactForm && formStatus) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      formStatus.className = 'form-status success';
-      formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. Yared will respond shortly.';
-      contactForm.reset();
-      setTimeout(() => {
-        formStatus.style.display = 'none';
-      }, 5000);
+      
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Message';
+
+      formStatus.className = 'form-status loading';
+      formStatus.style.display = 'block';
+      formStatus.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending your message to Yared...';
+      
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      }
+
+      const formData = {
+        name: document.getElementById('form-name').value,
+        email: document.getElementById('form-email').value,
+        _subject: document.getElementById('form-subject').value || "New Portfolio Inquiry from " + document.getElementById('form-name').value,
+        message: document.getElementById('form-message').value
+      };
+
+      fetch('https://formsubmit.co/ajax/kinetibebyared@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        formStatus.className = 'form-status success';
+        formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent directly to kinetibebyared@gmail.com. Yared will respond shortly!';
+        contactForm.reset();
+      })
+      .catch(error => {
+        formStatus.className = 'form-status error';
+        formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Could not send automatically. Please email directly to <a href="mailto:kinetibebyared@gmail.com" style="color:#ffffff; text-decoration:underline;">kinetibebyared@gmail.com</a>';
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+      });
     });
   }
 
