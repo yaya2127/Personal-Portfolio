@@ -112,6 +112,21 @@ document.addEventListener('DOMContentLoaded', () => {
       tech: ["Go (Golang)", "React 18", "TypeScript", "PostgreSQL", "Redis", "WebSockets", "Canvas API", "Docker", "FreeRTOS Simulator"],
       github: "https://github.com/yaya2127/nexus-iot-edge-platform"
     },
+    psentinel: {
+      title: "SentinelAI — Autonomous Agentic AI Code Security Auditor",
+      category: "Agentic AI & DevSecOps / Code Vulnerability Analysis",
+      desc: "An enterprise-grade, autonomous Agentic AI code security and vulnerability auditor. Scans codebases using Abstract Syntax Tree (AST) static analysis, detects security flaws (SQL Injection, Secrets, XSS, Path Traversal), synthesizes 1-click Git diff patches, and auto-generates unit tests.",
+      features: [
+        "Abstract Syntax Tree (AST) static analysis security parser (CWE-89, CWE-798, CWE-79, CWE-22)",
+        "Autonomous Agentic AI Reasoner calculating repository risk scores (0-100) and severity ratings",
+        "Unified Git diff patch synthesizer outputting standard unified diffs for 1-click code remediation",
+        "Automated Pytest security unit test generator verifying vulnerability fixes",
+        "Cyber Violet React 18 + TypeScript Security Dashboard with live AST audit log stream",
+        "PostgreSQL 15 vulnerability audit store & Docker container sandbox"
+      ],
+      tech: ["Python", "Agentic AI", "AST Parser", "React 18", "TypeScript", "PostgreSQL", "Git Diffs", "Pytest", "Docker"],
+      github: "https://github.com/yaya2127/sentinel-ai-code-auditor"
+    },
     p1: {
       title: "AASTU Academic Management Portal",
       category: "Go & React Microservice Backend",

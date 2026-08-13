@@ -114,11 +114,11 @@ story.append(Spacer(1, 6))
 # Projects
 story.append(Paragraph('<b>FEATURED ENGINEERING PROJECTS</b>', section_heading))
 proj_text = (
-    '• <a href="https://github.com/yaya2127/nexus-iot-edge-platform" color="#b8860b"><b>NexusIoT — Distributed Industrial Edge & Telemetry Platform:</b></a> Enterprise platform built with Go microservices, PostgreSQL time-series storage, Redis Pub/Sub, WebSockets, HTML5 Canvas Digital Twin, and C++/Go edge node simulator.<br/>'
+    '• <a href="https://github.com/yaya2127/sentinel-ai-code-auditor" color="#b8860b"><b>SentinelAI — Autonomous AI Code Security Auditor:</b></a> Agentic AI platform performing AST static code security scanning, vulnerability detection (SQLi, Secrets, XSS), 1-click Git diff patch synthesis, and unit test generation.<br/>'
+    '• <a href="https://github.com/yaya2127/nexus-iot-edge-platform" color="#b8860b"><b>NexusIoT — Distributed Industrial Edge & Telemetry Platform:</b></a> Enterprise platform built with Go microservices, PostgreSQL time-series storage, Redis Pub/Sub, WebSockets, HTML5 Canvas Digital Twin, and C++/Go edge simulator.<br/>'
     '• <a href="https://github.com/yaya2127/aastu-academic-portal" color="#b8860b"><b>AASTU Academic Management Portal:</b></a> High-throughput microservice portal built with Go (Golang 1.22), React 18, TypeScript, PostgreSQL, and Docker.<br/>'
     '• <a href="https://github.com/yaya2127/smart-iot-environmental-monitor" color="#b8860b"><b>Smart IoT Environmental & Hazard Monitor:</b></a> Embedded system with ATmega328P C++ firmware, DHT22 & MQ-2 sensors, SVG circular gauges, and live Canvas charts.<br/>'
-    '• <a href="https://github.com/yaya2127/modern-ecommerce-storefront" color="#b8860b"><b>Modern E-Commerce Storefront:</b></a> Developer hardware marketplace built with NestJS, TypeScript, Prisma, price range slider, and promo code engine.<br/>'
-    '• <a href="https://github.com/yaya2127/microcontroller-home-automation" color="#b8860b"><b>Microcontroller Home Automation System:</b></a> Bare-metal C hardware control system with optocoupler relay isolation, ADC LDR night sensing, and PIR motion interrupts.'
+    '• <a href="https://github.com/yaya2127/modern-ecommerce-storefront" color="#b8860b"><b>Modern E-Commerce Storefront:</b></a> Developer hardware marketplace built with NestJS, TypeScript, Prisma, price range slider, and promo code engine.'
 )
 story.append(Paragraph(proj_text, body_dark_style))
 
