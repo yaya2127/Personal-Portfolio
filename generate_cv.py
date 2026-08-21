@@ -124,3 +124,4 @@ story.append(Paragraph(proj_text, body_dark_style))
 
 doc.build(story)
 print('PDF CV built successfully with clickable hyperlinks at:', pdf_path)
+# Updated 2026 CV builder settings
