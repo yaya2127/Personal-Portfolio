@@ -107,25 +107,30 @@ document.addEventListener('DOMContentLoaded', () => {
         "Multi-sensor real-time oscilloscope line chart plotting vibration, temperature, and pressure",
         "C++/Go edge node simulator with remote fault injection API (overheat, bearing spike, gas leak)",
         "PostgreSQL 15 time-series schema & Redis hot telemetry Pub/Sub message broker",
+        "1-Click Industrial CSV Telemetry Audit Exporter for facility safety reporting",
         "Multi-container Docker Compose orchestration & Linux deployment"
       ],
       tech: ["Go (Golang)", "React 18", "TypeScript", "PostgreSQL", "Redis", "WebSockets", "Canvas API", "Docker", "FreeRTOS Simulator"],
-      github: "https://github.com/yaya2127/nexus-iot-edge-platform"
+      github: "https://github.com/yaya2127/nexus-iot-edge-platform",
+      live: "https://yaya2127.github.io/nexus-iot-edge-platform/"
     },
     psentinel: {
       title: "SentinelAI — Autonomous Agentic AI Code Security Auditor",
       category: "Agentic AI & DevSecOps / Code Vulnerability Analysis",
-      desc: "An enterprise-grade, autonomous Agentic AI code security and vulnerability auditor. Scans codebases using Abstract Syntax Tree (AST) static analysis, detects security flaws (SQL Injection, Secrets, XSS, Path Traversal), synthesizes 1-click Git diff patches, and auto-generates unit tests.",
+      desc: "An enterprise-grade, autonomous Agentic AI code security and vulnerability auditor. Scans codebases using Abstract Syntax Tree (AST) static analysis, detects security flaws (SQL Injection, Secrets, XSS, Path Traversal, Buffer Overflows, Goroutine Panics), synthesizes 1-click Git diff patches, and auto-generates unit tests.",
       features: [
-        "Abstract Syntax Tree (AST) static analysis security parser (CWE-89, CWE-798, CWE-79, CWE-22)",
+        "Abstract Syntax Tree (AST) static analysis security parser (CWE-89, CWE-798, CWE-79, CWE-22, CWE-120, CWE-391)",
         "Autonomous Agentic AI Reasoner calculating repository risk scores (0-100) and severity ratings",
         "Unified Git diff patch synthesizer outputting standard unified diffs for 1-click code remediation",
         "Automated Pytest security unit test generator verifying vulnerability fixes",
+        "Interactive AST Security Code Playground for testing custom user snippets live",
+        "1-Click Security Compliance Audit Report exporter (JSON/PDF)",
         "Cyber Violet React 18 + TypeScript Security Dashboard with live AST audit log stream",
         "PostgreSQL 15 vulnerability audit store & Docker container sandbox"
       ],
       tech: ["Python", "Agentic AI", "AST Parser", "React 18", "TypeScript", "PostgreSQL", "Git Diffs", "Pytest", "Docker"],
-      github: "https://github.com/yaya2127/sentinel-ai-code-auditor"
+      github: "https://github.com/yaya2127/sentinel-ai-code-auditor",
+      live: "https://yaya2127.github.io/sentinel-ai-code-auditor/"
     },
     p1: {
       title: "AASTU Academic Management Portal",
@@ -181,27 +186,25 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     p5: {
       title: "Microcontroller Home Automation",
-      category: "Bare-Metal Embedded C System",
+      category: "Bare-Metal C Firmware",
       github: "https://github.com/yaya2127/microcontroller-home-automation",
-      desc: "Bare-metal Embedded C hardware automation system utilizing optocoupler relay isolation, ADC LDR night lighting, and INT0 PIR motion interrupt routines.",
+      desc: "Bare-metal C hardware control system with optocoupler relay isolation, ADC LDR night sensing, and INT0 PIR motion interrupt routines.",
       features: [
-        "4-channel PC817 optocoupler relay hardware switching (PORTB)",
-        "LDR analog-to-digital converter (ADC) ambient night light sampling",
-        "INT0 hardware external interrupt routine for PIR motion detection",
-        "Proteus 8 Professional circuit schematic validation"
+        "AVR-GCC bare-metal C compilation target for ATmega328P",
+        "Hardware INT0 interrupt handler for sub-millisecond motion response",
+        "Optocoupler isolated relay control circuit for 220V AC load switching"
       ],
       tech: ["Bare-Metal C", "AVR-GCC", "ATmega328P", "Proteus"]
     },
     p6: {
       title: "Interactive Task Scheduler",
-      category: "Electric Violet Kanban Scheduler",
+      category: "Electric Violet Kanban App",
       github: "https://github.com/yaya2127/interactive-task-scheduler",
-      desc: "TaskMaster Pro productivity Kanban web application featuring 4 status columns (To Do, In Progress, Review, Completed), priority queueing, and progress meters.",
+      desc: "TaskMaster Pro Kanban web app built with React, TypeScript, 4-column task status mover, LocalStorage state persistence, and progress gauge.",
       features: [
-        "4-Column Kanban task board with interactive column mover",
-        "Priority tagging (High, Medium, Low) and LocalStorage state caching",
-        "Real-time completion percentage progress bar & analytics",
-        "Sleek Electric Violet visual theme with responsive grid layout"
+        "4-Column Kanban workflow (Backlog, In Progress, Review, Completed)",
+        "Task creation, priority tagging (Low, Medium, High), and status moving",
+        "LocalStorage state sync maintaining state across browser sessions"
       ],
       tech: ["TypeScript", "React", "Kanban Board", "LocalStorage"]
     }
@@ -209,116 +212,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   viewDetailBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const modalKey = btn.getAttribute('data-modal');
-      const details = projectDetails[modalKey];
+      const key = btn.getAttribute('data-modal');
+      const data = projectDetails[key];
+      if (!data) return;
 
-      if (details && modalBody) {
-        modalBody.innerHTML = `
-          <div class="modal-category">${details.category}</div>
-          <h2 class="modal-title">${details.title}</h2>
-          <p class="modal-desc">${details.desc}</p>
-
-          <h4 style="color:#c99b42; margin-bottom:12px;">Key Features & Capabilities:</h4>
+      let html = `
+        <div class="modal-header-badge">${data.category}</div>
+        <h2 class="modal-title">${data.title}</h2>
+        <p class="modal-desc">${data.desc}</p>
+        
+        <div class="modal-section">
+          <h3>Key Technical Highlights</h3>
           <ul class="modal-features">
-            ${details.features.map(f => `<li><i class="fas fa-check-circle" style="color:#c99b42; margin-right:8px;"></i> ${f}</li>`).join('')}
+            ${data.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('')}
           </ul>
-
-          <div class="modal-tech-stack" style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
-            ${details.tech.map(t => `<span class="skill-pill" style="font-size:0.8rem; padding:4px 12px;">${t}</span>`).join('')}
+        </div>
+        
+        <div class="modal-section">
+          <h3>Tech Stack & Tools</h3>
+          <div class="modal-tech-tags">
+            ${data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
           </div>
+        </div>
 
-          <div class="modal-actions" style="margin-top:28px; display:flex; gap:16px;">
-            <a href="${details.github}" target="_blank" rel="noopener" class="btn btn-primary">
-              <i class="fab fa-github"></i> View GitHub Repo
-            </a>
-            <button class="btn btn-outline" id="close-modal-btn">Close</button>
-          </div>
-        `;
+        <div class="modal-actions" style="margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap;">
+          ${data.live ? `<a href="${data.live}" target="_blank" rel="noopener" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Launch Live Application</a>` : ''}
+          <a href="${data.github}" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i> GitHub Repository</a>
+        </div>
+      `;
 
-        modalOverlay.classList.add('active');
-
-        const innerCloseBtn = document.getElementById('close-modal-btn');
-        if (innerCloseBtn) {
-          innerCloseBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
-          });
-        }
-      }
+      modalBody.innerHTML = html;
+      modalOverlay.classList.add('active');
     });
   });
 
-  if (modalClose && modalOverlay) {
+  if (modalClose) {
     modalClose.addEventListener('click', () => {
       modalOverlay.classList.remove('active');
     });
+  }
 
+  if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
       if (e.target === modalOverlay) {
         modalOverlay.classList.remove('active');
       }
     });
   }
-
-  // 5. Contact Form Handler (Real Email Delivery to kinetibebyared@gmail.com)
-  const contactForm = document.getElementById('contact-form');
-  const formStatus = document.getElementById('form-status');
-
-  if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Message';
-
-      formStatus.className = 'form-status loading';
-      formStatus.style.display = 'block';
-      formStatus.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending your message to Yared...';
-      
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-      }
-
-      const formData = {
-        name: document.getElementById('form-name').value,
-        email: document.getElementById('form-email').value,
-        _subject: document.getElementById('form-subject').value || "New Portfolio Inquiry from " + document.getElementById('form-name').value,
-        message: document.getElementById('form-message').value
-      };
-
-      fetch('https://formsubmit.co/ajax/kinetibebyared@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        formStatus.className = 'form-status success';
-        formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent directly to kinetibebyared@gmail.com. Yared will respond shortly!';
-        contactForm.reset();
-      })
-      .catch(error => {
-        formStatus.className = 'form-status error';
-        formStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Could not send automatically. Please email directly to <a href="mailto:kinetibebyared@gmail.com" style="color:#ffffff; text-decoration:underline;">kinetibebyared@gmail.com</a>';
-      })
-      .finally(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnText;
-        }
-      });
-    });
-  }
-
-  // 6. Back to Top Button
-  const backToTop = document.getElementById('back-to-top');
-  if (backToTop) {
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
 });
