@@ -40,3 +40,8 @@ Then open `http://localhost:8000` in your browser.
 ---
 
 <p align="center">Made with ❤️ by <b>Yared Kinetibeb Tesfaye</b></p>
+
+
+## Developer Portfolio Setup
+- Open index.html in any browser
+- Built with vanilla JS, CSS3, and HTML5 Canvas
