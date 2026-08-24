@@ -49,3 +49,5 @@ Then open `http://localhost:8000` in your browser.
 <!-- Contribution update: feat(portfolio): update NexusIoT 3D WebGL Digital Twin screenshot previews -->
 
 <!-- Contribution update: feat(portfolio): update SentinelAI OWASP Security Radar screenshot previews -->
+
+<!-- Contribution update: docs(resume): update downloadable senior capstone engineering accomplishments -->
