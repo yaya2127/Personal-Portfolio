@@ -45,3 +45,5 @@ Then open `http://localhost:8000` in your browser.
 ## Developer Portfolio Setup
 - Open index.html in any browser
 - Built with vanilla JS, CSS3, and HTML5 Canvas
+
+<!-- Contribution update: feat(portfolio): update NexusIoT 3D WebGL Digital Twin screenshot previews -->
