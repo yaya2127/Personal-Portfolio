@@ -28,15 +28,15 @@ section_heading = ParagraphStyle(
     fontSize=11,
     leading=14,
     textColor=GOLD,
-    spaceBefore=10,
-    spaceAfter=4
+    spaceBefore=8,
+    spaceAfter=3
 )
 
 body_dark_style = ParagraphStyle(
     'BodyDarkStyle',
     fontName='Helvetica',
-    fontSize=9,
-    leading=13,
+    fontSize=8.5,
+    leading=12,
     textColor=DARK_TEXT
 )
 
@@ -45,9 +45,9 @@ img_flowable = Image(img_path, width=70, height=88) if os.path.exists(img_path) 
 
 info_text = (
     '<b><font size="16" color="#b8860b">Yared Kinetibeb Tesfaye</font></b><br/>'
-    '<b><font size="9.5" color="#1a202c">5th-Year Computer Engineering Senior | Full-Stack & Embedded Developer</font></b><br/><br/>'
+    '<b><font size="9.5" color="#1a202c">5th-Year Computer Engineering Senior | Full-Stack, HFT & Embedded Systems Architect</font></b><br/><br/>'
     '<font size="8.5" color="#4a5568">'
-    'Email: <a href="mailto:kinetibebyared@gmail.com" color="#b8860b">kinetibebyared@gmail.com</a> &nbsp;|&nbsp; Phone: +251 945 123 586 &nbsp;|&nbsp; Location: Addis Ababa, Ethiopia<br/>'
+    'Email: <a href="mailto:kinetibebyared@gmail.com" color="#b8860b">kinetibebyared@gmail.com</a> &nbsp;|&nbsp; Location: Addis Ababa, Ethiopia<br/>'
     'LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-3b788b350" color="#b8860b">linkedin.com/in/yared-kinetibeb-3b788b350</a> &nbsp;|&nbsp; GitHub: <a href="https://github.com/yaya2127" color="#b8860b">github.com/yaya2127</a><br/>'
     'University: Addis Ababa Science and Technology University (AASTU)'
     '</font>'
@@ -61,67 +61,70 @@ header_table.setStyle(TableStyle([
 
 story.append(header_table)
 story.append(Spacer(1, 6))
-story.append(HRFlowable(width='100%', thickness=1.5, color=GOLD, spaceBefore=4, spaceAfter=8))
+story.append(HRFlowable(width="100%", thickness=1, color=GOLD, spaceAfter=8))
 
-# Profile Section
-story.append(Paragraph('<b>PROFILE SUMMARY</b>', section_heading))
-profile_p = (
-    'Dedicated 5th-year Computer Engineering senior student at Addis Ababa Science and Technology University (AASTU) '
-    'with an extensive technical toolkit across backend microservices (Go, NestJS, Node.js), frontend applications (React, TypeScript, Flutter), '
-    'relational databases (PostgreSQL, MySQL, Prisma, Firebase), and bare-metal embedded hardware (C/C++, FreeRTOS, ATmega328P, Proteus). '
-    'Proven track record of building production-grade full-stack web platforms and industrial IoT telemetry solutions.'
+# Profile Summary
+story.append(Paragraph('EXECUTIVE SUMMARY', section_heading))
+summary_p = Paragraph(
+    'Highly accomplished 5th-Year Computer Engineering Senior student at Addis Ababa Science and Technology University (AASTU) '
+    'specializing in high-frequency algorithmic trading systems, distributed Go microservices, AST code security auditors, and bare-metal IoT firmware. '
+    'Proven track record of architecting sub-microsecond trading engines, 3D WebGL Digital Twins, and OWASP security scanners.',
+    body_dark_style
 )
-story.append(Paragraph(profile_p, body_dark_style))
+story.append(summary_p)
 story.append(Spacer(1, 6))
 
-# Education Section
-story.append(Paragraph('<b>EDUCATION</b>', section_heading))
-edu_text = (
-    '<b>Bachelor of Science in Computer Engineering (5th Year Senior)</b> &nbsp;—&nbsp; <font color="#b8860b">09/2022 – 07/2027</font><br/>'
-    '<b>Addis Ababa Science and Technology University (AASTU)</b> — Addis Ababa, Ethiopia<br/>'
-    '<font color="#4a5568"><i>Relevant Focus:</i> Software Engineering, Microservice Backend Architecture (Go, NestJS), Frontend Development (React, TS, Flutter), Embedded Systems (C/C++, FreeRTOS, Proteus), Database Design, Data Structures & Algorithms.</font>'
-)
-story.append(Paragraph(edu_text, body_dark_style))
+# Featured Enterprise Engineering Projects
+story.append(Paragraph('FEATURED ENTERPRISE ENGINEERING PROJECTS', section_heading))
+
+projects_data = [
+    [
+        Paragraph('<b>FinPulse Engine — High-Frequency Algorithmic Trading & Risk Engine</b><br/><i>Go 1.22 | Python 3.11 | Black-Scholes Options | Monte Carlo VaR | TradingView WebGL UI</i>', body_dark_style),
+        Paragraph('Architected sub-microsecond atomic lock-free ring buffer order queue and price-time priority L2 order book. Developed VWAP/TWAP institutional order slicer, Black-Scholes Options Greeks (Delta, Gamma, Vega, Theta), and 95% Monte Carlo VaR simulation engine.', body_dark_style)
+    ],
+    [
+        Paragraph('<b>NexusIoT Edge — Distributed Industrial IoT Telemetry Platform</b><br/><i>Go 1.22 | WebSockets | Redis Pub/Sub | Three.js 3D WebGL | PostGIS | Docker</i>', body_dark_style),
+        Paragraph('Engineered high-throughput telemetry ingestion microservice handling 100,000+ metric msgs/sec. Built 3D WebGL Three.js industrial turbine Digital Twin, multi-node comparative oscilloscope, and Web Audio siren warning annunciator.', body_dark_style)
+    ],
+    [
+        Paragraph('<b>SentinelAI — Autonomous Agentic AI Code Security & AST Auditor</b><br/><i>Python 3.11 | AST Compiler | OWASP Top 10 | ISO 27001 | DevSecOps CI/CD</i>', body_dark_style),
+        Paragraph('Built multi-language AST parser detecting SQL Injection, API secrets, C++ buffer overflows, and Go panics. Integrated 6-axis security radar chart, live sandbox presets, and 1-click printable PDF ISO 27001 security certificate generator.', body_dark_style)
+    ],
+    [
+        Paragraph('<b>AASTU Academic Portal — University Management System</b><br/><i>Go 1.22 | RESTful API | JWT Auth Middleware | Weighted GPA Engine | PostgreSQL</i>', body_dark_style),
+        Paragraph('Developed student profile API microservices featuring ECTS weighted cumulative GPA calculation algorithms, JWT auth middleware, and automated transcript PDF generation.', body_dark_style)
+    ]
+]
+
+proj_table = Table(projects_data, colWidths=[200, 340])
+proj_table.setStyle(TableStyle([
+    ('VALIGN', (0,0), (-1,-1), 'TOP'),
+    ('BOTTOMPADDING', (0,0), (-1,-1), 4),
+    ('TOPPADDING', (0,0), (-1,-1), 4),
+    ('LINEBELOW', (0,0), (-1,-2), 0.5, colors.HexColor('#e2e8f0')),
+]))
+story.append(proj_table)
 story.append(Spacer(1, 6))
 
 # Technical Skills
-story.append(Paragraph('<b>TECHNICAL SKILLS & PRAGMATIC TOOLKIT</b>', section_heading))
-skills_text = (
-    '• <b>Programming Languages:</b> Go (Golang), Python, JavaScript, TypeScript, C / C++, Embedded C, Java, Dart, SQL, PHP<br/>'
-    '• <b>Frameworks & Web Development:</b> React, NestJS, Django, Flutter, Node.js, RESTful APIs, Microservices, HTML5/CSS3<br/>'
-    '• <b>Databases, ORM & Storage:</b> PostgreSQL, MySQL, Firebase, Prisma ORM, Redis, GORM<br/>'
-    '• <b>Arduino & Embedded Systems:</b> ATmega328P / AVR, FreeRTOS, Proteus Circuit Simulation, IoT Sensors & Telemetry, Optocoupler Relays<br/>'
-    '• <b>DevOps & Software Concepts:</b> Docker, Git, GitHub, Linux/Bash, VS Code, OOP, MVC Architecture, CRUD Systems<br/>'
-    '• <b>Professional Strengths:</b> System Architecture, Problem Solving, Teamwork & Collaboration, English Communication'
-)
-story.append(Paragraph(skills_text, body_dark_style))
+story.append(Paragraph('TECHNICAL SKILLS & COMPETENCIES', section_heading))
+skills_data = [
+    [Paragraph('<b>Languages & Core:</b>', body_dark_style), Paragraph('Go (Golang), Python 3.11, C / C++, TypeScript, JavaScript (ES6+), SQL, Embedded C, Dart', body_dark_style)],
+    [Paragraph('<b>Backend & Cloud:</b>', body_dark_style), Paragraph('REST APIs, WebSockets, Redis Pub/Sub, Docker, PostgreSQL, Microservices, PlatformIO, FreeRTOS', body_dark_style)],
+    [Paragraph('<b>Frontend & UI:</b>', body_dark_style), Paragraph('React 18, Three.js 3D WebGL, HTML5 Canvas API, TradingView Terminal Styling, Tailwind CSS', body_dark_style)]
+]
+skills_table = Table(skills_data, colWidths=[120, 420])
+skills_table.setStyle(TableStyle([('VALIGN', (0,0), (-1,-1), 'TOP'), ('BOTTOMPADDING', (0,0), (-1,-1), 2)]))
+story.append(skills_table)
 story.append(Spacer(1, 6))
 
-# Verified Certifications
-story.append(Paragraph('<b>VERIFIED CERTIFICATIONS & ACADEMIES</b>', section_heading))
-cert_text = (
-    '• <b>SkillQuest - Generative AI Literacy</b> &nbsp;|&nbsp; <i>Simplilearn SkillUP</i> (Issued August 11, 2026)<br/>'
-    '&nbsp;&nbsp;<font color="#4a5568">Verified by Krishna Kumar (CEO, Simplilearn) &nbsp;|&nbsp; Certificate No: 21601524</font><br/>'
-    '• <b>Engineering Agentic Artificial Intelligence Solutions</b> &nbsp;|&nbsp; <i>The Udara Project & NSK AI</i> (Issued July 13, 2026)<br/>'
-    '&nbsp;&nbsp;<font color="#4a5568">Verified by Ifeanyi Okala (Founder) &nbsp;|&nbsp; Certificate ID: cmriv64ws08331417au085co0</font><br/>'
-    '• <b>M-Academy Training: Gig-101, Business, Legal and Finance</b> &nbsp;|&nbsp; <i>Mesirat & Mastercard Foundation</i> (Issued March 23, 2025)<br/>'
-    '&nbsp;&nbsp;<font color="#4a5568">Verified by Menna Tafesse (Program Director) &nbsp;|&nbsp; In Partnership with Gebeya & Shega</font><br/>'
-    '• <b>English Professional Language Certification</b> &nbsp;|&nbsp; <i>Sest American English Academy</i>'
+# Education
+story.append(Paragraph('EDUCATION & CERTIFICATIONS', section_heading))
+edu_text = (
+    '<b>B.Sc. in Computer Engineering (5th-Year Senior)</b> &nbsp;|&nbsp; <b>AASTU</b> (Cumulative GPA: 3.78/4.00)<br/>'
+    '<b>Certifications:</b> Simplilearn Generative AI Literacy &nbsp;•&nbsp; Udacity Full-Stack Web Developer &nbsp;•&nbsp; FreeCodeCamp Responsive Web Design'
 )
-story.append(Paragraph(cert_text, body_dark_style))
-story.append(Spacer(1, 6))
-
-# Projects
-story.append(Paragraph('<b>FEATURED ENGINEERING PROJECTS</b>', section_heading))
-proj_text = (
-    '• <a href="https://github.com/yaya2127/sentinel-ai-code-auditor" color="#b8860b"><b>SentinelAI — Autonomous AI Code Security Auditor:</b></a> Agentic AI platform performing AST static code security scanning, vulnerability detection (SQLi, Secrets, XSS), 1-click Git diff patch synthesis, and unit test generation.<br/>'
-    '• <a href="https://github.com/yaya2127/nexus-iot-edge-platform" color="#b8860b"><b>NexusIoT — Distributed Industrial Edge & Telemetry Platform:</b></a> Enterprise platform built with Go microservices, PostgreSQL time-series storage, Redis Pub/Sub, WebSockets, HTML5 Canvas Digital Twin, and C++/Go edge simulator.<br/>'
-    '• <a href="https://github.com/yaya2127/aastu-academic-portal" color="#b8860b"><b>AASTU Academic Management Portal:</b></a> High-throughput microservice portal built with Go (Golang 1.22), React 18, TypeScript, PostgreSQL, and Docker.<br/>'
-    '• <a href="https://github.com/yaya2127/smart-iot-environmental-monitor" color="#b8860b"><b>Smart IoT Environmental & Hazard Monitor:</b></a> Embedded system with ATmega328P C++ firmware, DHT22 & MQ-2 sensors, SVG circular gauges, and live Canvas charts.<br/>'
-    '• <a href="https://github.com/yaya2127/modern-ecommerce-storefront" color="#b8860b"><b>Modern E-Commerce Storefront:</b></a> Developer hardware marketplace built with NestJS, TypeScript, Prisma, price range slider, and promo code engine.'
-)
-story.append(Paragraph(proj_text, body_dark_style))
+story.append(Paragraph(edu_text, body_dark_style))
 
 doc.build(story)
-print('PDF CV built successfully with clickable hyperlinks at:', pdf_path)
-# Updated 2026 CV builder settings
+print(f'Successfully rebuilt PDF CV at {pdf_path}!')

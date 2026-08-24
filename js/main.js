@@ -159,17 +159,21 @@ document.addEventListener('DOMContentLoaded', () => {
       tech: ["C++", "Embedded C", "FreeRTOS", "Proteus", "SVG Telemetry"]
     },
     p3: {
-      title: "Modern E-Commerce Storefront",
-      category: "NestJS & Cyberpunk Storefront",
-      github: "https://github.com/yaya2127/modern-ecommerce-storefront",
-      desc: "A developer hardware marketplace featuring live product search, price range limit sliders ($10-$150), promo code discounts (TECH10), and quick-view modals.",
+      title: "FinPulse Engine — High-Frequency Trading & Risk Engine",
+      category: "Quantitative Financial Systems / HFT & Derivatives",
+      github: "https://github.com/yaya2127/finpulse-trading-engine",
+      live: "https://yaya2127.github.io/finpulse-trading-engine/",
+      desc: "An institutional-grade quantitative trading platform, VWAP/TWAP algorithmic execution suite, sub-microsecond L2 order book matching engine, and real-time portfolio risk analytics system.",
       features: [
-        "Live instant search with auto-highlight filtering",
-        "Price Range slider filter and stock status toggle",
-        "Cyber Promo Code engine (TECH10 for 10% OFF discount)",
-        "Slide-out Cyber Cart Drawer with tax, subtotal, and total calculations"
+        "Sub-microsecond atomic single-producer single-consumer lock-free ring buffer order queue",
+        "Price-time priority L2 order book matching engine supporting LIMIT, MARKET, and IOC execution",
+        "VWAP (Volume-Weighted) and TWAP (Time-Weighted) institutional algorithmic execution slicers",
+        "Black-Scholes Options Greeks (Delta, Gamma, Vega, Theta) and 95% Monte Carlo VaR simulator",
+        "Interactive TradingView Pro multi-asset class terminal (BTC/USDT, ETH/USDT, NVDA, AAPL, EUR/USD)",
+        "HTML5 Canvas OHLCV Candlestick charting with 20 EMA, 50 SMA, and MACD (12, 26, 9) Oscillator",
+        "1-Click Portfolio Risk & Trade Compliance CSV Audit Report exporter"
       ],
-      tech: ["NestJS", "TypeScript", "Prisma", "Cyberpunk UI"]
+      tech: ["Go (Golang)", "Python", "React 18", "TradingView UI", "Black-Scholes", "Monte Carlo VaR", "Canvas API"]
     },
     p4: {
       title: "Personal Developer Portfolio",
