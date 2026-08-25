@@ -366,25 +366,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const suggestionPills = document.querySelectorAll('.suggestion-pill');
 
   if (botTrigger && botChatbox) {
-    botTrigger.addEventListener('click', () => botChatbox.classList.toggle('open'));
-    if (botClose) botClose.addEventListener('click', () => botChatbox.classList.remove('open'));
+    botTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = botChatbox.style.display === 'flex' || botChatbox.classList.contains('open');
+      if (isVisible) {
+        botChatbox.style.display = 'none';
+        botChatbox.style.opacity = '0';
+        botChatbox.style.pointerEvents = 'none';
+        botChatbox.classList.remove('open');
+      } else {
+        botChatbox.style.display = 'flex';
+        botChatbox.style.opacity = '1';
+        botChatbox.style.pointerEvents = 'all';
+        botChatbox.classList.add('open');
+      }
+    });
+
+    if (botClose) {
+      botClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        botChatbox.style.display = 'none';
+        botChatbox.style.opacity = '0';
+        botChatbox.style.pointerEvents = 'none';
+        botChatbox.classList.remove('open');
+      });
+    }
 
     const handleSendMessage = (text) => {
-      const query = text || chatInput.value.trim();
+      const query = text || (chatInput ? chatInput.value.trim() : '');
       if (!query) return;
 
       const userDiv = document.createElement('div');
       userDiv.className = 'user-msg';
       userDiv.textContent = query;
       chatMessages.appendChild(userDiv);
-      chatInput.value = '';
+      if (chatInput) chatInput.value = '';
       chatMessages.scrollTop = chatMessages.scrollHeight;
 
       setTimeout(() => {
         const botDiv = document.createElement('div');
         botDiv.className = 'bot-msg';
-        const q = query.toLowerCase();
-
         const q = query.toLowerCase();
 
         if (q.includes('finpulse') || q.includes('hft') || q.includes('black-scholes') || q.includes('var') || q.includes('matching engine')) {
@@ -427,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         chatMessages.appendChild(botDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
-      }, 350);
+      }, 300);
     };
 
     if (chatSendBtn) chatSendBtn.addEventListener('click', () => handleSendMessage());
@@ -435,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
     suggestionPills.forEach(pill => pill.addEventListener('click', () => handleSendMessage(pill.getAttribute('data-query'))));
   }
 
-  // 7. Interactive CLI Terminal Drawer Engine with Active HTML Hyperlinks
+  // 7. Interactive CLI Terminal Drawer Engine with Direct Element Toggling
   const termToggleBtn = document.getElementById('terminal-toggle-btn');
   const termDrawer = document.getElementById('terminal-drawer');
   const termCloseBtn = document.getElementById('terminal-close-btn');
@@ -443,9 +464,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const termOutput = document.getElementById('terminal-output');
 
   if (termDrawer) {
-    const toggleTerminal = () => {
-      termDrawer.classList.toggle('open');
-      if (termDrawer.classList.contains('open') && termInput) termInput.focus();
+    const toggleTerminal = (e) => {
+      if (e) e.stopPropagation();
+      const isVisible = termDrawer.style.display === 'flex' || termDrawer.classList.contains('open');
+      if (isVisible) {
+        termDrawer.style.display = 'none';
+        termDrawer.style.opacity = '0';
+        termDrawer.style.pointerEvents = 'none';
+        termDrawer.classList.remove('open');
+      } else {
+        termDrawer.style.display = 'flex';
+        termDrawer.style.opacity = '1';
+        termDrawer.style.pointerEvents = 'all';
+        termDrawer.classList.add('open');
+        if (termInput) termInput.focus();
+      }
     };
 
     if (termToggleBtn) termToggleBtn.addEventListener('click', toggleTerminal);
@@ -454,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.key === '`') {
         e.preventDefault();
-        toggleTerminal();
+        toggleTerminal(e);
       }
     });
 
