@@ -414,8 +414,16 @@ document.addEventListener('DOMContentLoaded', () => {
         botDiv.className = 'bot-msg';
         const q = query.toLowerCase();
 
-        // 1. Projects Query (matches "project", "projects", "his projects", "what are his projects", etc.)
-        if (q.includes('project') || q.includes('built') || q.includes('made')) {
+        // 1. Strengths Query (matches "strength", "strengths", "strong", "superpower", "good at")
+        if (q.includes('strength') || q.includes('strong') || q.includes('superpower') || q.includes('good at')) {
+          botDiv.innerHTML = "💪 <strong>Yared's Key Strengths</strong>:<br/>• <strong>Low-Latency Systems Architecture</strong>: Deep mastery of Go (Golang 1.22) microservices, atomic SPSC lock-free ring buffers, and sub-microsecond HFT matching engines.<br/>• <strong>Academic Excellence</strong>: 5th-Year Computer Engineering Senior at AASTU with an outstanding <strong>3.78 / 4.00 Cumulative GPA</strong>.<br/>• <strong>DevSecOps & Code Security</strong>: Developer of SentinelAI static AST auditor detecting OWASP Top 10 vulnerabilities.<br/>• <strong>Full-Stack & Embedded Depth</strong>: Seamless transition from ATmega328P C firmware to React 18, Next.js, and Three.js 3D WebGL.";
+        }
+        // 2. Weaknesses / Growth Query (matches "weakness", "weekness", "weak", "improvement", "grow")
+        else if (q.includes('weak') || q.includes('week') || q.includes('improve') || q.includes('grow')) {
+          botDiv.innerHTML = "🌱 <strong>Yared's Growth Mindset & Focus Areas</strong>:<br/>• <strong>Hyper-Optimization Focus</strong>: Tends to spend extra time micro-benchmarking low-level memory allocations; manages this by setting strict sprint deliverables.<br/>• <strong>Expanding Cloud Orchestration</strong>: Highly proficient in Docker & Redis; currently expanding hands-on Kubernetes (CKAD) orchestration labs.";
+        }
+        // 3. Projects Query (matches "project", "projects", "his projects", "what are his projects", etc.)
+        else if (q.includes('project') || q.includes('built') || q.includes('made') || q.includes('work')) {
           if (q.includes('finpulse') || q.includes('hft') || q.includes('trading')) {
             botDiv.innerHTML = "📈 <strong>FinPulse Engine</strong>: Institutional-grade quantitative trading platform built in <strong>Go 1.22 & Python 3.11</strong>. Features atomic lock-free SPSC ring buffer, L2 matching engine, VWAP/TWAP order slicer, Black-Scholes Options Greeks (Δ, Γ, V, Θ), and 95% Monte Carlo VaR!<br/><br/><a href='https://yaya2127.github.io/finpulse-trading-engine/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/finpulse-trading-engine' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
           } else if (q.includes('nexus') || q.includes('iot') || q.includes('scada')) {
@@ -426,49 +434,49 @@ document.addEventListener('DOMContentLoaded', () => {
             botDiv.innerHTML = "🚀 <strong>Yared's 9 Completed Projects</strong>:<br/>1. 📈 <strong>FinPulse Engine</strong> (HFT & Risk Engine)<br/>2. ⚡ <strong>NexusIoT Edge</strong> (Industrial IoT Platform)<br/>3. 🛡️ <strong>SentinelAI Auditor</strong> (Agentic AI Security Auditor)<br/>4. 🎓 <strong>AASTU Academic Portal</strong> (Go Backend)<br/>5. 🔬 <strong>Smart IoT Environmental Monitor</strong> (C++ Firmware)<br/>6. 🛒 <strong>Modern E-Commerce Storefront</strong> (NestJS & Prisma)<br/>7. 💼 <strong>Personal Developer Portfolio</strong> (Luxury Dark UI)<br/>8. 🏠 <strong>Microcontroller Home Automation</strong> (Bare-Metal C)<br/>9. 📋 <strong>Interactive Task Scheduler</strong> (React Kanban)<br/><br/>Ask me about any specific project or view them in the portfolio grid above!";
           }
         }
-        // 2. Skills / Stack / Tech Query (matches "skil", "skils", "skill", "skills", "tech", "stack", "go", "python", "react", etc.)
+        // 4. Skills / Stack / Tech Query (matches "skil", "skils", "skill", "skills", "tech", "stack", "go", "python", "react", etc.)
         else if (q.includes('skil') || q.includes('stack') || q.includes('tech') || q.includes('capability') || q.includes('know') || q.includes('language') || q.includes('framework')) {
           botDiv.innerHTML = "💻 <strong>Yared's Technical Capabilities & Stack</strong>:<br/>• <strong>Languages</strong>: Go (Golang 1.22), Python 3.11, C/C++, TypeScript, JavaScript, SQL, Embedded C, Dart<br/>• <strong>Backend & Cloud</strong>: REST APIs, WebSockets, Redis, Docker, PostgreSQL 15, gRPC, NestJS<br/>• <strong>Frontend & Mobile</strong>: React 18, Next.js, Three.js 3D WebGL, Flutter, TradingView UI, Tailwind CSS<br/>• <strong>DevSecOps & Embedded</strong>: AST Compiler Parsers, OWASP Top 10, ATmega328P, FreeRTOS, Proteus";
         }
-        // 3. FinPulse Direct
+        // 5. FinPulse Direct
         else if (q.includes('finpulse') || q.includes('hft') || q.includes('black-scholes') || q.includes('var') || q.includes('matching engine')) {
           botDiv.innerHTML = "📈 <strong>FinPulse Engine</strong>: Institutional-grade quantitative trading platform built in <strong>Go 1.22 & Python 3.11</strong>. Features atomic lock-free SPSC ring buffer, L2 matching engine, VWAP/TWAP order slicer, Black-Scholes Options Greeks (Δ, Γ, V, Θ), and 95% Monte Carlo VaR!<br/><br/><a href='https://yaya2127.github.io/finpulse-trading-engine/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/finpulse-trading-engine' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
         }
-        // 4. NexusIoT Direct
+        // 6. NexusIoT Direct
         else if (q.includes('nexus') || q.includes('scada') || q.includes('turbine') || q.includes('3d') || q.includes('digital twin')) {
           botDiv.innerHTML = "⚡ <strong>NexusIoT Edge</strong>: Distributed Industrial IoT platform with <strong>Go 1.22</strong> telemetry microservices handling 100,000+ msgs/sec, Redis Pub/Sub, WebSockets, 3D WebGL Three.js Digital Twin turbine, and Web Audio siren warning annunciator!<br/><br/><a href='https://yaya2127.github.io/nexus-iot-edge-platform/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/nexus-iot-edge-platform' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
         }
-        // 5. SentinelAI Direct
+        // 7. SentinelAI Direct
         else if (q.includes('sentinel') || q.includes('owasp') || q.includes('vulnerability') || q.includes('diff')) {
           botDiv.innerHTML = "🛡️ <strong>SentinelAI Auditor</strong>: Autonomous Agentic AI code security auditor built with Python AST static parser detecting SQLi, Secrets, Buffer Overflows & Go Panics. Features 6-axis OWASP radar chart, 1-click Git diff patch synthesizer, and printable ISO 27001 audit certificate exporter!<br/><br/><a href='https://yaya2127.github.io/sentinel-ai-code-auditor/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/sentinel-ai-code-auditor' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
         }
-        // 6. Education / AASTU / GPA
+        // 8. Education / AASTU / GPA
         else if (q.includes('education') || q.includes('aastu') || q.includes('degree') || q.includes('gpa') || q.includes('university') || q.includes('study') || q.includes('school')) {
           botDiv.innerHTML = "🎓 Yared is a <strong>5th-Year Computer Engineering Senior</strong> at <strong>Addis Ababa Science and Technology University (AASTU)</strong> in Addis Ababa, Ethiopia, with an outstanding Cumulative GPA of <strong>3.78 / 4.00</strong>.<br/><br/>Core Coursework: Operating Systems, Distributed Systems, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering.";
         }
-        // 7. Certifications
+        // 9. Certifications
         else if (q.includes('cert') || q.includes('simplilearn') || q.includes('udacity') || q.includes('freecodecamp')) {
           botDiv.innerHTML = "🏆 Yared holds 3 verified industry credentials:<br/>1. <strong>Simplilearn Generative AI Literacy</strong> (LLMs & Prompt Engineering)<br/>2. <strong>Udacity Full-Stack Web Developer Nanodegree</strong> (Cloud APIs & PostgreSQL)<br/>3. <strong>FreeCodeCamp Responsive Web Design</strong>";
         }
-        // 8. CV / Resume / Download
+        // 10. CV / Resume / Download
         else if (q.includes('cv') || q.includes('resume') || q.includes('download') || q.includes('pdf')) {
           botDiv.innerHTML = "📄 You can download Yared's official 2026 PDF Resume here: <a href='assets/docs/Yared_Kinetibeb_CV.pdf' download style='color:#dfa951; font-weight:700;'>Download CV (PDF) 📥</a>";
         }
-        // 9. Contact / Email
+        // 11. Contact / Email
         else if (q.includes('contact') || q.includes('email') || q.includes('linkedin') || q.includes('github') || q.includes('reach') || q.includes('mail')) {
           botDiv.innerHTML = "📫 Connect with Yared:<br/>• <strong>Email</strong>: <a href='mailto:kinetibebyared@gmail.com' style='color:#dfa951;'>kinetibebyared@gmail.com</a><br/>• <strong>LinkedIn</strong>: <a href='https://www.linkedin.com/in/yared-kinetibeb-3b788b350/' target='_blank' style='color:#60a5fa;'>linkedin.com/in/yared-kinetibeb-3b788b350</a><br/>• <strong>GitHub</strong>: <a href='https://github.com/yaya2127' target='_blank' style='color:#60a5fa;'>github.com/yaya2127</a>";
         }
-        // 10. Hiring / Jobs / Roles
+        // 12. Hiring / Jobs / Roles
         else if (q.includes('hire') || q.includes('job') || q.includes('role') || q.includes('available') || q.includes('intern')) {
           botDiv.innerHTML = "💼 Yared is actively open for Full-Stack, Go Microservice, Systems Architecture, and DevSecOps engineering roles! Reach out directly via <a href='mailto:kinetibebyared@gmail.com' style='color:#dfa951; font-weight:700;'>kinetibebyared@gmail.com</a>.";
         }
-        // 11. Whole Word Greetings ONLY (\bhi\b, \bhello\b, \bhey\b, \bgreetings\b)
+        // 13. Whole Word Greetings ONLY (\bhi\b, \bhello\b, \bhey\b, \bgreetings\b)
         else if (/\b(hi|hello|hey|greetings|yo|sup)\b/i.test(q)) {
           botDiv.innerHTML = "👋 Hello! How can I assist you today? Feel free to ask about Yared's projects, AASTU degree, tech stack, or hiring availability!";
         }
-        // 12. Fallback
+        // 14. Fallback
         else {
-          botDiv.innerHTML = "🤖 Yared Kinetibeb Tesfaye is a 5th-Year Senior Computer Engineering Student at AASTU (GPA 3.78) specializing in Go microservices, HFT trading engines, AST code security auditors, and bare-metal embedded C firmware.<br/><br/>You can ask me about any specific project (e.g. <em>'Tell me about FinPulse'</em>, <em>'NexusIoT'</em>, <em>'SentinelAI'</em>) or download his CV!";
+          botDiv.innerHTML = "🤖 Yared Kinetibeb Tesfaye is a 5th-Year Senior Computer Engineering Student at AASTU (GPA 3.78) specializing in Go microservices, HFT trading engines, AST code security auditors, and bare-metal embedded C firmware.<br/><br/>You can ask me about his <strong>Strengths</strong>, <strong>Weaknesses</strong>, <strong>Projects</strong>, or <strong>CV</strong>!";
         }
 
         chatMessages.appendChild(botDiv);
