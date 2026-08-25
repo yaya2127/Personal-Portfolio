@@ -53,6 +53,9 @@
 
       <!-- Right Action Items -->
       <div class="nav-actions">
+        <button class="btn-terminal-toggle" id="terminal-toggle-btn" title="Open CLI Terminal Mode (Ctrl + ~)">
+          <i class="fas fa-terminal"></i> <span>CLI Mode</span>
+        </button>
         <a href="https://github.com/yaya2127" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub Profile">
           <i class="fab fa-github"></i>
         </a>
@@ -307,6 +310,17 @@
             <div class="skill-pill"><i class="fas fa-users"></i> <span>Teamwork & Collaboration</span></div>
             <div class="skill-pill"><i class="fas fa-language"></i> <span>English Communication</span></div>
           </div>
+        </div>
+      </div>
+
+      <!-- 6-Axis Engineering Skill Radar Chart -->
+      <div class="radar-chart-container" style="margin-top: 30px; background: rgba(18, 24, 38, 0.7); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 16px; padding: 24px; text-align: center;">
+        <h3 style="color: #dfa951; font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <i class="fas fa-chart-pie"></i> 6-Axis Engineering Domain Proficiency Matrix
+        </h3>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 16px;">Interactive real-time metric visualization across Yared's core engineering domains</p>
+        <div style="max-width: 420px; margin: 0 auto; height: 320px; position: relative;">
+          <canvas id="skill-radar-canvas" width="420" height="320"></canvas>
         </div>
       </div>
     </div>
@@ -833,6 +847,68 @@
       <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
       <div class="modal-body" id="modal-body">
         <!-- Content dynamic via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating AI Portfolio Assistant Bot Widget -->
+  <div class="ai-bot-widget" id="ai-bot-widget">
+    <button class="ai-bot-trigger" id="ai-bot-trigger" title="Chat with Yared's AI Assistant">
+      <i class="fas fa-robot"></i>
+      <span class="bot-badge">AI</span>
+    </button>
+
+    <div class="ai-bot-chatbox" id="ai-bot-chatbox">
+      <div class="chatbox-header">
+        <div className="chatbox-title" style="display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-robot" style="color: #dfa951;"></i>
+          <div>
+            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Yared's Portfolio AI</div>
+            <div style="font-size: 0.72rem; color: #10b981; display: flex; align-items: center; gap: 4px;">
+              <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%; display: inline-block;"></span> Online Assistant
+            </div>
+          </div>
+        </div>
+        <button class="chatbox-close" id="chatbox-close"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="chatbox-messages" id="chatbox-messages">
+        <div class="bot-msg">
+          👋 Hi! I'm Yared's AI Portfolio Assistant. Ask me about his <strong>FinPulse HFT Engine</strong>, <strong>AASTU Computer Engineering Senior Degree</strong>, or <strong>CV & Skills</strong>!
+        </div>
+      </div>
+
+      <div class="chatbox-suggestions">
+        <button class="suggestion-pill" data-query="FinPulse Engine">📈 FinPulse Engine</button>
+        <button class="suggestion-pill" data-query="Education">🎓 AASTU Degree</button>
+        <button class="suggestion-pill" data-query="Download CV">📄 Download CV</button>
+      </div>
+
+      <div class="chatbox-input-wrapper">
+        <input type="text" id="chatbox-input" placeholder="Ask about Yared's projects or skills..." />
+        <button id="chatbox-send-btn"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive CLI Terminal Drawer Overlay -->
+  <div class="terminal-drawer" id="terminal-drawer">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <div class="terminal-title"><i class="fas fa-terminal"></i> yared@aastu-dev-station:~ (Go 1.22 / Linux x86_64)</div>
+      <button class="terminal-close-btn" id="terminal-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="term-line welcome-line">Welcome to Yared Kinetibeb Tesfaye's Developer CLI v2.4 (AASTU Senior Senior Station)</div>
+      <div class="term-line info-line">Type <span class="cmd-highlight">'help'</span> for available commands, <span class="cmd-highlight">'projects'</span>, <span class="cmd-highlight">'skills'</span>, or <span class="cmd-highlight">'sudo hire-yared'</span>.</div>
+      <div id="terminal-output"></div>
+      <div class="terminal-prompt-line">
+        <span class="prompt-user">yared@aastu:~$</span>
+        <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false" />
       </div>
     </div>
   </div>
