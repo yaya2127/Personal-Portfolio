@@ -263,5 +263,208 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 5. 6-Axis Engineering Skill Radar Chart Canvas Renderer
+  const radarCanvas = document.getElementById('skill-radar-canvas');
+  if (radarCanvas) {
+    const ctx = radarCanvas.getContext('2d');
+    const labels = ['Go Microservices', 'AST Security/DevSecOps', 'HFT & Derivatives', 'Embedded C/FreeRTOS', '3D WebGL / React', 'Distributed Systems'];
+    const values = [0.95, 0.92, 0.90, 0.88, 0.94, 0.96]; // Scale 0-1
+    const centerX = 210, centerY = 160, radius = 110;
+    const sides = labels.length;
+
+    // Draw background web polygons
+    ctx.strokeStyle = 'rgba(212, 175, 55, 0.2)';
+    ctx.lineWidth = 1;
+
+    for (let level = 1; level <= 4; level++) {
+      const r = (radius / 4) * level;
+      ctx.beginPath();
+      for (let i = 0; i < sides; i++) {
+        const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
+        const x = centerX + r * Math.cos(angle);
+        const y = centerY + r * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    // Draw axes & labels
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '11px "Inter", sans-serif';
+    ctx.textAlign = 'center';
+
+    for (let i = 0; i < sides; i++) {
+      const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+
+      const labelX = centerX + (radius + 24) * Math.cos(angle);
+      const labelY = centerY + (radius + 20) * Math.sin(angle);
+      ctx.fillText(labels[i], labelX, labelY);
+    }
+
+    // Draw Filled Data Polygon
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(223, 169, 81, 0.35)';
+    ctx.strokeStyle = '#dfa951';
+    ctx.lineWidth = 2.5;
+
+    for (let i = 0; i < sides; i++) {
+      const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
+      const r = radius * values[i];
+      const x = centerX + r * Math.cos(angle);
+      const y = centerY + r * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  // 6. Floating AI Assistant Chatbot Engine
+  const botTrigger = document.getElementById('ai-bot-trigger');
+  const botChatbox = document.getElementById('ai-bot-chatbox');
+  const botClose = document.getElementById('chatbox-close');
+  const chatMessages = document.getElementById('chatbox-messages');
+  const chatInput = document.getElementById('chatbox-input');
+  const chatSendBtn = document.getElementById('chatbox-send-btn');
+  const suggestionPills = document.querySelectorAll('.suggestion-pill');
+
+  if (botTrigger && botChatbox) {
+    botTrigger.addEventListener('click', () => botChatbox.classList.toggle('open'));
+    if (botClose) botClose.addEventListener('click', () => botChatbox.classList.remove('open'));
+
+    const handleSendMessage = (text) => {
+      const query = text || chatInput.value.trim();
+      if (!query) return;
+
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'user-msg';
+      userDiv.textContent = query;
+      chatMessages.appendChild(userDiv);
+      chatInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Generate AI Response
+      setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'bot-msg';
+        const q = query.toLowerCase();
+
+        if (q.includes('finpulse') || q.includes('trading') || q.includes('hft')) {
+          botDiv.innerHTML = "📈 <strong>FinPulse Engine</strong> is Yared's high-frequency trading platform built in Go & Python featuring a sub-microsecond lock-free ring buffer, L2 matching engine, VWAP/TWAP order slicer, Black-Scholes Greeks, and 95% Monte Carlo VaR! <a href='https://yaya2127.github.io/finpulse-trading-engine/' target='_blank' style='color:#60a5fa;'>Launch Live App 🚀</a>";
+        } else if (q.includes('education') || q.includes('aastu') || q.includes('degree') || q.includes('gpa')) {
+          botDiv.innerHTML = "🎓 Yared is a <strong>5th-Year Computer Engineering Senior</strong> at Addis Ababa Science and Technology University (AASTU) with a Cumulative GPA of <strong>3.78 / 4.00</strong>!";
+        } else if (q.includes('cv') || q.includes('resume') || q.includes('download')) {
+          botDiv.innerHTML = "📄 You can download Yared's official 2026 PDF Resume here: <a href='assets/docs/Yared_Kinetibeb_CV.pdf' download style='color:#dfa951; font-weight:700;'>Download CV (PDF) 📥</a>";
+        } else if (q.includes('skill') || q.includes('stack') || q.includes('language')) {
+          botDiv.innerHTML = "💻 Yared specializes in <strong>Go (Golang)</strong>, <strong>Python</strong>, <strong>C/C++</strong>, <strong>TypeScript/React</strong>, <strong>Next.js</strong>, <strong>PostgreSQL</strong>, <strong>Redis</strong>, and <strong>Embedded C / FreeRTOS</strong>!";
+        } else {
+          botDiv.innerHTML = "🤖 Yared is a Senior Computer Engineering Student at AASTU specializing in Go microservices, HFT engines, AST code security auditors, and embedded systems. Feel free to explore his projects or download his CV!";
+        }
+
+        chatMessages.appendChild(botDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 400);
+    };
+
+    if (chatSendBtn) chatSendBtn.addEventListener('click', () => handleSendMessage());
+    if (chatInput) chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
+    suggestionPills.forEach(pill => pill.addEventListener('click', () => handleSendMessage(pill.getAttribute('data-query'))));
+  }
+
+  // 7. Interactive CLI Terminal Drawer Engine
+  const termToggleBtn = document.getElementById('terminal-toggle-btn');
+  const termDrawer = document.getElementById('terminal-drawer');
+  const termCloseBtn = document.getElementById('terminal-close-btn');
+  const termInput = document.getElementById('terminal-input');
+  const termOutput = document.getElementById('terminal-output');
+
+  if (termDrawer) {
+    const toggleTerminal = () => {
+      termDrawer.classList.toggle('open');
+      if (termDrawer.classList.contains('open') && termInput) termInput.focus();
+    };
+
+    if (termToggleBtn) termToggleBtn.addEventListener('click', toggleTerminal);
+    if (termCloseBtn) termCloseBtn.addEventListener('click', toggleTerminal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === '`') {
+        e.preventDefault();
+        toggleTerminal();
+      }
+    });
+
+    if (termInput) {
+      termInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const cmd = termInput.value.trim().toLowerCase();
+          termInput.value = '';
+
+          const printLine = (text, color = '#10b981') => {
+            const div = document.createElement('div');
+            div.className = 'term-line';
+            div.style.color = color;
+            div.innerHTML = text;
+            termOutput.appendChild(div);
+          };
+
+          printLine(`yared@aastu:~$ ${cmd}`, '#dfa951');
+
+          if (cmd === 'help') {
+            printLine("Available CLI Commands:");
+            printLine("  <span class='cmd-highlight'>help</span>       - Display command list");
+            printLine("  <span class='cmd-highlight'>whoami</span>     - View developer profile summary");
+            printLine("  <span class='cmd-highlight'>skills</span>     - Output technical stack breakdown");
+            printLine("  <span class='cmd-highlight'>projects</span>   - List featured enterprise platforms");
+            printLine("  <span class='cmd-highlight'>cv</span>         - Download official PDF resume");
+            printLine("  <span class='cmd-highlight'>contact</span>    - Show email & social profiles");
+            printLine("  <span class='cmd-highlight'>clear</span>      - Clear terminal screen");
+            printLine("  <span class='cmd-highlight'>sudo hire-yared</span> - Execute instant hiring protocol!");
+          } else if (cmd === 'whoami') {
+            printLine("Yared Kinetibeb Tesfaye — 5th-Year Computer Engineering Senior @ AASTU (GPA: 3.78/4.00)");
+            printLine("Architect of FinPulse HFT Engine, NexusIoT Edge Platform, and SentinelAI Auditor.");
+          } else if (cmd === 'skills') {
+            printLine("Languages : Go (Golang), Python 3.11, C/C++, TypeScript, JavaScript, Embedded C, Dart");
+            printLine("Backend   : REST APIs, WebSockets, Redis Pub/Sub, Docker, PostgreSQL 15, gRPC, NestJS");
+            printLine("Frontend  : React 18, Next.js, Three.js 3D WebGL, TradingView UI, Tailwind CSS");
+          } else if (cmd === 'projects') {
+            printLine("1. FinPulse Engine    -> [https://yaya2127.github.io/finpulse-trading-engine/]");
+            printLine("2. NexusIoT Edge      -> [https://yaya2127.github.io/nexus-iot-edge-platform/]");
+            printLine("3. SentinelAI Auditor -> [https://yaya2127.github.io/sentinel-ai-code-auditor/]");
+          } else if (cmd === 'cv') {
+            printLine("Initiating 2026 PDF Resume download...", '#dfa951');
+            const link = document.createElement('a');
+            link.href = 'assets/docs/Yared_Kinetibeb_CV.pdf';
+            link.download = 'Yared_Kinetibeb_CV.pdf';
+            link.click();
+          } else if (cmd === 'contact') {
+            printLine("Email   : kinetibebyared@gmail.com");
+            printLine("LinkedIn: https://www.linkedin.com/in/yared-kinetibeb-3b788b350/");
+            printLine("GitHub  : https://github.com/yaya2127");
+          } else if (cmd === 'clear') {
+            termOutput.innerHTML = '';
+          } else if (cmd.includes('sudo') || cmd.includes('hire')) {
+            printLine("🚀 HIRING PROTOCOL INITIATED! Direct Email: kinetibebyared@gmail.com", '#dfa951');
+          } else if (cmd !== '') {
+            printLine(`Command not found: '${cmd}'. Type 'help' for available commands.`, '#ef4444');
+          }
+
+          const termBody = document.getElementById('terminal-body');
+          if (termBody) termBody.scrollTop = termBody.scrollHeight;
+        }
+      });
+    }
+  }
 });
+
 // Active section tracking optimization
