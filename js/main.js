@@ -102,6 +102,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const viewDetailBtns = document.querySelectorAll('.view-details');
 
   const projectDetails = {
+    psynapse: {
+      title: "SYNAPSE-Med — Real-Time Emergency ICU Vital Telemetry & Alarm Dispatch Console",
+      category: "Medical-Grade Systems / Real-Time ICU Telemetry",
+      desc: "An institutional medical telemetry platform engineered for continuous 24/7 ICU patient vital monitoring (12-Lead ECG), automated NEWS2 clinical sepsis & cardiac arrest early warning scoring, 8-bed ICU ward matrix, and emergency telemetry ambulance dispatching.",
+      features: [
+        "High-frequency 60 FPS HTML5 Canvas 12-Lead ECG waveform oscilloscope canvas",
+        "Clinical NEWS2 (National Early Warning Score) sepsis & cardiac risk evaluation engine",
+        "8-Bed ICU Ward Allocation Matrix with 1-click bed switching & live vital feeds",
+        "Multi-parameter vital monitor (HR BPM, SpO2 %, Blood Pressure NIBP, Resp Rate, Temp °C)",
+        "Emergency Mobile ICU Ambulance Telemetry Fleet Dispatcher with real-time ETA tracking",
+        "1-Click Printable ICU EMR Telemetry Audit & Sign-off Exporter (.txt / PDF summary)",
+        "Go 1.22 REST microservices & Clinical Dark Slate Obsidian Enterprise Interface"
+      ],
+      tech: ["Go (Golang)", "Python 3.11", "12-Lead ECG Canvas", "NEWS2 Risk Engine", "Clinical Dark Slate UI", "HTML5", "CSS3", "JavaScript"],
+      github: "https://github.com/yaya2127/synapse-med-platform",
+      live: "https://yaya2127.github.io/synapse-med-platform/"
+    },
     pnexus: {
       title: "NexusIoT — Distributed Industrial IoT Edge & Telemetry Platform",
       category: "Enterprise Distributed Systems / Cloud-IoT & Edge",
@@ -424,14 +441,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // 3. Projects Query (matches "project", "projects", "his projects", "what are his projects", etc.)
         else if (q.includes('project') || q.includes('built') || q.includes('made') || q.includes('work')) {
-          if (q.includes('finpulse') || q.includes('hft') || q.includes('trading')) {
+          if (q.includes('synapse') || q.includes('med') || q.includes('icu') || q.includes('ecg')) {
+            botDiv.innerHTML = "🏥 <strong>SYNAPSE-Med Platform</strong>: Real-time emergency ICU telemetry console featuring a 12-Lead ECG waveform oscilloscope canvas, automated NEWS2 clinical risk evaluation, 8-bed ICU ward matrix, and ambulance telemetry dispatcher!<br/><br/><a href='https://yaya2127.github.io/synapse-med-platform/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/synapse-med-platform' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
+          } else if (q.includes('finpulse') || q.includes('hft') || q.includes('trading')) {
             botDiv.innerHTML = "📈 <strong>FinPulse Engine</strong>: Institutional-grade quantitative trading platform built in <strong>Go 1.22 & Python 3.11</strong>. Features atomic lock-free SPSC ring buffer, L2 matching engine, VWAP/TWAP order slicer, Black-Scholes Options Greeks (Δ, Γ, V, Θ), and 95% Monte Carlo VaR!<br/><br/><a href='https://yaya2127.github.io/finpulse-trading-engine/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/finpulse-trading-engine' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
           } else if (q.includes('nexus') || q.includes('iot') || q.includes('scada')) {
             botDiv.innerHTML = "⚡ <strong>NexusIoT Edge</strong>: Distributed Industrial IoT platform with <strong>Go 1.22</strong> telemetry microservices handling 100,000+ msgs/sec, Redis Pub/Sub, WebSockets, 3D WebGL Three.js Digital Twin turbine, and Web Audio siren warning annunciator!<br/><br/><a href='https://yaya2127.github.io/nexus-iot-edge-platform/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/nexus-iot-edge-platform' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
           } else if (q.includes('sentinel') || q.includes('security') || q.includes('ast')) {
             botDiv.innerHTML = "🛡️ <strong>SentinelAI Auditor</strong>: Autonomous Agentic AI code security auditor built with Python AST static parser detecting SQLi, Secrets, Buffer Overflows & Go Panics. Features 6-axis OWASP radar chart, 1-click Git diff patch synthesizer, and printable ISO 27001 audit certificate exporter!<br/><br/><a href='https://yaya2127.github.io/sentinel-ai-code-auditor/' target='_blank' style='color:#60a5fa; font-weight:700;'>🌐 Launch Live App</a> &nbsp;|&nbsp; <a href='https://github.com/yaya2127/sentinel-ai-code-auditor' target='_blank' style='color:#dfa951;'>💻 GitHub Code</a>";
           } else {
-            botDiv.innerHTML = "🚀 <strong>Yared's 9 Completed Projects</strong>:<br/>1. 📈 <strong>FinPulse Engine</strong> (HFT & Risk Engine)<br/>2. ⚡ <strong>NexusIoT Edge</strong> (Industrial IoT Platform)<br/>3. 🛡️ <strong>SentinelAI Auditor</strong> (Agentic AI Security Auditor)<br/>4. 🎓 <strong>AASTU Academic Portal</strong> (Go Backend)<br/>5. 🔬 <strong>Smart IoT Environmental Monitor</strong> (C++ Firmware)<br/>6. 🛒 <strong>Modern E-Commerce Storefront</strong> (NestJS & Prisma)<br/>7. 💼 <strong>Personal Developer Portfolio</strong> (Luxury Dark UI)<br/>8. 🏠 <strong>Microcontroller Home Automation</strong> (Bare-Metal C)<br/>9. 📋 <strong>Interactive Task Scheduler</strong> (React Kanban)<br/><br/>Ask me about any specific project or view them in the portfolio grid above!";
+            botDiv.innerHTML = "🚀 <strong>Yared's 10 Completed Projects</strong>:<br/>1. 🏥 <strong>SYNAPSE-Med Platform</strong> (ICU Vital Telemetry & NEWS2)<br/>2. 📈 <strong>FinPulse Engine</strong> (HFT & Risk Engine)<br/>3. ⚡ <strong>NexusIoT Edge</strong> (Industrial IoT Platform)<br/>4. 🛡️ <strong>SentinelAI Auditor</strong> (Agentic AI Security Auditor)<br/>5. 🎓 <strong>AASTU Academic Portal</strong> (Go Backend)<br/>6. 🔬 <strong>Smart IoT Environmental Monitor</strong> (C++ Firmware)<br/>7. 🛒 <strong>Modern E-Commerce Storefront</strong> (NestJS & Prisma)<br/>8. 💼 <strong>Personal Developer Portfolio</strong> (Luxury Dark UI)<br/>9. 🏠 <strong>Microcontroller Home Automation</strong> (Bare-Metal C)<br/>10. 📋 <strong>Interactive Task Scheduler</strong> (React Kanban)<br/><br/>Ask me about any specific project or view them in the portfolio grid above!";
           }
         }
         // 4. Skills / Stack / Tech Query (matches "skil", "skils", "skill", "skills", "tech", "stack", "go", "python", "react", etc.)
@@ -554,9 +573,13 @@ document.addEventListener('DOMContentLoaded', () => {
             printLine("  <span class='cmd-highlight'>sudo hire-yared</span> - Execute instant hiring protocol!");
           } else if (cmd === 'projects') {
             printLine("==========================================================================", '#60a5fa');
-            printLine("⚡ YARED'S FEATURED ENTERPRISE PLATFORMS & REPOSITORIES (ALL 9 PROJECTS)", '#dfa951');
+            printLine("⚡ YARED'S FEATURED ENTERPRISE PLATFORMS & REPOSITORIES (ALL 10 PROJECTS)", '#dfa951');
             printLine("==========================================================================", '#60a5fa');
-            printLine("1. 📈 <strong>FinPulse Engine</strong> (HFT & Risk Engine)");
+            printLine("1. 🏥 <strong>SYNAPSE-Med Platform</strong> (ICU Vital Telemetry & NEWS2 Risk Evaluation)");
+            printLine("   🌐 Live App: <a href='https://yaya2127.github.io/synapse-med-platform/' target='_blank' style='color:#60a5fa; text-decoration:underline;'>yaya2127.github.io/synapse-med-platform/</a>");
+            printLine("   💻 GitHub  : <a href='https://github.com/yaya2127/synapse-med-platform' target='_blank' style='color:#dfa951; text-decoration:underline;'>github.com/yaya2127/synapse-med-platform</a>");
+            printLine("--------------------------------------------------------------------------", '#334155');
+            printLine("2. 📈 <strong>FinPulse Engine</strong> (HFT & Risk Engine)");
             printLine("   🌐 Live App: <a href='https://yaya2127.github.io/finpulse-trading-engine/' target='_blank' style='color:#60a5fa; text-decoration:underline;'>yaya2127.github.io/finpulse-trading-engine/</a>");
             printLine("   💻 GitHub  : <a href='https://github.com/yaya2127/finpulse-trading-engine' target='_blank' style='color:#dfa951; text-decoration:underline;'>github.com/yaya2127/finpulse-trading-engine</a>");
             printLine("--------------------------------------------------------------------------", '#334155');
