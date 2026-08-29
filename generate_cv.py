@@ -48,7 +48,7 @@ info_text = (
     '<b><font size="9.5" color="#1a202c">5th-Year Computer Engineering Senior | Full-Stack, HFT & Embedded Systems Architect</font></b><br/><br/>'
     '<font size="8.5" color="#4a5568">'
     'Email: <a href="mailto:kinetibebyared@gmail.com" color="#b8860b">kinetibebyared@gmail.com</a> &nbsp;|&nbsp; Location: Addis Ababa, Ethiopia<br/>'
-    'LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-3b788b350" color="#b8860b">linkedin.com/in/yared-kinetibeb-3b788b350</a> &nbsp;|&nbsp; GitHub: <a href="https://github.com/yaya2127" color="#b8860b">github.com/yaya2127</a><br/>'
+    'LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-704077301/" color="#b8860b">linkedin.com/in/yared-kinetibeb-704077301</a> &nbsp;|&nbsp; GitHub: <a href="https://github.com/yaya2127" color="#b8860b">github.com/yaya2127</a><br/>'
     'University: Addis Ababa Science and Technology University (AASTU)'
     '</font>'
 )

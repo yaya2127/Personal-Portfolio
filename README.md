@@ -32,7 +32,7 @@ Then open `http://localhost:8000` in your browser.
 ## 📬 Contact & Links
 
 - **GitHub**: [@yaya2127](https://github.com/yaya2127)
-- **LinkedIn**: [yared-kinetibeb](https://www.linkedin.com/in/yared-kinetibeb-3b788b350/)
+- **LinkedIn**: [yared-kinetibeb](https://www.linkedin.com/in/yared-kinetibeb-704077301/)
 - **Email**: [kinetibebyared@gmail.com](mailto:kinetibebyared@gmail.com)
 - **Phone**: +251 945 123 586
 - **University**: [AASTU](https://www.aastu.edu.et/)

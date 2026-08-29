@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // 11. Contact / Email
         else if (q.includes('contact') || q.includes('email') || q.includes('linkedin') || q.includes('github') || q.includes('reach') || q.includes('mail')) {
-          botDiv.innerHTML = "📫 Connect with Yared:<br/>• <strong>Email</strong>: <a href='mailto:kinetibebyared@gmail.com' style='color:#dfa951;'>kinetibebyared@gmail.com</a><br/>• <strong>LinkedIn</strong>: <a href='https://www.linkedin.com/in/yared-kinetibeb-3b788b350/' target='_blank' style='color:#60a5fa;'>linkedin.com/in/yared-kinetibeb-3b788b350</a><br/>• <strong>GitHub</strong>: <a href='https://github.com/yaya2127' target='_blank' style='color:#60a5fa;'>github.com/yaya2127</a>";
+          botDiv.innerHTML = "📫 Connect with Yared:<br/>• <strong>Email</strong>: <a href='mailto:kinetibebyared@gmail.com' style='color:#dfa951;'>kinetibebyared@gmail.com</a><br/>• <strong>LinkedIn</strong>: <a href='https://www.linkedin.com/in/yared-kinetibeb-704077301/' target='_blank' style='color:#60a5fa;'>linkedin.com/in/yared-kinetibeb-704077301</a><br/>• <strong>GitHub</strong>: <a href='https://github.com/yaya2127' target='_blank' style='color:#60a5fa;'>github.com/yaya2127</a>";
         }
         // 12. Hiring / Jobs / Roles
         else if (q.includes('hire') || q.includes('job') || q.includes('role') || q.includes('available') || q.includes('intern')) {
@@ -658,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.click();
           } else if (cmd === 'contact') {
             printLine("Email   : <a href='mailto:kinetibebyared@gmail.com' style='color:#dfa951;'>kinetibebyared@gmail.com</a>");
-            printLine("LinkedIn: <a href='https://www.linkedin.com/in/yared-kinetibeb-3b788b350/' target='_blank' style='color:#60a5fa;'>linkedin.com/in/yared-kinetibeb-3b788b350</a>");
+            printLine("LinkedIn: <a href='https://www.linkedin.com/in/yared-kinetibeb-704077301/' target='_blank' style='color:#60a5fa;'>linkedin.com/in/yared-kinetibeb-704077301</a>");
             printLine("GitHub  : <a href='https://github.com/yaya2127' target='_blank' style='color:#60a5fa;'>github.com/yaya2127</a>");
           } else if (cmd === 'clear') {
             termOutput.innerHTML = '';
