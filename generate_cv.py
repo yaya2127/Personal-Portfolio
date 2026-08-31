@@ -25,30 +25,30 @@ DARK_TEXT = colors.HexColor('#1a202c')
 section_heading = ParagraphStyle(
     'SectionHeading',
     fontName='Helvetica-Bold',
-    fontSize=11,
-    leading=14,
+    fontSize=10.5,
+    leading=13,
     textColor=GOLD,
-    spaceBefore=8,
+    spaceBefore=7,
     spaceAfter=3
 )
 
 body_dark_style = ParagraphStyle(
     'BodyDarkStyle',
     fontName='Helvetica',
-    fontSize=8.5,
-    leading=12,
+    fontSize=8,
+    leading=11,
     textColor=DARK_TEXT
 )
 
-# Header Table with Image & Info
 img_flowable = Image(img_path, width=70, height=88) if os.path.exists(img_path) else Paragraph('<b>YK</b>', section_heading)
 
 info_text = (
-    '<b><font size="16" color="#b8860b">Yared Kinetibeb Tesfaye</font></b><br/>'
-    '<b><font size="9.5" color="#1a202c">5th-Year Computer Engineering Senior | Full-Stack, HFT & Embedded Systems Architect</font></b><br/><br/>'
-    '<font size="8.5" color="#4a5568">'
+    '<b><font size="15" color="#b8860b">Yared Kinetibeb Tesfaye</font></b><br/>'
+    '<b><font size="9" color="#1a202c">5th-Year Computer Engineering Senior | Full-Stack Software Engineer & AI Systems Developer</font></b><br/><br/>'
+    '<font size="8" color="#4a5568">'
     'Email: <a href="mailto:kinetibebyared@gmail.com" color="#b8860b">kinetibebyared@gmail.com</a> &nbsp;|&nbsp; Location: Addis Ababa, Ethiopia<br/>'
-    'LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-704077301/" color="#b8860b">linkedin.com/in/yared-kinetibeb-704077301</a> &nbsp;|&nbsp; GitHub: <a href="https://github.com/yaya2127" color="#b8860b">github.com/yaya2127</a><br/>'
+    'GitHub: <a href="https://github.com/yaya2127" color="#b8860b">github.com/yaya2127</a> &nbsp;|&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-704077301/" color="#b8860b">linkedin.com/in/yared-kinetibeb-704077301</a><br/>'
+    'X (Twitter): <a href="https://x.com/Yared_kin212" color="#b8860b">x.com/Yared_kin212</a> &nbsp;|&nbsp; Instagram: <a href="https://www.instagram.com/yared_kinetibeb" color="#b8860b">instagram.com/yared_kinetibeb</a><br/>'
     'University: Addis Ababa Science and Technology University (AASTU)'
     '</font>'
 )
@@ -60,71 +60,105 @@ header_table.setStyle(TableStyle([
 ]))
 
 story.append(header_table)
-story.append(Spacer(1, 6))
-story.append(HRFlowable(width="100%", thickness=1, color=GOLD, spaceAfter=8))
+story.append(Spacer(1, 4))
+story.append(HRFlowable(width="100%", thickness=1, color=GOLD, spaceAfter=6))
 
 # Profile Summary
 story.append(Paragraph('EXECUTIVE SUMMARY', section_heading))
 summary_p = Paragraph(
-    'Highly accomplished 5th-Year Computer Engineering Senior student at Addis Ababa Science and Technology University (AASTU) '
-    'specializing in high-frequency algorithmic trading systems, distributed Go microservices, AST code security auditors, and bare-metal IoT firmware. '
-    'Proven track record of architecting sub-microsecond trading engines, 3D WebGL Digital Twins, and OWASP security scanners.',
+    'Highly passionate 5th-Year Computer Engineering Senior student at Addis Ababa Science and Technology University (AASTU) '
+    'specializing in Full-Stack Software Engineering, Cloud-Native Systems, AI Code Security & AST Parsers, and High-Performance Applications. '
+    'Proven track record of architecting cloud-native Kubernetes chaos resilience meshes, agentic AI security auditors, real-time medical oscilloscopes, '
+    'and lock-free high-frequency trading queues. Seeking an engineering internship opportunity to contribute hands-on expertise in '
+    'Advanced Computer Science, Artificial Intelligence, and Full-Stack Systems Development.',
     body_dark_style
 )
 story.append(summary_p)
-story.append(Spacer(1, 6))
+story.append(Spacer(1, 4))
+
+# Technical Stack & Domain Proficiency
+story.append(Paragraph('TECHNICAL SKILLS & DOMAIN PROFICIENCY', section_heading))
+skills_data = [
+    [
+        Paragraph('<b>Languages & Core</b>', body_dark_style),
+        Paragraph('Go (Golang 1.22), Python 3.11, C/C++, TypeScript, JavaScript (ES6+), Dart, Embedded C, SQL', body_dark_style)
+    ],
+    [
+        Paragraph('<b>Web & Frameworks</b>', body_dark_style),
+        Paragraph('React 18, Next.js, Three.js 3D WebGL, Flutter, HTML5 Canvas 60FPS, Web Audio API, Tailwind CSS, Node.js, Express', body_dark_style)
+    ],
+    [
+        Paragraph('<b>Cloud & Databases</b>', body_dark_style),
+        Paragraph('Kubernetes v1.30, Docker, eBPF Telemetry, Istio Service Mesh, Linux/Bash, Redis Pub/Sub, PostgreSQL 15, MongoDB, Git', body_dark_style)
+    ],
+    [
+        Paragraph('<b>AI & Hardware</b>', body_dark_style),
+        Paragraph('Python AST Compiler Parsers, SentinelAI Code Auditor, OWASP Security Rules, ATmega328P Bare-Metal, FreeRTOS, Proteus VSM', body_dark_style)
+    ]
+]
+skills_table = Table(skills_data, colWidths=[130, 410])
+skills_table.setStyle(TableStyle([
+    ('VALIGN', (0,0), (-1,-1), 'TOP'),
+    ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+    ('TOPPADDING', (0,0), (-1,-1), 2),
+]))
+story.append(skills_table)
+story.append(Spacer(1, 4))
 
 # Featured Enterprise Engineering Projects
-story.append(Paragraph('FEATURED ENTERPRISE ENGINEERING PROJECTS', section_heading))
+story.append(Paragraph('FEATURED ENGINEERING PROJECTS', section_heading))
 
 projects_data = [
     [
-        Paragraph('<b>FinPulse Engine — High-Frequency Algorithmic Trading & Risk Engine</b><br/><i>Go 1.22 | Python 3.11 | Black-Scholes Options | Monte Carlo VaR | TradingView WebGL UI</i>', body_dark_style),
-        Paragraph('Architected sub-microsecond atomic lock-free ring buffer order queue and price-time priority L2 order book. Developed VWAP/TWAP institutional order slicer, Black-Scholes Options Greeks (Delta, Gamma, Vega, Theta), and 95% Monte Carlo VaR simulation engine.', body_dark_style)
+        Paragraph('<b>KUBE-Sentinel — Autonomous Kubernetes Mesh & Chaos Resilience Engine</b><br/><i>Go 1.22 | Kubernetes | eBPF | Istio | Docker</i>', body_dark_style),
+        Paragraph('Engineered an autonomous cloud-native K8s resilience platform featuring 60 FPS HTML5 Canvas DAG topology visualizer, eBPF sub-millisecond network span tracing, automated Chaos Monkey fault injection (pod kill, latency spikes, packet loss), and self-healing watchdog.', body_dark_style)
     ],
     [
-        Paragraph('<b>NexusIoT Edge — Distributed Industrial IoT Telemetry Platform</b><br/><i>Go 1.22 | WebSockets | Redis Pub/Sub | Three.js 3D WebGL | PostGIS | Docker</i>', body_dark_style),
-        Paragraph('Engineered high-throughput telemetry ingestion microservice handling 100,000+ metric msgs/sec. Built 3D WebGL Three.js industrial turbine Digital Twin, multi-node comparative oscilloscope, and Web Audio siren warning annunciator.', body_dark_style)
+        Paragraph('<b>SentinelAI — Agentic AI Code Security & AST Vulnerability Auditor</b><br/><i>Python 3.11 | AST Compiler | OWASP Top 10 | DevSecOps</i>', body_dark_style),
+        Paragraph('Built an autonomous static vulnerability parser analyzing code ASTs to detect SQL Injections, API secret leaks, buffer overflows, and panic loops. Integrated 6-axis OWASP risk radar chart and 1-click unified Git Diff auto-remediation patch synthesizer.', body_dark_style)
     ],
     [
-        Paragraph('<b>SentinelAI — Autonomous Agentic AI Code Security & AST Auditor</b><br/><i>Python 3.11 | AST Compiler | OWASP Top 10 | ISO 27001 | DevSecOps CI/CD</i>', body_dark_style),
-        Paragraph('Built multi-language AST parser detecting SQL Injection, API secrets, C++ buffer overflows, and Go panics. Integrated 6-axis security radar chart, live sandbox presets, and 1-click printable PDF ISO 27001 security certificate generator.', body_dark_style)
+        Paragraph('<b>SYNAPSE-Med — Emergency ICU Vital Telemetry & NEWS2 Evaluator</b><br/><i>Go 1.22 | Python | Web Audio API | HTML5 Canvas</i>', body_dark_style),
+        Paragraph('Architected an ICU patient telemetry console with 60 FPS 12-lead ECG and SpO2 waveform oscilloscope, automated NEWS2 clinical sepsis warning evaluator, 8-bed ICU ward matrix, QRS sound synthesizer, and thermal ECG rhythm strip PDF exporter.', body_dark_style)
     ],
     [
-        Paragraph('<b>AASTU Academic Portal — University Management System</b><br/><i>Go 1.22 | RESTful API | JWT Auth Middleware | Weighted GPA Engine | PostgreSQL</i>', body_dark_style),
-        Paragraph('Developed student profile API microservices featuring ECTS weighted cumulative GPA calculation algorithms, JWT auth middleware, and automated transcript PDF generation.', body_dark_style)
+        Paragraph('<b>FinPulse Engine — Sub-Microsecond High-Frequency Trading Platform</b><br/><i>Go 1.22 | Lock-Free Ring Buffer | Black-Scholes | VaR</i>', body_dark_style),
+        Paragraph('Developed a sub-microsecond atomic lock-free SPSC ring buffer order queue, L2 price-time priority matching engine, VWAP/TWAP order slicer, Black-Scholes options Greeks calculator, and 95% Monte Carlo Value-at-Risk simulator.', body_dark_style)
+    ],
+    [
+        Paragraph('<b>NexusIoT Edge — Industrial SCADA & 3D WebGL Digital Twin</b><br/><i>Go | Redis Pub/Sub | Three.js WebGL | PostgreSQL</i>', body_dark_style),
+        Paragraph('Engineered high-throughput telemetry ingestion microservices handling 100,000+ msgs/sec with Three.js 3D WebGL wind turbine Digital Twin, fault injection SCADA controls, and real-time sensor anomaly warning alerts.', body_dark_style)
     ]
 ]
 
-proj_table = Table(projects_data, colWidths=[200, 340])
+proj_table = Table(projects_data, colWidths=[190, 350])
 proj_table.setStyle(TableStyle([
     ('VALIGN', (0,0), (-1,-1), 'TOP'),
-    ('BOTTOMPADDING', (0,0), (-1,-1), 4),
-    ('TOPPADDING', (0,0), (-1,-1), 4),
-    ('LINEBELOW', (0,0), (-1,-2), 0.5, colors.HexColor('#e2e8f0')),
+    ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+    ('TOPPADDING', (0,0), (-1,-1), 2),
 ]))
 story.append(proj_table)
-story.append(Spacer(1, 6))
+story.append(Spacer(1, 4))
 
-# Technical Skills
-story.append(Paragraph('TECHNICAL SKILLS & COMPETENCIES', section_heading))
-skills_data = [
-    [Paragraph('<b>Languages & Core:</b>', body_dark_style), Paragraph('Go (Golang), Python 3.11, C / C++, TypeScript, JavaScript (ES6+), SQL, Embedded C, Dart', body_dark_style)],
-    [Paragraph('<b>Backend & Cloud:</b>', body_dark_style), Paragraph('REST APIs, WebSockets, Redis Pub/Sub, Docker, PostgreSQL, Microservices, PlatformIO, FreeRTOS', body_dark_style)],
-    [Paragraph('<b>Frontend & UI:</b>', body_dark_style), Paragraph('React 18, Three.js 3D WebGL, HTML5 Canvas API, TradingView Terminal Styling, Tailwind CSS', body_dark_style)]
+# Education & Certifications
+story.append(Paragraph('EDUCATION & VERIFIED CERTIFICATIONS', section_heading))
+edu_data = [
+    [
+        Paragraph('<b>B.Sc. in Computer Engineering (5th-Year Senior)</b><br/>Addis Ababa Science and Technology University (AASTU)', body_dark_style),
+        Paragraph('<b>Key Coursework:</b> Operating Systems, Distributed Systems, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering, Database Systems.', body_dark_style)
+    ],
+    [
+        Paragraph('<b>Verified Professional Certifications</b>', body_dark_style),
+        Paragraph('• Simplilearn Generative AI Literacy (LLMs & Prompt Engineering)<br/>• Udacity Full-Stack Web Developer Nanodegree (Cloud APIs & PostgreSQL)<br/>• FreeCodeCamp Responsive Web Design Certification', body_dark_style)
+    ]
 ]
-skills_table = Table(skills_data, colWidths=[120, 420])
-skills_table.setStyle(TableStyle([('VALIGN', (0,0), (-1,-1), 'TOP'), ('BOTTOMPADDING', (0,0), (-1,-1), 2)]))
-story.append(skills_table)
-story.append(Spacer(1, 6))
-
-# Education
-story.append(Paragraph('EDUCATION & CERTIFICATIONS', section_heading))
-edu_text = (
-    '<b>B.Sc. in Computer Engineering (5th-Year Senior)</b> &nbsp;|&nbsp; <b>AASTU</b> (Cumulative GPA: 3.78/4.00)<br/>'
-    '<b>Certifications:</b> Simplilearn Generative AI Literacy &nbsp;•&nbsp; Udacity Full-Stack Web Developer &nbsp;•&nbsp; FreeCodeCamp Responsive Web Design'
-)
-story.append(Paragraph(edu_text, body_dark_style))
+edu_table = Table(edu_data, colWidths=[200, 340])
+edu_table.setStyle(TableStyle([
+    ('VALIGN', (0,0), (-1,-1), 'TOP'),
+    ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+    ('TOPPADDING', (0,0), (-1,-1), 2),
+]))
+story.append(edu_table)
 
 doc.build(story)
-print(f'Successfully rebuilt PDF CV at {pdf_path}!')
+print(f"Successfully regenerated PDF CV at: {pdf_path}")
