@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="bg-iot" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180b2b"/>
+      <stop offset="100%" stop-color="#2e1065"/>
+    </linearGradient>
+    <linearGradient id="accent-iot" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" rx="16" fill="url(#bg-iot)" stroke="#4c1d95" stroke-width="2"/>
+  
+  <!-- Header Bar -->
+  <rect x="24" y="24" width="752" height="48" rx="8" fill="#2e1065" stroke="#5b21b6"/>
+  <text x="48" y="53" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#a78bfa">INDUSTRIAL SCADA DASHBOARD // 3D TURBINE DIGITAL TWIN</text>
+  <rect x="580" y="36" width="176" height="24" rx="12" fill="#4c1d95"/>
+  <text x="595" y="52" font-family="sans-serif" font-size="11" font-weight="700" fill="#ddd6fe">INGEST: 100K MSG/S</text>
+
+  <!-- 3D Turbine Visual -->
+  <rect x="24" y="90" width="360" height="210" rx="10" fill="#180b2b" stroke="#5b21b6"/>
+  <circle cx="200" cy="180" r="40" fill="none" stroke="#a78bfa" stroke-width="3"/>
+  <line x1="200" y1="180" x2="200" y2="100" stroke="#7c3aed" stroke-width="4"/>
+  <line x1="200" y1="180" x2="130" y2="220" stroke="#7c3aed" stroke-width="4"/>
+  <line x1="200" y1="180" x2="270" y2="220" stroke="#7c3aed" stroke-width="4"/>
+  <line x1="200" y1="180" x2="200" y2="280" stroke="#4c1d95" stroke-width="6"/>
+  <text x="40" y="280" font-family="sans-serif" font-size="12" font-weight="700" fill="#a78bfa">Three.js WebGL 3D Rotor</text>
+
+  <!-- Sensor Readouts -->
+  <rect x="400" y="90" width="376" height="210" rx="10" fill="#180b2b" stroke="#5b21b6"/>
+  <text x="420" y="125" font-family="sans-serif" font-size="13" font-weight="700" fill="#ddd6fe">Edge Telemetry Channels</text>
+  <rect x="420" y="145" width="336" height="40" rx="6" fill="#2e1065"/>
+  <text x="435" y="170" font-family="sans-serif" font-size="12" fill="#c4b5fd">Bearing Temperature: 42.5°C (NORMAL)</text>
+
+  <rect x="420" y="195" width="336" height="40" rx="6" fill="#2e1065"/>
+  <text x="435" y="220" font-family="sans-serif" font-size="12" fill="#c4b5fd">Rotor Velocity: 1,450 RPM | Vibration: Low</text>
+
+  <!-- Footer Banner -->
+  <rect x="24" y="324" width="752" height="52" rx="8" fill="#2e1065" stroke="#5b21b6"/>
+  <text x="44" y="355" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#ffffff">NEXUS-IOT EDGE</text>
+  <text x="210" y="354" font-family="Inter, sans-serif" font-size="12" fill="#ddd6fe">Distributed Industrial IoT Edge, WebGL 3D Twin & SCADA Telemetry</text>
+  <rect x="635" y="336" width="125" height="28" rx="6" fill="url(#accent-iot)"/>
+  <text x="648" y="354" font-family="sans-serif" font-size="11" font-weight="800" fill="#180b2b">GO + THREE.JS</text>
+</svg>
