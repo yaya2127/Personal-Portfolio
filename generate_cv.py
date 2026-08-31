@@ -44,7 +44,7 @@ img_flowable = Image(img_path, width=70, height=88) if os.path.exists(img_path) 
 
 info_text = (
     '<b><font size="15" color="#b8860b">Yared Kinetibeb Tesfaye</font></b><br/>'
-    '<b><font size="9" color="#1a202c">5th-Year Computer Engineering Senior | Full-Stack Software Engineer & AI Systems Developer</font></b><br/><br/>'
+    '<b><font size="9" color="#1a202c">Full-Stack & Backend AI Engineer | Python, Go, Node.js, PostgreSQL | Agentic Workflows & Cloud Systems | CE @ AASTU</font></b><br/><br/>'
     '<font size="8" color="#4a5568">'
     'Email: <a href="mailto:kinetibebyared@gmail.com" color="#b8860b">kinetibebyared@gmail.com</a> &nbsp;|&nbsp; Location: Addis Ababa, Ethiopia<br/>'
     'GitHub: <a href="https://github.com/yaya2127" color="#b8860b">github.com/yaya2127</a> &nbsp;|&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-704077301/" color="#b8860b">linkedin.com/in/yared-kinetibeb-704077301</a><br/>'
