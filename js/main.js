@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     pnexus: {
       title: "NexusIoT — Distributed Industrial IoT Edge & Telemetry Platform",
-      category: "Enterprise Distributed Systems / Cloud-IoT & Edge",
+      category: "Enterprise Software Engineering / Cloud-IoT & Edge",
       desc: "An enterprise-grade, distributed Industrial IoT telemetry & edge monitoring platform. Built for high-frequency time-series metric ingestion, real-time anomaly detection, WebSocket live streaming, and interactive 2D/3D hardware Digital Twin visualization.",
       features: [
         "Go 1.22 high-throughput telemetry ingestion microservice & gRPC pipeline",
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'HFT & Derivatives (92%)',
       'Embedded C/FreeRTOS (90%)',
       '3D WebGL / React (95%)',
-      'Distributed Systems (96%)'
+      'Software Engineering (96%)'
     ];
     const values = [0.96, 0.94, 0.92, 0.90, 0.95, 0.96]; // Scale 0-1
     const centerX = 210, centerY = 160, radius = 105;
@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // 8. Education / AASTU / GPA
         else if (q.includes('education') || q.includes('aastu') || q.includes('degree') || q.includes('gpa') || q.includes('university') || q.includes('study') || q.includes('school')) {
-          botDiv.innerHTML = "🎓 Yared is a <strong>5th-Year Computer Engineering Senior</strong> at <strong>Addis Ababa Science and Technology University (AASTU)</strong> in Addis Ababa, Ethiopia, with an outstanding Cumulative GPA of <strong>3.78 / 4.00</strong>.<br/><br/>Core Coursework: Operating Systems, Distributed Systems, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering.";
+          botDiv.innerHTML = "🎓 Yared is a <strong>5th-Year Computer Engineering Senior</strong> at <strong>Addis Ababa Science and Technology University (AASTU)</strong> in Addis Ababa, Ethiopia, with an outstanding Cumulative GPA of <strong>3.78 / 4.00</strong>.<br/><br/>Core Coursework: Operating Systems, Software Engineering, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering.";
         }
         // 9. Certifications
         else if (q.includes('cert') || q.includes('simplilearn') || q.includes('udacity') || q.includes('freecodecamp')) {
@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
             printLine("🎓 <strong>B.Sc. in Computer Engineering (5th-Year Senior)</strong>");
             printLine("Institution : Addis Ababa Science and Technology University (AASTU)");
             printLine("Cumulative Degree: B.Sc. Computer Engineering Senior");
-            printLine("Key Coursework: Operating Systems, Distributed Systems, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering.");
+            printLine("Key Coursework: Operating Systems, Software Engineering, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering.");
           } else if (cmd === 'certs') {
             printLine("🏆 VERIFIED PROFESSIONAL CERTIFICATIONS:");
             printLine("1. Simplilearn Generative AI Literacy (LLMs & Prompt Engineering)");
