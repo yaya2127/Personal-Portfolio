@@ -2,206 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curriculum Vitae - Yared Kinetibeb Tesfaye</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>Yared Kinetibeb Tesfaye — Curriculum Vitae</title>
   <style>
-    :root {
-      --bg: #09090b;
-      --card-bg: #121216;
-      --gold: #dfa951;
-      --gold-dark: #b8860b;
-      --text: #f4f4f7;
-      --text-muted: #9e9ea8;
-      --border: #26231d;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.5;
-      padding: 40px 20px;
-    }
-    .cv-container {
-      max-width: 850px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(223,169,81,0.1);
-    }
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      padding-bottom: 24px;
-      border-bottom: 2px solid var(--gold);
-      margin-bottom: 28px;
-    }
-    .portrait {
-      width: 100px;
-      height: 120px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 2px solid var(--gold);
-    }
-    .header-info h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2.2rem;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-    .header-info h2 {
-      font-size: 1.05rem;
-      color: #e2e8f0;
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-    .contact-line {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .contact-line a { color: var(--gold); text-decoration: none; }
-    .section-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 24px 0 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-title::after {
-      content: '';
-      flex-grow: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    p, li { font-size: 0.92rem; color: #d1d5db; line-height: 1.6; }
-    ul { list-style: none; }
-    ul li { position: relative; padding-left: 18px; margin-bottom: 6px; }
-    ul li::before {
-      content: '•';
-      color: var(--gold);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-    }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .skill-box {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px;
-    }
-    .skill-box h4 { font-size: 0.85rem; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; }
-    .print-btn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--gold);
-      color: #000;
-      font-weight: 700;
-      padding: 12px 24px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 5px 20px rgba(223,169,81,0.4);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    @media print {
-      body { background: #fff; color: #000; padding: 0; }
-      .cv-container { border: none; box-shadow: none; padding: 0; max-width: 100%; background: #fff; }
-      .header-info h1, .section-title, .contact-line a, .skill-box h4 { color: #b8860b !important; }
-      p, li { color: #1a202c !important; }
-      .print-btn { display: none; }
-      .skill-box { border-color: #ddd; background: #f9f9f9; }
-    }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 40px; color: #1a202c; line-height: 1.5; background: #f8fafc; }
+    .cv-container { max-width: 800px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+    h1 { color: #b8860b; margin-bottom: 4px; font-size: 26px; }
+    .subtitle { font-size: 14px; font-weight: bold; color: #2d3748; margin-bottom: 12px; }
+    .contact-info { font-size: 13px; color: #4a5568; margin-bottom: 20px; }
+    .contact-info a { color: #b8860b; text-decoration: none; font-weight: bold; }
+    hr { border: none; height: 2px; background: #b8860b; margin: 20px 0; }
+    h2 { color: #b8860b; font-size: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; margin-top: 24px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    p { font-size: 13.5px; margin-bottom: 10px; }
+    ul { margin: 6px 0 12px 20px; padding: 0; font-size: 13.5px; }
+    li { margin-bottom: 4px; }
+    .project-item { margin-bottom: 16px; }
+    .project-title { font-weight: bold; font-size: 14.5px; color: #0f172a; }
+    .project-tech { font-style: italic; color: #64748b; font-size: 12.5px; }
   </style>
 </head>
 <body>
-
-  <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
-
   <div class="cv-container">
-    <div class="header">
-      <img src="../images/profile.png" alt="Yared Kinetibeb" class="portrait">
-      <div class="header-info">
-        <h1>Yared Kinetibeb Tesfaye</h1>
-        <h2>5th-Year Computer Engineering Senior | Full-Stack & Embedded Developer</h2>
-        <div class="contact-line">
-          <span><i class="fas fa-envelope"></i> kinetibebyared@gmail.com</span>
-          <span><i class="fas fa-phone"></i> 0945123586</span>
-          <span><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</span>
-          <span><i class="fab fa-github"></i> <a href="https://github.com/yaya2127" target="_blank">github.com/yaya2127</a></span>
-          <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/yared-kinetibeb-704077301/" target="_blank">LinkedIn</a></span>
-        </div>
-      </div>
+    <h1>Yared Kinetibeb Tesfaye</h1>
+    <div class="subtitle">5th-Year Computer Engineering Senior | Distributed Systems, AI Security & Cloud-Native Architect</div>
+    <div class="contact-info">
+      Email: <a href="mailto:kinetibebyared@gmail.com">kinetibebyared@gmail.com</a> | Location: Addis Ababa, Ethiopia<br>
+      GitHub: <a href="https://github.com/yaya2127" target="_blank">github.com/yaya2127</a> | LinkedIn: <a href="https://www.linkedin.com/in/yared-kinetibeb-704077301/" target="_blank">linkedin.com/in/yared-kinetibeb-704077301</a><br>
+      University: Addis Ababa Science and Technology University (AASTU)
     </div>
-
-    <div class="section-title"><i class="fas fa-user-circle"></i> Profile Summary</div>
-    <p>
-      Dedicated 5th-year Computer Engineering senior student at Addis Ababa Science and Technology University (AASTU) with a strong foundation in software engineering, full-stack web development, and Arduino embedded hardware systems. Experienced in building practical web applications and microcontroller hardware-software solutions. Committed to continuous learning, multidisciplinary teamwork, and delivering reliable technical solutions.
-    </p>
-
-    <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
-    <p><strong>Bachelor of Science in Computer Engineering (5th Year Senior)</strong> | 09/2022 — 07/2027</p>
-    <p><a href="https://www.aastu.edu.et/" target="_blank" style="color:var(--gold);">Addis Ababa Science and Technology University (AASTU)</a> — Addis Ababa, Ethiopia</p>
-    <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">
-      <em>Focus Areas:</em> Software Engineering, Web Technologies (HTML5, CSS3, JS), Arduino Programming, Microcontrollers (AVR/PIC), Embedded C/C++, Database Systems, Data Structures & Algorithms.
-    </p>
-
-    <div class="section-title"><i class="fas fa-laptop-code"></i> Technical Skills</div>
-    <div class="skills-grid">
-      <div class="skill-box">
-        <h4>Frontend Web</h4>
-        <p>HTML5, CSS3, JavaScript (ES6+), Responsive Web Design, Flexbox / Grid</p>
-      </div>
-      <div class="skill-box">
-        <h4>Backend & Languages</h4>
-        <p>Python, C / C++, Node.js, RESTful APIs, PostgreSQL</p>
-      </div>
-      <div class="skill-box">
-        <h4>Arduino & Hardware</h4>
-        <p>Arduino Programming, Microcontrollers (AVR/PIC), Circuit Design, Proteus Simulation, IoT Sensors</p>
-      </div>
-      <div class="skill-box">
-        <h4>Tools & Competencies</h4>
-        <p>Git, GitHub, VS Code, Linux Environment, Problem Solving, English Fluency</p>
-      </div>
-    </div>
-
-    <div class="section-title"><i class="fas fa-award"></i> Verified Certifications</div>
+    
+    <hr>
+    
+    <h2>Executive Summary</h2>
+    <p>Highly passionate 5th-Year Computer Engineering Senior student at Addis Ababa Science and Technology University (AASTU) specializing in Distributed Microservices, Cloud-Native Systems, AI Code Security & AST Parsers, and High-Performance Software Engineering. Proven track record of architecting cloud-native Kubernetes chaos resilience meshes, agentic AI security auditors, real-time medical oscilloscopes, and lock-free high-frequency trading queues. Seeking an engineering internship at iCog Labs Software Consultancy to contribute hands-on expertise in Advanced Computer Science, Artificial Intelligence, and Cloud/DevOps Engineering.</p>
+    
+    <h2>Technical Skills & Domain Proficiency</h2>
     <ul>
-      <li><strong>Engineering Agentic Artificial Intelligence Solutions</strong> — The Udara Project & NSK AI (Issued July 13, 2026 | ID: cmriv64ws08331417au085co0 | Verified by Ifeanyi Okala)</li>
-      <li><strong>M-Academy Training: Gig-101, Business, Legal and Finance</strong> — Mesirat Program & Mastercard Foundation (Issued March 23, 2025 | Verified by Menna Tafesse)</li>
-      <li><strong>English Professional Language Certification</strong> — Sest American English Academy</li>
+      <li><strong>Artificial Intelligence & Security:</strong> Python AST Compiler Parsers, SentinelAI Code Security Auditor, OWASP Top 10 Security Rules, AI Agent Workflows, Static Code Analysis</li>
+      <li><strong>Systems & Cloud Engineering:</strong> Go (Golang 1.22), Kubernetes v1.30, eBPF Telemetry, Docker, Istio Service Mesh, Linux/Bash, Redis Pub/Sub, PostgreSQL 15, gRPC</li>
+      <li><strong>Languages & Web Technologies:</strong> Python 3.11, C/C++, TypeScript, JavaScript (ES6+), React 18, Next.js, HTML5 Canvas 60FPS, Web Audio API, Tailwind CSS, Flutter/Dart</li>
+      <li><strong>Embedded & SCADA Systems:</strong> Three.js 3D WebGL Digital Twins, Bare-Metal ATmega328P AVR Microcontrollers, Embedded C, FreeRTOS, Proteus VSM Circuit Simulation</li>
     </ul>
 
-    <div class="section-title"><i class="fas fa-code-branch"></i> Selected Engineering Projects</div>
+    <h2>Featured Engineering Projects</h2>
+    <div class="project-item">
+      <div class="project-title">1. KUBE-Sentinel — Autonomous Kubernetes Mesh & Chaos Resilience Engine</div>
+      <div class="project-tech">Go 1.22 | Kubernetes v1.30 | eBPF Span Tracing | Istio Mesh | Docker</div>
+      <p>Engineered an autonomous cloud-native K8s resilience platform featuring 60 FPS HTML5 Canvas DAG topology visualizer, eBPF sub-millisecond network span tracing, automated Chaos Monkey fault injection (pod kill, latency spikes, packet loss), and self-healing watchdog.</p>
+    </div>
+
+    <div class="project-item">
+      <div class="project-title">2. SentinelAI — Agentic AI Code Security & AST Vulnerability Auditor</div>
+      <div class="project-tech">Python 3.11 | AST Compiler Parser | OWASP Top 10 | DevSecOps CI/CD</div>
+      <p>Built an autonomous static vulnerability parser analyzing code ASTs to detect SQL Injections, API secret leaks, buffer overflows, and panic loops. Integrated 6-axis OWASP risk radar chart and 1-click unified Git Diff auto-remediation patch synthesizer.</p>
+    </div>
+
+    <div class="project-item">
+      <div class="project-title">3. SYNAPSE-Med — Emergency ICU Vital Telemetry & NEWS2 Evaluator</div>
+      <div class="project-tech">Go 1.22 | Python | Web Audio API | HTML5 Canvas 60FPS</div>
+      <p>Architected an ICU patient telemetry console with 60 FPS 12-lead ECG and SpO2 waveform oscilloscope, automated NEWS2 clinical sepsis warning evaluator, 8-bed ICU ward matrix, QRS sound synthesizer, and thermal ECG rhythm strip PDF exporter.</p>
+    </div>
+
+    <div class="project-item">
+      <div class="project-title">4. FinPulse Engine — Sub-Microsecond High-Frequency Trading Platform</div>
+      <div class="project-tech">Go 1.22 | Atomic Lock-Free SPSC Ring Buffer | Black-Scholes Options | Monte Carlo VaR</div>
+      <p>Developed a sub-microsecond atomic lock-free SPSC ring buffer order queue, L2 price-time priority matching engine, VWAP/TWAP order slicer, Black-Scholes options Greeks calculator, and 95% Monte Carlo Value-at-Risk simulator.</p>
+    </div>
+
+    <div class="project-item">
+      <div class="project-title">5. NexusIoT Edge — Industrial SCADA & 3D WebGL Digital Twin</div>
+      <div class="project-tech">Go | WebSockets | Redis Pub/Sub | Three.js 3D WebGL | PostgreSQL 15</div>
+      <p>Engineered high-throughput telemetry ingestion microservices handling 100,000+ msgs/sec with Three.js 3D WebGL wind turbine Digital Twin, fault injection SCADA controls, and real-time sensor anomaly warning alerts.</p>
+    </div>
+
+    <h2>Education & Certifications</h2>
+    <p><strong>B.Sc. in Computer Engineering (5th-Year Senior)</strong> — Addis Ababa Science and Technology University (AASTU)</p>
+    <p><em>Relevant Coursework:</em> Operating Systems, Distributed Systems, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering, Database Systems.</p>
+    <p><strong>Verified Certifications:</strong></p>
     <ul>
-      <li><strong>AASTU Academic Management Portal:</strong> Centralized web system for student course registration and grade tracking built with JavaScript, Python, and PostgreSQL.</li>
-      <li><strong>Arduino Smart Environmental Monitor:</strong> Microcontroller-based IoT system using Arduino UNO, C++, gas/temperature sensors, and Proteus simulation.</li>
-      <li><strong>Arduino Home Automation System:</strong> Hardware relay control system engineered with embedded C firmware, optocouplers, and circuit design.</li>
-      <li><strong>Modern E-Commerce Application:</strong> Scalable web platform featuring product search, shopping cart management, and user authentication.</li>
+      <li>Simplilearn Generative AI Literacy (LLMs & Prompt Engineering)</li>
+      <li>Udacity Full-Stack Web Developer Nanodegree (Cloud APIs & PostgreSQL)</li>
+      <li>FreeCodeCamp Responsive Web Design Certification</li>
     </ul>
   </div>
-
 </body>
 </html>
