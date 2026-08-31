@@ -633,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
             printLine("   💻 GitHub  : <a href='https://github.com/yaya2127/interactive-task-scheduler' target='_blank' style='color:#dfa951; text-decoration:underline;'>github.com/yaya2127/interactive-task-scheduler</a>");
           } else if (cmd === 'whoami') {
             printLine("Yared Kinetibeb Tesfaye — 5th-Year Senior Computer Engineering Student @ AASTU");
-            printLine("GPA: 3.78 / 4.00 | Location: Addis Ababa, Ethiopia");
+            printLine("Degree: B.Sc. Computer Engineering Senior | Location: Addis Ababa, Ethiopia");
             printLine("Architect of FinPulse HFT Engine, NexusIoT Edge Platform, and SentinelAI Auditor.");
           } else if (cmd === 'skills') {
             printLine("Languages : Go (Golang 1.22), Python 3.11, C/C++, TypeScript, JavaScript, SQL, Embedded C, Dart");
@@ -643,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else if (cmd === 'education') {
             printLine("🎓 <strong>B.Sc. in Computer Engineering (5th-Year Senior)</strong>");
             printLine("Institution : Addis Ababa Science and Technology University (AASTU)");
-            printLine("Cumulative GPA: 3.78 / 4.00");
+            printLine("Cumulative Degree: B.Sc. Computer Engineering Senior");
             printLine("Key Coursework: Operating Systems, Distributed Systems, Computer Architecture, Embedded C/FreeRTOS, Data Structures & Algorithms, Software Engineering.");
           } else if (cmd === 'certs') {
             printLine("🏆 VERIFIED PROFESSIONAL CERTIFICATIONS:");
