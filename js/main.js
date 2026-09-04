@@ -70,14 +70,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Project Filter Tabs
+  // 3. Project Filter Tabs & Animated Sliding Indicator Pill
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
+  const tabSlider = document.getElementById('filter-tab-slider');
+
+  function updateTabSlider(activeBtn) {
+    if (!tabSlider || !activeBtn) return;
+    const parentRect = activeBtn.parentElement.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+    const leftOffset = btnRect.left - parentRect.left;
+    tabSlider.style.transform = `translateX(${leftOffset}px)`;
+    tabSlider.style.width = `${btnRect.width}px`;
+  }
+
+  const defaultActiveBtn = document.querySelector('.filter-btn.active');
+  if (defaultActiveBtn) {
+    setTimeout(() => updateTabSlider(defaultActiveBtn), 100);
+  }
+
+  window.addEventListener('resize', () => {
+    const currentActiveBtn = document.querySelector('.filter-btn.active');
+    if (currentActiveBtn) updateTabSlider(currentActiveBtn);
+  });
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      updateTabSlider(btn);
 
       const filter = btn.getAttribute('data-filter');
 
