@@ -324,132 +324,179 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Refined 6-Axis Engineering Skill Radar Chart Canvas Renderer (Animated on Scroll)
-  const radarCanvas = document.getElementById('skill-radar-canvas');
-  if (radarCanvas) {
-    const ctx = radarCanvas.getContext('2d');
-    const labels = [
-      'Go Microservices (96%)',
-      'AST Security/DevSecOps (94%)',
-      'HFT & Derivatives (92%)',
-      'Embedded C/FreeRTOS (90%)',
-      '3D WebGL / React (95%)',
-      'Software Engineering (96%)'
-    ];
-    const targetValues = [0.96, 0.94, 0.92, 0.90, 0.95, 0.96]; // Scale 0-1
-    const centerX = 210, centerY = 160, radius = 105;
-    const sides = labels.length;
-    let animStarted = false;
+  // 5. Interactive Real-Time Systems & Telemetry Console Oscilloscope Canvas Controller
+  const telemetryCanvas = document.getElementById('telemetry-canvas');
+  const telemetryWrapper = document.getElementById('telemetry-canvas-wrapper');
+  const uptimeEl = document.getElementById('telemetry-uptime');
+  const btnCloud = document.getElementById('mode-cloud-btn');
+  const btnEmbedded = document.getElementById('mode-embedded-btn');
+  const chAStatEl = document.getElementById('ch-a-stat');
+  const chBStatEl = document.getElementById('ch-b-stat');
 
-    function renderRadar(progress) {
-      ctx.clearRect(0, 0, radarCanvas.width, radarCanvas.height);
+  if (telemetryCanvas) {
+    const ctx = telemetryCanvas.getContext('2d');
+    let mode = 'cloud'; // 'cloud' | 'embedded'
+    let mouseState = { x: 0.5, y: 0.5, active: false };
+    let isVisible = true;
+    let animFrameId = null;
+    let timeVal = 0;
 
-      // Background web polygons
-      ctx.strokeStyle = 'rgba(212, 175, 55, 0.22)';
+    // Live Uptime Digital Counter
+    const telemetryStartTime = Date.now();
+    setInterval(() => {
+      if (!uptimeEl) return;
+      const elapsedMs = Date.now() - telemetryStartTime;
+      const totalSec = Math.floor(elapsedMs / 1000);
+      const hours = String(Math.floor(totalSec / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
+      const secs = String(totalSec % 60).padStart(2, '0');
+      const ms = String(Math.floor((elapsedMs % 1000) / 100));
+      uptimeEl.textContent = `UPTIME: 99.998% | T+${hours}:${mins}:${secs}.${ms}`;
+    }, 100);
+
+    // Mode Toggle Switch Handlers
+    function updateMode(newMode) {
+      mode = newMode;
+      if (mode === 'cloud') {
+        btnCloud?.classList.add('active');
+        btnEmbedded?.classList.remove('active');
+        if (chAStatEl) chAStatEl.innerHTML = '<i class="fas fa-circle" style="color: #f5b942; font-size: 8px;"></i> CH-A: 142.8 MHz (WebSocket Stream)';
+        if (chBStatEl) chBStatEl.innerHTML = '<i class="fas fa-circle" style="color: #06b6d4; font-size: 8px;"></i> CH-B: 99.99% (gRPC / eBPF Mesh)';
+      } else {
+        btnEmbedded?.classList.add('active');
+        btnCloud?.classList.remove('active');
+        if (chAStatEl) chAStatEl.innerHTML = '<i class="fas fa-circle" style="color: #f5b942; font-size: 8px;"></i> CH-A: 16.0 MHz (ATmega328P Clock)';
+        if (chBStatEl) chBStatEl.innerHTML = '<i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i> CH-B: 4.8 kHz (FreeRTOS PWM / ADC)';
+      }
+    }
+
+    if (btnCloud) btnCloud.addEventListener('click', () => updateMode('cloud'));
+    if (btnEmbedded) btnEmbedded.addEventListener('click', () => updateMode('embedded'));
+
+    // Mouse Proximity / Drag Modulator Handlers
+    if (telemetryWrapper) {
+      telemetryWrapper.addEventListener('mousemove', (e) => {
+        const rect = telemetryWrapper.getBoundingClientRect();
+        mouseState.x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        mouseState.y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+        mouseState.active = true;
+      });
+
+      telemetryWrapper.addEventListener('mouseleave', () => {
+        mouseState = { x: 0.5, y: 0.5, active: false };
+      });
+    }
+
+    // Oscilloscope Render Loop
+    function drawWaveforms() {
+      if (!isVisible) return;
+
+      const width = telemetryCanvas.width;
+      const height = telemetryCanvas.height;
+      ctx.clearRect(0, 0, width, height);
+
+      // Background Grid Lines
+      ctx.strokeStyle = 'rgba(245, 185, 66, 0.08)';
       ctx.lineWidth = 1;
 
-      for (let level = 1; level <= 4; level++) {
-        const r = (radius / 4) * level;
+      for (let x = 0; x < width; x += 40) {
         ctx.beginPath();
-        for (let i = 0; i < sides; i++) {
-          const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
-          const x = centerX + r * Math.cos(angle);
-          const y = centerY + r * Math.sin(angle);
-          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        }
-        ctx.closePath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += 30) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
         ctx.stroke();
       }
 
-      // Axes & Labels
-      ctx.fillStyle = '#cbd5e1';
-      ctx.font = '600 11px "Inter", sans-serif';
-      ctx.textAlign = 'center';
-
-      for (let i = 0; i < sides; i++) {
-        const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
-        const x = centerX + radius * Math.cos(angle);
-        const y = centerY + radius * Math.sin(angle);
-
-        ctx.beginPath();
-        ctx.strokeStyle = 'rgba(212, 175, 55, 0.25)';
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-
-        const labelX = centerX + (radius + 26) * Math.cos(angle);
-        const labelY = centerY + (radius + 20) * Math.sin(angle);
-        ctx.fillText(labels[i], labelX, labelY);
-      }
-
-      // Filled Data Polygon with Gradient & Glow
-      const polyGradient = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
-      polyGradient.addColorStop(0, 'rgba(223, 169, 81, 0.55)');
-      polyGradient.addColorStop(1, 'rgba(223, 169, 81, 0.15)');
-
+      // Center Reference Line
+      ctx.strokeStyle = 'rgba(245, 185, 66, 0.2)';
+      ctx.setLineDash([4, 4]);
       ctx.beginPath();
-      ctx.fillStyle = polyGradient;
-      ctx.strokeStyle = '#dfa951';
-      ctx.lineWidth = 2.8;
+      ctx.moveTo(0, height / 2);
+      ctx.lineTo(width, height / 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
 
-      for (let i = 0; i < sides; i++) {
-        const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
-        const r = radius * targetValues[i] * progress;
-        const x = centerX + r * Math.cos(angle);
-        const y = centerY + r * Math.sin(angle);
-        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      const mouseFreqMod = mouseState.active ? (mouseState.x * 2.5 + 0.5) : 1.0;
+      const noiseAmp = mouseState.active ? (mouseState.y * 12) : 3;
+
+      const speed = mode === 'cloud' ? 0.08 : 0.04;
+      timeVal += speed;
+
+      // Channel A (Amber): High-Frequency Telemetry Stream / Sensor Burst
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#f5b942';
+      ctx.strokeStyle = '#f5b942';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+
+      const centerY = height * 0.38;
+      for (let x = 0; x < width; x += 2) {
+        const normX = x / width;
+        const wave1 = Math.sin((normX * 14 * mouseFreqMod) + timeVal * 2);
+        const wave2 = Math.cos((normX * 28 * mouseFreqMod) - timeVal * 3) * 0.4;
+        const noise = (Math.random() - 0.5) * noiseAmp;
+
+        // Packet burst simulation spike
+        const burst = (Math.sin(normX * 6 + timeVal * 4) > 0.85) ? (Math.sin(normX * 40) * 16) : 0;
+        const y = centerY + (wave1 + wave2) * 22 + noise + burst;
+
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
       }
-      ctx.closePath();
-      ctx.fill();
       ctx.stroke();
 
-      // Glowing Node Points at Vertices
-      for (let i = 0; i < sides; i++) {
-        const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
-        const r = radius * targetValues[i] * progress;
-        const x = centerX + r * Math.cos(angle);
-        const y = centerY + r * Math.sin(angle);
+      // Channel B (Cyan/Emerald): Sine/Square Hybrid (PWM / Clock Signal)
+      const chBColor = mode === 'cloud' ? '#06b6d4' : '#10b981';
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = chBColor;
+      ctx.strokeStyle = chBColor;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
 
-        ctx.beginPath();
-        ctx.arc(x, y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = '#60a5fa';
-        ctx.fill();
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      }
-    }
+      const centerYB = height * 0.68;
+      for (let x = 0; x < width; x += 2) {
+        const normX = x / width;
+        let yB = centerYB;
 
-    renderRadar(0);
-
-    function startRadarAnimation() {
-      if (animStarted) return;
-      animStarted = true;
-      const startTime = performance.now();
-      const duration = 1200;
-
-      function step(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(1, elapsed / duration);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        renderRadar(ease);
-        if (progress < 1) {
-          requestAnimationFrame(step);
+        if (mode === 'cloud') {
+          // Smooth Harmonic Sine Wave
+          const wB1 = Math.sin((normX * 10 * mouseFreqMod) - timeVal * 1.5);
+          const wB2 = Math.sin((normX * 20 * mouseFreqMod) + timeVal * 3) * 0.25;
+          yB = centerYB + (wB1 + wB2) * 24;
+        } else {
+          // Square Wave PWM Duty Cycle Simulation
+          const pwmPeriod = Math.sin((normX * 16 * mouseFreqMod) + timeVal * 2.5);
+          const squareVal = pwmPeriod > 0 ? 22 : -22;
+          yB = centerYB + squareVal;
         }
+
+        if (x === 0) ctx.moveTo(x, yB);
+        else ctx.lineTo(x, yB);
       }
-      requestAnimationFrame(step);
+      ctx.stroke();
+
+      ctx.shadowBlur = 0;
+      animFrameId = requestAnimationFrame(drawWaveforms);
     }
 
-    const radarObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          startRadarAnimation();
-          radarObserver.unobserve(entry.target);
+    // IntersectionObserver to auto-pause canvas when out of view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          cancelAnimationFrame(animFrameId);
+          animFrameId = requestAnimationFrame(drawWaveforms);
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 });
 
-    radarObserver.observe(radarCanvas);
+    observer.observe(telemetryCanvas);
+    animFrameId = requestAnimationFrame(drawWaveforms);
   }
 
   // 5.5 Scroll Reveals, Stagger Indices, and Number Count-Up Animations
