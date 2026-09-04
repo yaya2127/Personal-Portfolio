@@ -842,6 +842,13 @@ document.addEventListener('DOMContentLoaded', () => {
             printLine(`Command not found: '${cmd}'. Type 'help' for available commands.`, '#ef4444');
           }
 
+          const termBody = document.getElementById('terminal-body');
+          if (termBody) termBody.scrollTop = termBody.scrollHeight;
+        }
+      });
+    }
+  }
+
   // 5.8 Standalone 3D Tech Stack Constellation Graph Controller
   const constellationCanvas = document.getElementById('constellation-canvas');
   if (constellationCanvas) {
