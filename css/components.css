@@ -6,38 +6,38 @@
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(110px);
-  -webkit-filter: blur(110px);
-  opacity: 0.18;
+  filter: blur(90px);
+  -webkit-filter: blur(90px);
+  opacity: 0.38;
   pointer-events: none;
   z-index: 0;
-  animation: orbDrift 22s ease-in-out infinite alternate;
+  animation: orbDrift 18s ease-in-out infinite alternate;
 }
 
 .orb-gold-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, #f5b942 0%, #b8860b 60%, transparent 100%);
-  top: -120px;
-  right: -120px;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(245, 185, 66, 0.45) 0%, rgba(184, 134, 11, 0.25) 60%, transparent 100%);
+  top: -80px;
+  right: -50px;
 }
 
 .orb-amber-2 {
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, #dfa951 0%, #d4af37 60%, transparent 100%);
-  bottom: 40px;
-  left: -180px;
-  animation-delay: -11s;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(223, 169, 81, 0.4) 0%, rgba(212, 175, 55, 0.2) 60%, transparent 100%);
+  bottom: 20px;
+  left: -120px;
+  animation-delay: -9s;
 }
 
 .orb-gold-3 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, #f7d794 0%, #e5b769 60%, transparent 100%);
-  top: 30%;
-  right: -100px;
-  animation-delay: -6s;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(247, 215, 148, 0.35) 0%, rgba(229, 183, 105, 0.2) 60%, transparent 100%);
+  top: 25%;
+  right: -80px;
+  animation-delay: -5s;
 }
 
 @keyframes orbDrift {

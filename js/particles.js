@@ -1,6 +1,6 @@
 /* ==========================================================================
    Yared Kinetibeb Tesfaye Portfolio — Ambient Gold Constellation & Particle Canvas
-   Low-Opacity, Slow-Moving Gold/Amber Mesh with Mobile Performance Cap
+   Vibrant Low-Latency Gold/Amber Mesh with Glowing Nodes & Interactive Proximity
    ========================================================================== */
 
 (function () {
@@ -10,7 +10,7 @@
   const ctx = canvas.getContext('2d');
   let width, height;
   let particles = [];
-  let mouse = { x: null, y: null, radius: 120 };
+  let mouse = { x: null, y: null, radius: 150 };
 
   function resizeCanvas() {
     width = canvas.width = window.innerWidth;
@@ -38,12 +38,12 @@
     init() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.size = Math.random() * 1.8 + 0.8;
-      this.speedX = (Math.random() - 0.5) * 0.35;
-      this.speedY = (Math.random() - 0.5) * 0.35;
-      this.baseAlpha = Math.random() * 0.4 + 0.15;
+      this.size = Math.random() * 2.2 + 1.2;
+      this.speedX = (Math.random() - 0.5) * 0.45;
+      this.speedY = (Math.random() - 0.5) * 0.45;
+      this.baseAlpha = Math.random() * 0.45 + 0.35;
       this.alpha = this.baseAlpha;
-      const colors = ['#f5b942', '#e5b769', '#dfa951', '#f7d794'];
+      const colors = ['#f5b942', '#e5b769', '#dfa951', '#f7d794', '#ffd700'];
       this.color = colors[Math.floor(Math.random() * colors.length)];
     }
 
@@ -60,9 +60,9 @@
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < mouse.radius) {
           const force = (mouse.radius - dist) / mouse.radius;
-          this.x -= (dx / dist) * force * 1.5;
-          this.y -= (dy / dist) * force * 1.5;
-          this.alpha = Math.min(0.85, this.baseAlpha + force * 0.5);
+          this.x -= (dx / dist) * force * 2.0;
+          this.y -= (dy / dist) * force * 2.0;
+          this.alpha = Math.min(0.95, this.baseAlpha + force * 0.5);
         } else {
           this.alpha = this.baseAlpha;
         }
@@ -77,7 +77,7 @@
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fillStyle = this.color;
-      ctx.shadowBlur = 6;
+      ctx.shadowBlur = 10;
       ctx.shadowColor = this.color;
       ctx.fill();
       ctx.restore();
@@ -86,14 +86,14 @@
 
   function initParticles() {
     particles = [];
-    const count = width < 768 ? 28 : Math.min(Math.floor((width * height) / 18000), 55);
+    const count = width < 768 ? 35 : Math.min(Math.floor((width * height) / 14000), 70);
     for (let i = 0; i < count; i++) {
       particles.push(new Particle());
     }
   }
 
   function drawConstellationLines() {
-    const maxDist = width < 768 ? 90 : 130;
+    const maxDist = width < 768 ? 100 : 145;
     const len = particles.length;
 
     for (let i = 0; i < len; i++) {
@@ -103,14 +103,14 @@
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.12;
+          const alpha = (1 - dist / maxDist) * 0.28;
           ctx.save();
           ctx.globalAlpha = alpha;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = '#f5b942';
-          ctx.lineWidth = 0.75;
+          ctx.lineWidth = 1.0;
           ctx.stroke();
           ctx.restore();
         }
@@ -121,12 +121,13 @@
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
+    // Warm vibrant gold radial aura background
     const gradient = ctx.createRadialGradient(
-      width * 0.5, height * 0.4, 20,
-      width * 0.5, height * 0.4, width * 0.75
+      width * 0.35, height * 0.45, 30,
+      width * 0.35, height * 0.45, width * 0.8
     );
-    gradient.addColorStop(0, 'rgba(245, 185, 66, 0.035)');
-    gradient.addColorStop(0.6, 'rgba(229, 183, 105, 0.015)');
+    gradient.addColorStop(0, 'rgba(245, 185, 66, 0.07)');
+    gradient.addColorStop(0.5, 'rgba(229, 183, 105, 0.03)');
     gradient.addColorStop(1, 'rgba(9, 9, 11, 0)');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
