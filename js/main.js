@@ -842,11 +842,268 @@ document.addEventListener('DOMContentLoaded', () => {
             printLine(`Command not found: '${cmd}'. Type 'help' for available commands.`, '#ef4444');
           }
 
-          const termBody = document.getElementById('terminal-body');
-          if (termBody) termBody.scrollTop = termBody.scrollHeight;
+  // 5.8 Standalone 3D Tech Stack Constellation Graph Controller
+  const constellationCanvas = document.getElementById('constellation-canvas');
+  if (constellationCanvas) {
+    const ctx = constellationCanvas.getContext('2d');
+    let isVisible = true;
+    let hoveredNodeId = null;
+
+    const rot = { x: 0.2, y: 0.3, velX: 0, velY: 0.004 };
+    const drag = { isDragging: false, lastMouseX: 0, lastMouseY: 0 };
+    let animFrameId = null;
+
+    const nodes = [
+      { id: 'go', label: 'Go', category: 'cloud', x: 0, y: 0, z: 0, connections: ['k8s', 'redis', 'postgres', 'wss'] },
+      { id: 'cpp', label: 'C++', category: 'embedded', x: 0, y: 0, z: 0, connections: ['freertos', 'arduino', 'wss'] },
+      { id: 'py', label: 'Python', category: 'cloud', x: 0, y: 0, z: 0, connections: ['postgres', 'docker'] },
+      { id: 'ts', label: 'TS', category: 'web', x: 0, y: 0, z: 0, connections: ['react', 'nestjs', 'git'] },
+      { id: 'react', label: 'React', category: 'web', x: 0, y: 0, z: 0, connections: ['ts', 'wss', 'git'] },
+      { id: 'k8s', label: 'K8s', category: 'cloud', x: 0, y: 0, z: 0, connections: ['docker', 'go'] },
+      { id: 'docker', label: 'Docker', category: 'cloud', x: 0, y: 0, z: 0, connections: ['k8s', 'py', 'nestjs'] },
+      { id: 'postgres', label: 'PostgreSQL', category: 'cloud', x: 0, y: 0, z: 0, connections: ['go', 'py', 'redis'] },
+      { id: 'redis', label: 'Redis', category: 'cloud', x: 0, y: 0, z: 0, connections: ['go', 'wss', 'postgres'] },
+      { id: 'freertos', label: 'FreeRTOS', category: 'embedded', x: 0, y: 0, z: 0, connections: ['cpp', 'arduino'] },
+      { id: 'arduino', label: 'Arduino', category: 'embedded', x: 0, y: 0, z: 0, connections: ['cpp', 'freertos'] },
+      { id: 'wss', label: 'WebSockets', category: 'embedded', x: 0, y: 0, z: 0, connections: ['go', 'redis', 'react'] },
+      { id: 'nestjs', label: 'NestJS', category: 'cloud', x: 0, y: 0, z: 0, connections: ['ts', 'docker'] },
+      { id: 'git', label: 'Git', category: 'web', x: 0, y: 0, z: 0, connections: ['react', 'ts'] },
+      { id: 'ebpf', label: 'eBPF', category: 'cloud', x: 0, y: 0, z: 0, connections: ['k8s', 'go'] }
+    ];
+
+    // Fibonacci sphere node placement
+    const radius = 135;
+    const phi = Math.PI * (3 - Math.sqrt(5));
+    nodes.forEach((node, i) => {
+      const y = 1 - (i / (nodes.length - 1)) * 2;
+      const radiusAtY = Math.sqrt(1 - y * y);
+      const theta = phi * i;
+      node.x = Math.cos(theta) * radiusAtY * radius;
+      node.y = y * radius;
+      node.z = Math.sin(theta) * radiusAtY * radius;
+    });
+
+    function drawConstellation() {
+      if (!isVisible) return;
+
+      const width = constellationCanvas.width;
+      const height = constellationCanvas.height;
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Background Grid
+      ctx.strokeStyle = 'rgba(245, 185, 66, 0.04)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < width; x += 40) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      if (!drag.isDragging && !hoveredNodeId) {
+        rot.x += rot.velX;
+        rot.y += rot.velY;
+        rot.velX *= 0.95;
+        rot.velY = rot.velY * 0.95 + 0.003 * 0.05;
+      }
+
+      const sinX = Math.sin(rot.x);
+      const cosX = Math.cos(rot.x);
+      const sinY = Math.sin(rot.y);
+      const cosY = Math.cos(rot.y);
+
+      const focalLength = 380;
+      const sphereRadius = 135;
+
+      const projected = nodes.map((node) => {
+        const x1 = node.x * cosY - node.z * sinY;
+        const z1 = node.z * cosY + node.x * sinY;
+        const y2 = node.y * cosX - z1 * sinX;
+        const z2 = z1 * cosX + node.y * sinX;
+
+        const scale = focalLength / (focalLength + z2 + sphereRadius);
+        const projX = centerX + x1 * scale;
+        const projY = centerY + y2 * scale;
+        const alpha = Math.max(0.15, Math.min(1.0, (z2 + sphereRadius) / (2 * sphereRadius)));
+
+        return { ...node, projX, projY, projZ: z2, scale, alpha };
+      });
+
+      projected.sort((a, b) => a.projZ - b.projZ);
+
+      // 1. Draw Edges
+      projected.forEach((node) => {
+        node.connections.forEach((targetId) => {
+          const target = projected.find((n) => n.id === targetId);
+          if (!target) return;
+
+          const isEdgeHighlighted = hoveredNodeId && (hoveredNodeId === node.id || hoveredNodeId === target.id);
+          const avgAlpha = (node.alpha + target.alpha) / 2;
+
+          ctx.beginPath();
+          ctx.moveTo(node.projX, node.projY);
+          ctx.lineTo(target.projX, target.projY);
+
+          if (isEdgeHighlighted) {
+            ctx.strokeStyle = 'rgba(245, 185, 66, 0.85)';
+            ctx.lineWidth = 2.2 * Math.max(node.scale, target.scale);
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = '#f5b942';
+          } else {
+            ctx.strokeStyle = `rgba(245, 185, 66, ${avgAlpha * 0.25})`;
+            ctx.lineWidth = 1.2 * Math.min(node.scale, target.scale);
+            ctx.shadowBlur = 0;
+          }
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        });
+      });
+
+      // 2. Draw Nodes
+      projected.forEach((node) => {
+        const isHovered = hoveredNodeId === node.id;
+        const baseRadius = 22;
+        const radiusVal = baseRadius * node.scale * (isHovered ? 1.25 : 1.0);
+        const opacity = isHovered ? 1.0 : node.alpha;
+
+        ctx.save();
+        ctx.translate(node.projX, node.projY);
+
+        ctx.beginPath();
+        ctx.arc(0, 0, radiusVal, 0, Math.PI * 2);
+
+        if (isHovered) {
+          ctx.fillStyle = 'rgba(30, 30, 42, 0.95)';
+          ctx.strokeStyle = '#f5b942';
+          ctx.lineWidth = 2.5;
+          ctx.shadowBlur = 16;
+          ctx.shadowColor = '#f5b942';
+        } else {
+          ctx.fillStyle = `rgba(18, 18, 24, ${opacity * 0.85})`;
+          ctx.strokeStyle = node.category === 'cloud'
+            ? `rgba(245, 185, 66, ${opacity * 0.6})`
+            : node.category === 'embedded'
+            ? `rgba(6, 182, 212, ${opacity * 0.6})`
+            : `rgba(16, 185, 129, ${opacity * 0.6})`;
+          ctx.lineWidth = 1.5 * node.scale;
+          ctx.shadowBlur = 6 * node.scale;
+          ctx.shadowColor = node.category === 'cloud' ? '#f5b942' : '#06b6d4';
+        }
+
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = isHovered ? '#ffffff' : `rgba(241, 245, 249, ${opacity})`;
+        ctx.font = `${isHovered ? '700' : '600'} ${Math.max(10, Math.round(11 * node.scale * (isHovered ? 1.15 : 1.0)))}px "Outfit", sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(node.label, 0, 0);
+
+        ctx.restore();
+      });
+
+      animFrameId = requestAnimationFrame(drawConstellation);
+    }
+
+    // Drag & Touch Handlers
+    function onPointerDown(e) {
+      drag.isDragging = true;
+      const point = e.touches ? e.touches[0] : e;
+      drag.lastMouseX = point.clientX;
+      drag.lastMouseY = point.clientY;
+    }
+
+    function onPointerMove(e) {
+      const rect = constellationCanvas.getBoundingClientRect();
+      const point = e.touches ? e.touches[0] : e;
+      const mouseX = point.clientX - rect.left;
+      const mouseY = point.clientY - rect.top;
+
+      if (drag.isDragging) {
+        const deltaX = point.clientX - drag.lastMouseX;
+        const deltaY = point.clientY - drag.lastMouseY;
+
+        rot.velY = deltaX * 0.005;
+        rot.velX = -deltaY * 0.005;
+        rot.x += rot.velX;
+        rot.y += rot.velY;
+
+        drag.lastMouseX = point.clientX;
+        drag.lastMouseY = point.clientY;
+      }
+
+      // Hit testing for hover
+      let hoveredId = null;
+      let minDistance = Infinity;
+
+      const sinX = Math.sin(rot.x);
+      const cosX = Math.cos(rot.x);
+      const sinY = Math.sin(rot.y);
+      const cosY = Math.cos(rot.y);
+
+      const focalLength = 380;
+      const sphereRadius = 135;
+      const centerX = constellationCanvas.width / 2;
+      const centerY = constellationCanvas.height / 2;
+
+      nodes.forEach((node) => {
+        const x1 = node.x * cosY - node.z * sinY;
+        const z1 = node.z * cosY + node.x * sinY;
+        const y2 = node.y * cosX - z1 * sinX;
+        const z2 = z1 * cosX + node.y * sinX;
+
+        const scale = focalLength / (focalLength + z2 + sphereRadius);
+        const projX = centerX + x1 * scale;
+        const projY = centerY + y2 * scale;
+        const hitRadius = 24 * scale;
+
+        const dist = Math.hypot(mouseX - projX, mouseY - projY);
+        if (dist < hitRadius && dist < minDistance) {
+          minDistance = dist;
+          hoveredId = node.id;
         }
       });
+
+      hoveredNodeId = hoveredId;
+      constellationCanvas.style.cursor = drag.isDragging ? 'grabbing' : (hoveredId ? 'pointer' : 'grab');
     }
+
+    function onPointerUp() {
+      drag.isDragging = false;
+      constellationCanvas.style.cursor = 'grab';
+    }
+
+    constellationCanvas.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    constellationCanvas.addEventListener('touchstart', onPointerDown, { passive: true });
+    window.addEventListener('touchmove', onPointerMove, { passive: true });
+    window.addEventListener('touchend', onPointerUp, { passive: true });
+
+    // IntersectionObserver to pause offscreen
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          cancelAnimationFrame(animFrameId);
+          animFrameId = requestAnimationFrame(drawConstellation);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(constellationCanvas);
+    animFrameId = requestAnimationFrame(drawConstellation);
   }
 });
 
