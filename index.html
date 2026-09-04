@@ -17,9 +17,9 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Custom Stylesheets (Cache Busted v11.0) -->
-  <link rel="stylesheet" href="css/main.css?v=11.0">
-  <link rel="stylesheet" href="css/components.css?v=11.0">
+  <!-- Custom Stylesheets (Cache Busted v12.0) -->
+  <link rel="stylesheet" href="css/main.css?v=12.0">
+  <link rel="stylesheet" href="css/components.css?v=12.0">
 </head>
 <body>
 
@@ -222,28 +222,6 @@
         <p class="section-subtitle">Technologies, programming languages, microcontrollers, and engineering tools I specialize in</p>
       </div>
 
-      <!-- 3D Tech Stack Constellation Graph -->
-      <div class="tech-constellation-card" id="tech-constellation">
-        <div class="constellation-header">
-          <div class="constellation-title">
-            <i class="fas fa-network-wired" style="color: #f5b942;"></i>
-            <span>3D TECH STACK CONSTELLATION MESH</span>
-          </div>
-          <div class="constellation-legend">
-            <span><i class="fas fa-circle" style="color: #f5b942; font-size: 8px;"></i> Cloud & Backend</span>
-            <span><i class="fas fa-circle" style="color: #06b6d4; font-size: 8px;"></i> Embedded & IoT</span>
-            <span><i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i> Web & Core</span>
-          </div>
-        </div>
-
-        <div class="constellation-canvas-wrapper" style="touch-action: pan-y;">
-          <canvas id="constellation-canvas" width="840" height="400"></canvas>
-          <div class="constellation-hint">
-            <i class="fas fa-hand-pointer"></i> Drag 3D Sphere to rotate | Hover node to isolate mesh
-          </div>
-        </div>
-      </div>
-
       <div class="skills-wrapper">
         <div class="skill-category-card">
           <div class="category-header">
@@ -343,116 +321,6 @@
         </div>
       </div>
 
-      <!-- Real-Time Systems & Telemetry Console -->
-      <div class="telemetry-console-card" id="telemetry-console">
-        <!-- Telemetry Header & Status Bar -->
-        <div class="telemetry-header">
-          <div class="telemetry-status">
-            <span class="live-dot-pulse"></span>
-            <span class="status-title">ENGINEERING SUBSYSTEMS // LIVE TELEMETRY</span>
-          </div>
-          <div class="telemetry-readouts">
-            <div class="uptime-counter" id="telemetry-uptime">UPTIME: 99.998% | T+00:00:00.0</div>
-            <div class="mode-toggle-group">
-              <button class="mode-btn active" data-mode="cloud" id="mode-cloud-btn"><i class="fas fa-server"></i> Cloud Microservices</button>
-              <button class="mode-btn" data-mode="embedded" id="mode-embedded-btn"><i class="fas fa-microchip"></i> Embedded & Hardware</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Waveform Oscilloscope Canvas Stream -->
-        <div class="telemetry-canvas-wrapper" id="telemetry-canvas-wrapper">
-          <canvas id="telemetry-canvas" width="840" height="180"></canvas>
-          <div class="canvas-overlay-stats">
-            <span id="ch-a-stat"><i class="fas fa-circle" style="color: #f5b942; font-size: 8px;"></i> CH-A: 142.8 MHz (WebSocket/Sensor)</span>
-            <span id="ch-b-stat"><i class="fas fa-circle" style="color: #06b6d4; font-size: 8px;"></i> CH-B: 99.99% (gRPC / eBPF Mesh)</span>
-            <span id="canvas-hint-stat"><i class="fas fa-mouse-pointer"></i> Drag mouse to modulate signal frequency & noise</span>
-          </div>
-        </div>
-
-        <!-- Bento Grid Domain Nodes -->
-        <div class="telemetry-bento-grid">
-          <!-- Node 01 -->
-          <div class="telemetry-node-card" data-node="cloud-go">
-            <div class="node-header">
-              <div class="node-badge"><i class="fas fa-cubes"></i> NODE 01</div>
-              <span class="node-category">CLOUD / SYSTEM</span>
-            </div>
-            <h4 class="node-title">Low-Latency Go Microservices</h4>
-            <ul class="node-metrics">
-              <li><i class="fas fa-check-circle"></i> <span>Sub-ms p99 latency</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>Lock-free SPSC ring buffer</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>Concurrency pipelines</span></li>
-            </ul>
-            <div class="node-arch-tags">
-              <span class="arch-tag">Golang 1.22</span>
-              <span class="arch-tag">gRPC</span>
-              <span class="arch-tag">Atomic Ring</span>
-              <span class="arch-tag">Zero-Alloc</span>
-            </div>
-          </div>
-
-          <!-- Node 02 -->
-          <div class="telemetry-node-card" data-node="embedded-c">
-            <div class="node-header">
-              <div class="node-badge"><i class="fas fa-microchip"></i> NODE 02</div>
-              <span class="node-category">HARDWARE / FIRMWARE</span>
-            </div>
-            <h4 class="node-title">Bare-Metal & Embedded C/C++</h4>
-            <ul class="node-metrics">
-              <li><i class="fas fa-check-circle"></i> <span>FreeRTOS task scheduler</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>ADC / PWM register control</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>Hardware opto-isolation</span></li>
-            </ul>
-            <div class="node-arch-tags">
-              <span class="arch-tag">ATmega328P</span>
-              <span class="arch-tag">ISR Handlers</span>
-              <span class="arch-tag">SPI / I2C</span>
-              <span class="arch-tag">DMA</span>
-            </div>
-          </div>
-
-          <!-- Node 03 -->
-          <div class="telemetry-node-card" data-node="k8s-mesh">
-            <div class="node-header">
-              <div class="node-badge"><i class="fab fa-docker"></i> NODE 03</div>
-              <span class="node-category">ORCHESTRATION</span>
-            </div>
-            <h4 class="node-title">Cloud-Native & K8s Mesh</h4>
-            <ul class="node-metrics">
-              <li><i class="fas fa-check-circle"></i> <span>eBPF tracing</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>Container orchestration</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>Zero-downtime deploys</span></li>
-            </ul>
-            <div class="node-arch-tags">
-              <span class="arch-tag">Docker</span>
-              <span class="arch-tag">eBPF</span>
-              <span class="arch-tag">Chaos Mesh</span>
-              <span class="arch-tag">Prometheus</span>
-            </div>
-          </div>
-
-          <!-- Node 04 -->
-          <div class="telemetry-node-card" data-node="realtime-data">
-            <div class="node-header">
-              <div class="node-badge"><i class="fas fa-bolt"></i> NODE 04</div>
-              <span class="node-category">STREAMING</span>
-            </div>
-            <h4 class="node-title">Event-Driven Real-Time Data</h4>
-            <ul class="node-metrics">
-              <li><i class="fas fa-check-circle"></i> <span>Redis Pub/Sub</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>WebSockets broadcast</span></li>
-              <li><i class="fas fa-check-circle"></i> <span>Time-series ingestion</span></li>
-            </ul>
-            <div class="node-arch-tags">
-              <span class="arch-tag">Redis 7</span>
-              <span class="arch-tag">WSS</span>
-              <span class="arch-tag">100k+ msg/s</span>
-              <span class="arch-tag">Time-Series</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1101,8 +969,8 @@
     </div>
   </div>
 
-  <!-- Scripts (Cache Busted v11.0) -->
-  <script src="js/particles.js?v=11.0"></script>
-  <script src="js/main.js?v=11.0"></script>
+  <!-- Scripts (Cache Busted v12.0) -->
+  <script src="js/particles.js?v=12.0"></script>
+  <script src="js/main.js?v=12.0"></script>
 </body>
 </html>
