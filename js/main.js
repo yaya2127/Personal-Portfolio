@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Refined 6-Axis Engineering Skill Radar Chart Canvas Renderer
+  // 5. Refined 6-Axis Engineering Skill Radar Chart Canvas Renderer (Animated on Scroll)
   const radarCanvas = document.getElementById('skill-radar-canvas');
   if (radarCanvas) {
     const ctx = radarCanvas.getContext('2d');
@@ -315,84 +315,190 @@ document.addEventListener('DOMContentLoaded', () => {
       '3D WebGL / React (95%)',
       'Software Engineering (96%)'
     ];
-    const values = [0.96, 0.94, 0.92, 0.90, 0.95, 0.96]; // Scale 0-1
+    const targetValues = [0.96, 0.94, 0.92, 0.90, 0.95, 0.96]; // Scale 0-1
     const centerX = 210, centerY = 160, radius = 105;
     const sides = labels.length;
+    let animStarted = false;
 
-    // Background web polygons
-    ctx.strokeStyle = 'rgba(212, 175, 55, 0.22)';
-    ctx.lineWidth = 1;
+    function renderRadar(progress) {
+      ctx.clearRect(0, 0, radarCanvas.width, radarCanvas.height);
 
-    for (let level = 1; level <= 4; level++) {
-      const r = (radius / 4) * level;
-      ctx.beginPath();
+      // Background web polygons
+      ctx.strokeStyle = 'rgba(212, 175, 55, 0.22)';
+      ctx.lineWidth = 1;
+
+      for (let level = 1; level <= 4; level++) {
+        const r = (radius / 4) * level;
+        ctx.beginPath();
+        for (let i = 0; i < sides; i++) {
+          const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
+          const x = centerX + r * Math.cos(angle);
+          const y = centerY + r * Math.sin(angle);
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      // Axes & Labels
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = '600 11px "Inter", sans-serif';
+      ctx.textAlign = 'center';
+
       for (let i = 0; i < sides; i++) {
         const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.25)';
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+        const labelX = centerX + (radius + 26) * Math.cos(angle);
+        const labelY = centerY + (radius + 20) * Math.sin(angle);
+        ctx.fillText(labels[i], labelX, labelY);
+      }
+
+      // Filled Data Polygon with Gradient & Glow
+      const polyGradient = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
+      polyGradient.addColorStop(0, 'rgba(223, 169, 81, 0.55)');
+      polyGradient.addColorStop(1, 'rgba(223, 169, 81, 0.15)');
+
+      ctx.beginPath();
+      ctx.fillStyle = polyGradient;
+      ctx.strokeStyle = '#dfa951';
+      ctx.lineWidth = 2.8;
+
+      for (let i = 0; i < sides; i++) {
+        const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
+        const r = radius * targetValues[i] * progress;
         const x = centerX + r * Math.cos(angle);
         const y = centerY + r * Math.sin(angle);
         if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
       ctx.closePath();
-      ctx.stroke();
-    }
-
-    // Axes & Labels
-    ctx.fillStyle = '#cbd5e1';
-    ctx.font = '600 11px "Inter", sans-serif';
-    ctx.textAlign = 'center';
-
-    for (let i = 0; i < sides; i++) {
-      const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY + radius * Math.sin(angle);
-
-      ctx.beginPath();
-      ctx.strokeStyle = 'rgba(212, 175, 55, 0.25)';
-      ctx.moveTo(centerX, centerY);
-      ctx.lineTo(x, y);
-      ctx.stroke();
-
-      const labelX = centerX + (radius + 26) * Math.cos(angle);
-      const labelY = centerY + (radius + 20) * Math.sin(angle);
-      ctx.fillText(labels[i], labelX, labelY);
-    }
-
-    // Filled Data Polygon with Gradient & Glow
-    const polyGradient = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
-    polyGradient.addColorStop(0, 'rgba(223, 169, 81, 0.55)');
-    polyGradient.addColorStop(1, 'rgba(223, 169, 81, 0.15)');
-
-    ctx.beginPath();
-    ctx.fillStyle = polyGradient;
-    ctx.strokeStyle = '#dfa951';
-    ctx.lineWidth = 2.8;
-
-    for (let i = 0; i < sides; i++) {
-      const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
-      const r = radius * values[i];
-      const x = centerX + r * Math.cos(angle);
-      const y = centerY + r * Math.sin(angle);
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-
-    // Glowing Node Points at Vertices
-    for (let i = 0; i < sides; i++) {
-      const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
-      const r = radius * values[i];
-      const x = centerX + r * Math.cos(angle);
-      const y = centerY + r * Math.sin(angle);
-
-      ctx.beginPath();
-      ctx.arc(x, y, 5, 0, Math.PI * 2);
-      ctx.fillStyle = '#60a5fa';
       ctx.fill();
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1.5;
       ctx.stroke();
+
+      // Glowing Node Points at Vertices
+      for (let i = 0; i < sides; i++) {
+        const angle = (Math.PI * 2 / sides) * i - Math.PI / 2;
+        const r = radius * targetValues[i] * progress;
+        const x = centerX + r * Math.cos(angle);
+        const y = centerY + r * Math.sin(angle);
+
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#60a5fa';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
     }
+
+    renderRadar(0);
+
+    function startRadarAnimation() {
+      if (animStarted) return;
+      animStarted = true;
+      const startTime = performance.now();
+      const duration = 1200;
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        renderRadar(ease);
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    const radarObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startRadarAnimation();
+          radarObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    radarObserver.observe(radarCanvas);
+  }
+
+  // 5.5 Scroll Reveals, Stagger Indices, and Number Count-Up Animations
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  const staggerParents = document.querySelectorAll('.stagger-parent');
+
+  staggerParents.forEach(parent => {
+    Array.from(parent.children).forEach((child, idx) => {
+      child.style.setProperty('--stagger-idx', idx);
+    });
+  });
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealElements.forEach(el => scrollObserver.observe(el));
+  staggerParents.forEach(el => scrollObserver.observe(el));
+
+  // Count-Up Numbers for About Section
+  const statNumbers = document.querySelectorAll('.stat-number');
+  let statsAnimated = false;
+
+  function animateStats() {
+    if (statsAnimated) return;
+    statsAnimated = true;
+
+    statNumbers.forEach(el => {
+      const rawText = el.textContent.trim();
+      const targetVal = parseInt(rawText, 10);
+      const suffix = rawText.replace(/[0-9]/g, '');
+      if (isNaN(targetVal)) return;
+
+      const duration = 1600;
+      const startTime = performance.now();
+
+      function updateCount(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        const ease = 1 - (1 - progress) * (1 - progress);
+        const currentVal = Math.floor(ease * targetVal);
+        el.textContent = `${currentVal}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCount);
+        } else {
+          el.textContent = rawText;
+        }
+      }
+      requestAnimationFrame(updateCount);
+    });
+  }
+
+  const aboutStatsSection = document.querySelector('.stats-grid');
+  if (aboutStatsSection) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    statsObserver.observe(aboutStatsSection);
   }
 
   // 6. Comprehensive AI Portfolio Assistant Chatbot Engine

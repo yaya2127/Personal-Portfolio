@@ -2,6 +2,76 @@
    Yared Kinetibeb Tesfaye Portfolio - Component Styles (Transparent Subject)
    ========================================================================== */
 
+/* Ambient Drifting Blur Orbs */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  -webkit-filter: blur(110px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  animation: orbDrift 22s ease-in-out infinite alternate;
+}
+
+.orb-gold-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #f5b942 0%, #b8860b 60%, transparent 100%);
+  top: -120px;
+  right: -120px;
+}
+
+.orb-amber-2 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, #dfa951 0%, #d4af37 60%, transparent 100%);
+  bottom: 40px;
+  left: -180px;
+  animation-delay: -11s;
+}
+
+.orb-gold-3 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #f7d794 0%, #e5b769 60%, transparent 100%);
+  top: 30%;
+  right: -100px;
+  animation-delay: -6s;
+}
+
+@keyframes orbDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(35px, -45px) scale(1.08); }
+  100% { transform: translate(-25px, 35px) scale(0.95); }
+}
+
+/* Scroll Reveal Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Children Transitions */
+.stagger-parent > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger-idx, 0) * 90ms);
+}
+
+.stagger-parent.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Navbar Component */
 .navbar {
   position: fixed;
