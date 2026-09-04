@@ -77,11 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateTabSlider(activeBtn) {
     if (!tabSlider || !activeBtn) return;
-    const parentRect = activeBtn.parentElement.getBoundingClientRect();
-    const btnRect = activeBtn.getBoundingClientRect();
-    const leftOffset = btnRect.left - parentRect.left;
-    tabSlider.style.transform = `translateX(${leftOffset}px)`;
-    tabSlider.style.width = `${btnRect.width}px`;
+    const left = activeBtn.offsetLeft;
+    const top = activeBtn.offsetTop;
+    const width = activeBtn.offsetWidth;
+    const height = activeBtn.offsetHeight;
+
+    tabSlider.style.transform = `translate(${left}px, ${top}px)`;
+    tabSlider.style.width = `${width}px`;
+    tabSlider.style.height = `${height}px`;
+
+    const container = activeBtn.parentElement;
+    if (container && container.scrollWidth > container.clientWidth) {
+      const scrollLeft = activeBtn.offsetLeft - (container.clientWidth / 2) + (activeBtn.offsetWidth / 2);
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
   }
 
   const defaultActiveBtn = document.querySelector('.filter-btn.active');
