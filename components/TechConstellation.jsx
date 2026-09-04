@@ -4,8 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * TechConstellation.jsx
- * Standalone 3D Interactive Tech Stack Constellation Graph
- * Renders 15 tech badges in a 3D rotating sphere with mouse/touch drag momentum.
+ * Optimized 60 FPS 3D Interactive Polyhedron Constellation Mesh
+ * Exact visual match to Image 2 with vibrant multi-color nodes, thick geometric wireframe edges,
+ * high-performance 2-pass glow (no shadowBlur lag), and 3D drag momentum.
  */
 export default function TechConstellation() {
   const canvasRef = useRef(null);
@@ -14,39 +15,36 @@ export default function TechConstellation() {
   const [activeHover, setActiveHover] = useState(null);
 
   // Rotation and momentum state
-  const rotationRef = useRef({ x: 0.2, y: 0.3, velX: 0, velY: 0.004 });
+  const rotationRef = useRef({ x: 0.2, y: 0.3, velX: 0, velY: 0.003 });
   const dragRef = useRef({ isDragging: false, lastMouseX: 0, lastMouseY: 0 });
   const animFrameId = useRef(null);
 
-  // 15 Tech Stack Nodes with 3D Spherical Distribution
+  // 12 Expanded Polyhedron Nodes matching Image 2
   const nodesRef = useRef([
-    { id: 'go', label: 'Go', category: 'cloud', x: 0, y: 0, z: 0, connections: ['k8s', 'redis', 'postgres', 'wss'] },
-    { id: 'cpp', label: 'C++', category: 'embedded', x: 0, y: 0, z: 0, connections: ['freertos', 'arduino', 'wss'] },
-    { id: 'py', label: 'Python', category: 'cloud', x: 0, y: 0, z: 0, connections: ['postgres', 'docker'] },
-    { id: 'ts', label: 'TS', category: 'web', x: 0, y: 0, z: 0, connections: ['react', 'nestjs', 'git'] },
-    { id: 'react', label: 'React', category: 'web', x: 0, y: 0, z: 0, connections: ['ts', 'wss', 'git'] },
-    { id: 'k8s', label: 'K8s', category: 'cloud', x: 0, y: 0, z: 0, connections: ['docker', 'go'] },
-    { id: 'docker', label: 'Docker', category: 'cloud', x: 0, y: 0, z: 0, connections: ['k8s', 'py', 'nestjs'] },
-    { id: 'postgres', label: 'PostgreSQL', category: 'cloud', x: 0, y: 0, z: 0, connections: ['go', 'py', 'redis'] },
-    { id: 'redis', label: 'Redis', category: 'cloud', x: 0, y: 0, z: 0, connections: ['go', 'wss', 'postgres'] },
-    { id: 'freertos', label: 'FreeRTOS', category: 'embedded', x: 0, y: 0, z: 0, connections: ['cpp', 'arduino'] },
-    { id: 'arduino', label: 'Arduino', category: 'embedded', x: 0, y: 0, z: 0, connections: ['cpp', 'freertos'] },
-    { id: 'wss', label: 'WebSockets', category: 'embedded', x: 0, y: 0, z: 0, connections: ['go', 'redis', 'react'] },
-    { id: 'nestjs', label: 'NestJS', category: 'cloud', x: 0, y: 0, z: 0, connections: ['ts', 'docker'] },
-    { id: 'git', label: 'Git', category: 'web', x: 0, y: 0, z: 0, connections: ['react', 'ts'] },
-    { id: 'ebpf', label: 'eBPF', category: 'cloud', x: 0, y: 0, z: 0, connections: ['k8s', 'go'] }
+    { id: 'ts', label: 'TS', color: '#3b82f6', glow: 'rgba(59, 130, 246, 0.8)', category: 'web', x: 0, y: 0, z: 0, connections: ['dj', 'git', 'sql', 'n'] },
+    { id: 'n', label: 'N', color: '#ffffff', glow: 'rgba(255, 255, 255, 0.9)', category: 'web', x: 0, y: 0, z: 0, connections: ['ts', 'css', 'c++', 'dj', 'lv'] },
+    { id: 'dj', label: 'dj', color: '#10b981', glow: 'rgba(16, 185, 129, 0.8)', category: 'cloud', x: 0, y: 0, z: 0, connections: ['ts', 'lv', 'sql', 'c++'] },
+    { id: 'lv', label: 'LV', color: '#f43f5e', glow: 'rgba(244, 63, 94, 0.8)', category: 'cloud', x: 0, y: 0, z: 0, connections: ['dj', 'git', 'n'] },
+    { id: 'git', label: 'Git', color: '#f97316', glow: 'rgba(249, 115, 22, 0.8)', category: 'web', x: 0, y: 0, z: 0, connections: ['lv', 'css', 'ts'] },
+    { id: 'sql', label: 'SQL', color: '#06b6d4', glow: 'rgba(6, 182, 212, 0.8)', category: 'cloud', x: 0, y: 0, z: 0, connections: ['ts', 'c++', 'py', 'php'] },
+    { id: 'c++', label: 'C++', color: '#a855f7', glow: 'rgba(168, 85, 247, 0.8)', category: 'embedded', x: 0, y: 0, z: 0, connections: ['sql', 'py', 'php', 'n', 'dj'] },
+    { id: 'py', label: 'Py', color: '#f5b942', glow: 'rgba(245, 185, 66, 0.8)', category: 'cloud', x: 0, y: 0, z: 0, connections: ['sql', 'c++', 'php'] },
+    { id: 'php', label: 'PHP', color: '#6366f1', glow: 'rgba(99, 102, 241, 0.8)', category: 'web', x: 0, y: 0, z: 0, connections: ['c++', 'py', 'css', 'sql'] },
+    { id: 'css', label: 'CSS', color: '#06b6d4', glow: 'rgba(6, 182, 212, 0.8)', category: 'web', x: 0, y: 0, z: 0, connections: ['php', 'n', 'git'] },
+    { id: 'go', label: 'Go', color: '#f5b942', glow: 'rgba(245, 185, 66, 0.8)', category: 'cloud', x: 0, y: 0, z: 0, connections: ['n', 'sql', 'k8s'] },
+    { id: 'k8s', label: 'K8s', color: '#3b82f6', glow: 'rgba(59, 130, 246, 0.8)', category: 'cloud', x: 0, y: 0, z: 0, connections: ['go', 'css'] }
   ]);
 
-  // Distribute 15 nodes uniformly on a 3D Sphere (Fibonacci Sphere Algorithm)
+  // Distribute nodes in a wide 3D Sphere lattice
   useEffect(() => {
     const nodes = nodesRef.current;
     const count = nodes.length;
-    const radius = 135; // Sphere radius in 3D space
-    const phi = Math.PI * (3 - Math.sqrt(5)); // Golden ratio angle
+    const radius = 210; // Wide radius to fill the card like Image 2
+    const phi = Math.PI * (3 - Math.sqrt(5));
 
     nodes.forEach((node, i) => {
-      const y = 1 - (i / (count - 1)) * 2; // y goes from 1 to -1
-      const radiusAtY = Math.sqrt(1 - y * y); // Radius at y height
+      const y = 1 - (i / (count - 1)) * 2;
+      const radiusAtY = Math.sqrt(1 - y * y);
       const theta = phi * i;
 
       node.x = Math.cos(theta) * radiusAtY * radius;
@@ -55,7 +53,7 @@ export default function TechConstellation() {
     });
   }, []);
 
-  // 3D Canvas Rendering Loop
+  // 60 FPS Optimized 3D Rendering Loop (2-pass rendering, zero shadowBlur overhead)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -74,8 +72,8 @@ export default function TechConstellation() {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Draw subtle background grid pattern
-      ctx.strokeStyle = 'rgba(245, 185, 66, 0.04)';
+      // Background Subtle Grid
+      ctx.strokeStyle = 'rgba(245, 185, 66, 0.03)';
       ctx.lineWidth = 1;
       for (let x = 0; x < width; x += 40) {
         ctx.beginPath();
@@ -92,63 +90,47 @@ export default function TechConstellation() {
 
       const rot = rotationRef.current;
 
-      // Apply physics velocity & damping if not dragging or hovered
+      // Auto rotation physics & damping
       if (!dragRef.current.isDragging && !hoveredNodeRef.current) {
         rot.x += rot.velX;
         rot.y += rot.velY;
-
-        // Damping velocity gradually towards baseline auto-rotation speed
         rot.velX *= 0.95;
-        rot.velY = rot.velY * 0.95 + 0.003 * 0.05;
+        rot.velY = rot.velY * 0.95 + 0.0025 * 0.05;
       }
 
-      // Rotate nodes around 3D axes
       const sinX = Math.sin(rot.x);
       const cosX = Math.cos(rot.x);
       const sinY = Math.sin(rot.y);
       const cosY = Math.cos(rot.y);
 
-      const focalLength = 380;
-      const sphereRadius = 135;
+      const focalLength = 420;
+      const sphereRadius = 210;
 
       const projectedNodes = nodesRef.current.map((node) => {
-        // Rotate Y
         let x1 = node.x * cosY - node.z * sinY;
         let z1 = node.z * cosY + node.x * sinY;
-
-        // Rotate X
         let y2 = node.y * cosX - z1 * sinX;
         let z2 = z1 * cosX + node.y * sinX;
 
-        // 3D Perspective Projection
         const scale = focalLength / (focalLength + z2 + sphereRadius);
         const projX = centerX + x1 * scale;
         const projY = centerY + y2 * scale;
-        const alpha = Math.max(0.15, Math.min(1.0, (z2 + sphereRadius) / (2 * sphereRadius)));
+        const alpha = Math.max(0.2, Math.min(1.0, (z2 + sphereRadius) / (2 * sphereRadius)));
 
-        return {
-          ...node,
-          projX,
-          projY,
-          projZ: z2,
-          scale,
-          alpha
-        };
+        return { ...node, projX, projY, projZ: z2, scale, alpha };
       });
 
-      // Sort nodes by Z depth so back nodes are rendered first
       projectedNodes.sort((a, b) => a.projZ - b.projZ);
 
       const activeHoverId = hoveredNodeRef.current;
 
-      // 1. Draw Connecting Edges
+      // 1. Draw Thick Multi-Color Wireframe Edges (2-pass fast render)
       projectedNodes.forEach((node) => {
         node.connections.forEach((targetId) => {
           const target = projectedNodes.find((n) => n.id === targetId);
           if (!target) return;
 
-          const isEdgeHighlighted =
-            activeHoverId && (activeHoverId === node.id || activeHoverId === target.id);
+          const isEdgeHighlighted = activeHoverId && (activeHoverId === node.id || activeHoverId === target.id);
           const avgAlpha = (node.alpha + target.alpha) / 2;
 
           ctx.beginPath();
@@ -156,59 +138,55 @@ export default function TechConstellation() {
           ctx.lineTo(target.projX, target.projY);
 
           if (isEdgeHighlighted) {
-            ctx.strokeStyle = 'rgba(245, 185, 66, 0.8)';
-            ctx.lineWidth = 2.2 * Math.max(node.scale, target.scale);
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = '#f5b942';
+            // Glow pass
+            ctx.strokeStyle = 'rgba(249, 115, 22, 0.4)';
+            ctx.lineWidth = 6 * Math.max(node.scale, target.scale);
+            ctx.stroke();
+
+            // Core line
+            ctx.beginPath();
+            ctx.moveTo(node.projX, node.projY);
+            ctx.lineTo(target.projX, target.projY);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2.5 * Math.max(node.scale, target.scale);
+            ctx.stroke();
           } else {
-            ctx.strokeStyle = `rgba(245, 185, 66, ${avgAlpha * 0.25})`;
-            ctx.lineWidth = 1.2 * Math.min(node.scale, target.scale);
-            ctx.shadowBlur = 0;
+            // Outer semi-transparent line
+            ctx.strokeStyle = `rgba(249, 115, 22, ${avgAlpha * 0.35})`;
+            ctx.lineWidth = 2.2 * Math.min(node.scale, target.scale);
+            ctx.stroke();
           }
-          ctx.stroke();
-          ctx.shadowBlur = 0;
         });
       });
 
-      // 2. Draw Nodes (Tech Badges)
+      // 2. Draw Vector-Quality Glowing Circular Badges (Matching Image 2)
       projectedNodes.forEach((node) => {
         const isHovered = activeHoverId === node.id;
-        const baseRadius = 22;
-        const radius = baseRadius * node.scale * (isHovered ? 1.25 : 1.0);
+        const baseRadius = 24;
+        const radius = baseRadius * node.scale * (isHovered ? 1.3 : 1.0);
         const opacity = isHovered ? 1.0 : node.alpha;
 
         ctx.save();
         ctx.translate(node.projX, node.projY);
 
-        // Circular background fill
+        // Glow ring pass (fast, no shadowBlur)
+        ctx.beginPath();
+        ctx.arc(0, 0, radius + 4, 0, Math.PI * 2);
+        ctx.fillStyle = node.glow.replace(/[\d\.]+\)$/, `${opacity * 0.25})`);
+        ctx.fill();
+
+        // Node Circle Base
         ctx.beginPath();
         ctx.arc(0, 0, radius, 0, Math.PI * 2);
-
-        if (isHovered) {
-          ctx.fillStyle = 'rgba(30, 30, 42, 0.95)';
-          ctx.strokeStyle = '#f5b942';
-          ctx.lineWidth = 2.5;
-          ctx.shadowBlur = 16;
-          ctx.shadowColor = '#f5b942';
-        } else {
-          ctx.fillStyle = `rgba(18, 18, 24, ${opacity * 0.85})`;
-          ctx.strokeStyle = node.category === 'cloud'
-            ? `rgba(245, 185, 66, ${opacity * 0.6})`
-            : node.category === 'embedded'
-            ? `rgba(6, 182, 212, ${opacity * 0.6})`
-            : `rgba(16, 185, 129, ${opacity * 0.6})`;
-          ctx.lineWidth = 1.5 * node.scale;
-          ctx.shadowBlur = 6 * node.scale;
-          ctx.shadowColor = node.category === 'cloud' ? '#f5b942' : '#06b6d4';
-        }
-
+        ctx.fillStyle = `rgba(18, 18, 24, ${opacity * 0.95})`;
+        ctx.strokeStyle = isHovered ? '#ffffff' : node.color;
+        ctx.lineWidth = (isHovered ? 3.0 : 2.2) * node.scale;
         ctx.fill();
         ctx.stroke();
 
         // Node Label Text
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = isHovered ? '#ffffff' : `rgba(241, 245, 249, ${opacity})`;
-        ctx.font = `${isHovered ? '700' : '600'} ${Math.max(10, Math.round(11 * node.scale * (isHovered ? 1.15 : 1.0)))}px "Outfit", sans-serif`;
+        ctx.fillStyle = isHovered ? '#ffffff' : node.color;
+        ctx.font = `800 ${Math.max(11, Math.round(13 * node.scale * (isHovered ? 1.15 : 1.0)))}px "Outfit", sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(node.label, 0, 0);
@@ -219,19 +197,15 @@ export default function TechConstellation() {
       animFrameId.current = requestAnimationFrame(render);
     };
 
-    // IntersectionObserver to pause animation when offscreen
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          isVisible = entry.isIntersecting;
-          if (isVisible) {
-            if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
-            animFrameId.current = requestAnimationFrame(render);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
+          animFrameId.current = requestAnimationFrame(render);
+        }
+      });
+    }, { threshold: 0.1 });
 
     observer.observe(canvas);
     animFrameId.current = requestAnimationFrame(render);
@@ -242,7 +216,7 @@ export default function TechConstellation() {
     };
   }, []);
 
-  // Handle Drag & Mouse Movements
+  // Handle Drag & Pointer Movements
   const handleMouseDown = (e) => {
     dragRef.current = {
       isDragging: true,
@@ -262,8 +236,8 @@ export default function TechConstellation() {
       const deltaX = e.clientX - dragRef.current.lastMouseX;
       const deltaY = e.clientY - dragRef.current.lastMouseY;
 
-      rotationRef.current.velY = deltaX * 0.005;
-      rotationRef.current.velX = -deltaY * 0.005;
+      rotationRef.current.velY = deltaX * 0.004;
+      rotationRef.current.velX = -deltaY * 0.004;
       rotationRef.current.x += rotationRef.current.velX;
       rotationRef.current.y += rotationRef.current.velY;
 
@@ -271,7 +245,7 @@ export default function TechConstellation() {
       dragRef.current.lastMouseY = e.clientY;
     }
 
-    // Check hit test for node hovering
+    // Hit test node hover
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const rot = rotationRef.current;
@@ -281,8 +255,8 @@ export default function TechConstellation() {
     const sinY = Math.sin(rot.y);
     const cosY = Math.cos(rot.y);
 
-    const focalLength = 380;
-    const sphereRadius = 135;
+    const focalLength = 420;
+    const sphereRadius = 210;
 
     let hoveredId = null;
     let minDistance = Infinity;
@@ -296,7 +270,7 @@ export default function TechConstellation() {
       const scale = focalLength / (focalLength + z2 + sphereRadius);
       const projX = centerX + x1 * scale;
       const projY = centerY + y2 * scale;
-      const hitRadius = 24 * scale;
+      const hitRadius = 28 * scale;
 
       const dist = Math.hypot(mouseX - projX, mouseY - projY);
       if (dist < hitRadius && dist < minDistance) {
@@ -310,10 +284,9 @@ export default function TechConstellation() {
   };
 
   const handleMouseUp = () => {
-    dragRef.current.isDragging = false;
+    dragRef.current = { ...dragRef.current, isDragging: false };
   };
 
-  // Touch handlers for mobile
   const handleTouchStart = (e) => {
     if (e.touches.length === 1) {
       dragRef.current = {
@@ -329,8 +302,8 @@ export default function TechConstellation() {
       const deltaX = e.touches[0].clientX - dragRef.current.lastMouseX;
       const deltaY = e.touches[0].clientY - dragRef.current.lastMouseY;
 
-      rotationRef.current.velY = deltaX * 0.005;
-      rotationRef.current.velX = -deltaY * 0.005;
+      rotationRef.current.velY = deltaX * 0.004;
+      rotationRef.current.velX = -deltaY * 0.004;
       rotationRef.current.x += rotationRef.current.velX;
       rotationRef.current.y += rotationRef.current.velY;
 
@@ -340,7 +313,7 @@ export default function TechConstellation() {
   };
 
   const handleTouchEnd = () => {
-    dragRef.current.isDragging = false;
+    dragRef.current = { ...dragRef.current, isDragging: false };
   };
 
   return (
@@ -351,9 +324,10 @@ export default function TechConstellation() {
           <span>3D TECH STACK CONSTELLATION MESH</span>
         </div>
         <div className="constellation-legend">
-          <span><i className="fas fa-circle" style={{ color: '#f5b942', fontSize: '8px' }}></i> Cloud & Backend</span>
-          <span><i className="fas fa-circle" style={{ color: '#06b6d4', fontSize: '8px' }}></i> Embedded & IoT</span>
-          <span><i className="fas fa-circle" style={{ color: '#10b981', fontSize: '8px' }}></i> Web & Core</span>
+          <span><i className="fas fa-circle" style={{ color: '#3b82f6', fontSize: '8px' }}></i> TypeScript / React</span>
+          <span><i className="fas fa-circle" style={{ color: '#10b981', fontSize: '8px' }}></i> Django / Python</span>
+          <span><i className="fas fa-circle" style={{ color: '#a855f7', fontSize: '8px' }}></i> C++ / Embedded</span>
+          <span><i className="fas fa-circle" style={{ color: '#ffffff', fontSize: '8px' }}></i> Next.js Core</span>
         </div>
       </div>
 
@@ -361,7 +335,7 @@ export default function TechConstellation() {
         <canvas
           ref={canvasRef}
           width={840}
-          height={400}
+          height={460}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -369,10 +343,10 @@ export default function TechConstellation() {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ width: '100%', height: '400px', cursor: dragRef.current.isDragging ? 'grabbing' : 'grab' }}
+          style={{ width: '100%', height: '460px', cursor: dragRef.current.isDragging ? 'grabbing' : 'grab' }}
         />
         <div className="constellation-hint">
-          <i className="fas fa-hand-pointer"></i> Drag 3D Sphere to rotate | Hover node to isolate mesh
+          <i className="fas fa-hand-pointer"></i> Drag 3D Wireframe to spin | Hover node to isolate mesh
         </div>
       </div>
     </div>
